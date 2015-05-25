@@ -14,19 +14,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require app
-//= require settings
-//= require widgets
+//= require jquery.min
 //= require jquery.pjax
-//= require alert
-//= require button
+//= require transition
 //= require collapse
 //= require dropdown
+//= require button
 //= require tooltip
-//= require transition
+//= require alert
 //= require jquery.slimscroll.min
 //= require widgster
 //= require pace
 //= require jquery.touchSwipe
-//= require jquery.min
+//= require settings
+//= require app
 
