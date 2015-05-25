@@ -28,4 +28,5 @@
 //= require widgster
 //= require pace
 //= require jquery.touchSwipe
+//= require jquery.min
 
