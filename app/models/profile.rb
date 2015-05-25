@@ -4,13 +4,15 @@ class Profile < ActiveRecord::Base
 
   # associations
   belongs_to :user
-  # validations
 
+
+  # validations
+  validates_presence_of :first_name, :last_name, :phone
   # scopes
 
-  # Instance methods
-
   # Constants
+
+  # Instance methods
 
 
 end

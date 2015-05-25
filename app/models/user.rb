@@ -5,15 +5,23 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # callbacks
-
+  after_create :create_default_profile
   # associations
   has_one :profile
+
   # validations
 
   # scopes
 
+  # Constants
+
   # Instance methods
 
-  # Constants
+  private
+
+  def create_default_profile
+    @profile = self.profile.build(:first_name => self.email.split('@')[0])
+    @profile.save(:validate => false)
+  end
 
 end
