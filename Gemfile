@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg', '~> 0.17.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -22,9 +22,6 @@ gem 'turbolinks', '~> 2.5.2'  # Turbolinks makes following links in your web app
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-gem 'mongoid', '~> 4.0.2'
-gem 'bson_ext', '~> 1.5.1'
 
 gem 'devise', '~> 3.4.1'
 gem 'omniauth', '~> 1.2.2'
