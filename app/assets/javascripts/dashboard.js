@@ -13,4 +13,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require bootstrap
+//= require app
+//= require settings
+//= require widgets
+//= require jquery.pjax
+//= require alert
+//= require button
+//= require collapse
+//= require dropdown
+//= require tooltip
+//= require transition
+//= require jquery.slimscroll.min
+//= require widgster
+//= require pace
+//= require jquery.touchSwipe
+

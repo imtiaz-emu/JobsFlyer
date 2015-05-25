@@ -2,7 +2,7 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
-config.assets.precompile += %w( application.css dashboard.css dashboard.js )
+Rails.application.config.assets.precompile += %w( application.css dashboard.css dashboard.js )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
@@ -10,3 +10,8 @@ config.assets.precompile += %w( application.css dashboard.css dashboard.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+# Add Fonts path
+Rails.application.config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+# Precompile additional assets
+Rails.application.config.assets.precompile += %w(.svg .eot .woff .ttf)

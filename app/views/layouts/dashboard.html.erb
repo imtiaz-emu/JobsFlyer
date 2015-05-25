@@ -6,9 +6,20 @@
   <%= javascript_include_tag 'dashboard', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= params[:controller] %> <%= params[:action] %>">
 
-<%= yield %>
+<!--<div class="container">-->
+  <%= render :partial => 'shared/nav_sidebar' %>
+  <%= render :partial => 'shared/top_navigation_menu' %>
+  <div class="content-wrap">
+    <!-- main page content. the place to put widgets in. usually consists of .row > .col-md-* > .widget.  -->
+    <main id="content" class="content" role="main">
+      <%= yield %>
+    </main>
+  </div>
+<!--</div>-->
+
+
 
 </body>
 </html>
