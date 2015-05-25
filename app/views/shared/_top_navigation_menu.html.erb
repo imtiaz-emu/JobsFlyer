@@ -54,7 +54,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle dropdown-toggle-notifications" id="notifications-dropdown-toggle" data-toggle="dropdown">
                         <span class="thumb-sm avatar pull-left">
-                            <img class="img-circle" src="demo/img/people/a5.jpg" alt="...">
+                          <%= image_tag 'avatar.png', class: 'img-circle' %>
+                            <!--<img class="img-circle" src="demo/img/people/a5.jpg" alt="...">-->
                         </span>
             &nbsp;
             Philip <strong>Smith</strong>&nbsp;
@@ -111,7 +112,7 @@
                 </div>
                 <a class="list-group-item" href="#">
                                 <span class="thumb-sm pull-left mr">
-                                    <i class="glyphicon glyphicon-upload fa-lg"></i>
+                                    <i class="fa fa-upload fa-lg"></i>
                                 </span>
                   <p class="text-ellipsis no-margin">
                     2.1.0-pre-alpha just released. </p>
@@ -178,7 +179,7 @@
                   <time class="help-block no-margin">
                     15 Apr 2014
                   </time>
-                </a>
+                </a>]
               </div>
               <footer class="panel-footer text-sm">
                 <!-- ajax-load button. loads demo/ajax/notifications.php to #notifications-list
@@ -200,7 +201,7 @@
             <i class="fa fa-cog fa-lg"></i>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a></li>
+            <li><a href="#"><i class="fa fa-user"></i> &nbsp; My Account</a></li>
             <li class="divider"></li>
             <li><a href="#">Calendar</a></li>
             <li><a href="#">Inbox &nbsp;&nbsp;<span class="badge bg-danger animated bounceIn">9</span></a></li>
