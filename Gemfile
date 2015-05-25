@@ -31,6 +31,9 @@ gem 'omniauth-linkedin', '~> 0.2.0'
 gem 'omniauth-google-oauth2', '~> 0.2.6'
 
 gem "font-awesome-rails"
+
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.0.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
