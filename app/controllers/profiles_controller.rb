@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+
   layout 'dashboard'
   # GET /profiles
   # GET /profiles.json
@@ -10,6 +12,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    redirect_to edit_profile_path(@profile)
   end
 
   # GET /profiles/new
@@ -40,6 +43,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    params[:profile].merge('user_id' => current_user.id)
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
@@ -69,6 +73,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params[:profile]
+      params.require(:profile).permit(:first_name, :last_name, :phone, :description, :address, :city, :state, :country, :status, :photo, :looking_for_job, :user_id)
     end
 end

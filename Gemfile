@@ -34,6 +34,7 @@ gem "font-awesome-rails"
 
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.0.1'
+gem 'carmen-rails', '~>1.0.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

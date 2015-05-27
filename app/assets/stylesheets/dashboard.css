@@ -13,5 +13,6 @@
  *= require bootstrap
  *= require dashboard.theme
  *= require font-awesome
+ *= require custom.dashboard
  *= require_self
  */

@@ -14,7 +14,16 @@
   <div class="content-wrap">
     <!-- main page content. the place to put widgets in. usually consists of .row > .col-md-* > .widget.  -->
     <main id="content" class="content" role="main">
-      <%= yield %>
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <%= yield %>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="jumbotron" style="background: #ffffff">
+
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 <!--</div>-->

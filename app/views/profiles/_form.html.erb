@@ -1,17 +1,193 @@
-<%= form_for(@profile) do |f| %>
-  <% if @profile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+<section class="widget">
+  <header>
 
-      <ul>
-      <% @profile.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="widget-controls">
+      <!--<a href="#"><i class="fa fa-cog"></i></a>-->
+      <a href="#"><i class="fa fa-refresh"></i></a>
+      <!--<a data-widgster="close" href="#"><i class="fa fa-remove"></i></a>-->
     </div>
-  <% end %>
+  </header>
+  <div class="widget-body">
+    <%= form_for(@profile, :html => {:class => 'form-horizontal'}) do |f| %>
+      <%= render :partial => 'shared/error_messages', :locals => {:obj => f.object} %>
+      <!--<form role="form" class="form-horizontal">-->
+      <fieldset>
+        <legend><strong>Edit</strong> profile</legend>
 
-  <div class="actions">
-    <%= f.submit %>
+        <!--Input for first name-->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 control-label">First name</label>
+
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" name="profile[first_name]" placeholder="First name" size="16" class="form-control" id="prepended-input" value="<%= current_profile.first_name %>" required="true">
+            </div>
+          </div>
+        </div>
+
+        <!--Input for last name-->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 control-label">Last name</label>
+
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" name="profile[last_name]" placeholder="Last name" size="16" class="form-control" id="prepended-input2" value="<%= current_profile.last_name %>" required="true">
+            </div>
+          </div>
+        </div>
+
+        <!--profile photo section -->
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="hint-field">
+            Your photo
+            <!--<span class="help-block">Required field</span>-->
+          </label>
+
+          <div class="col-sm-4">
+            <input id="profile-image-upload" class="hidden" type="file" name="profile[photo]">
+            <div id="profile-image" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change profile image</div>
+          </div>
+          <div class="col-sm-offset-1 col-md-offset-1 col-md-3 col-sm-3">
+            <%= image_tag current_profile.photo.present? ? current_profile.photo_url(:profile) : 'avatar.png', :id => "uploaded-profile-image", alt: 'your image' %>
+          </div>
+        </div>
+
+        <!--Input for phone number-->
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="hint-field">
+            Phone
+            <span class="help-block">Required field</span>
+          </label>
+
+          <div class="col-sm-7">
+            <%= f.text_field :phone, :class => 'form-control', :id => 'hint-field', :placeholder => 'your phone number', :required => true %>
+          </div>
+        </div>
+
+        <!--input for address-->
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="hint-field">
+            Address
+            <!--<span class="help-block">Required field</span>-->
+          </label>
+
+          <div class="col-sm-7">
+            <%= f.text_field :address, :class => 'form-control', :id => 'address-field', :placeholder => 'your address', :required => true %>
+          </div>
+        </div>
+
+        <!--Input for country-->
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="default-select">Select your country</label>
+          <div class="col-sm-7">
+            <%= f.country_select :country, { include_blank: 'Select Country'}, id: "default-select", class: 'form-control', title: 'Country', rel: 'tooltip' %>
+          </div>
+        </div>
+
+        <!--input for state-->
+        <div class="form-group" id="profile_state_wrapper">
+          <label class="col-sm-4 control-label" for="default-select">Select state</label>
+          <div class="col-sm-7 subregion-select">
+            <% if current_profile.country.present? %>
+              <%= f.subregion_select :state, current_profile.country, {prompt: 'Select State/Province'}, class: 'form-control', title: 'State', rel: 'tooltip' %>
+            <% else %>
+              <%= f.select :state, [[]], {include_blank: 'Select State'}, disabled: true, class: 'form-control', title: 'State', rel: 'tooltip' %>
+            <% end %>
+          </div>
+        </div>
+
+        <!--input for city-->
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="hint-field">
+            City
+            <!--<span class="help-block">Required field</span>-->
+          </label>
+
+          <div class="col-sm-7">
+            <%= f.text_field :city, :class => 'form-control', :id => 'city-field', :placeholder => 'your city' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-7">
+            <div class="checkbox checkbox-danger">
+              <%= f.check_box :looking_for_job, :id => 'checkbox6' %>
+              <!--<input id="checkbox6" type="checkbox" checked>-->
+              <label for="checkbox6">
+                I am looking for a job
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="wysiwyg" class="col-sm-4 control-label">
+            About me
+                                        <span class="help-block">
+                                            Write something about yourself
+                                        </span>
+          </label>
+
+          <div class="col-sm-8">
+            <textarea rows="4" class="form-control" id="wysiwyg"></textarea>
+          </div>
+
+        </div>
+
+      </fieldset>
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-sm-offset-4 col-sm-7">
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <button class="btn btn-inverse" type="button">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <!--</form>-->
+    <% end %>
   </div>
-<% end %>
+</section>
+
+<script>
+  $(document).ready(function(){
+    $('#default-select').change(function(){
+      var url = "/home/load_states?country_code=" + $(this).val();
+
+      $.ajax({
+        dataType: "script",
+        type: "GET",
+        url: url
+      });
+      return false;
+    });
+
+
+    $('#profile-image').on('click', function() {
+      $('#profile-image-upload').click();
+    });
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#uploaded-profile-image').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#profile-image-upload").change(function(){
+      readURL(this);
+    });
+
+    $('#wysiwyg').wysihtml5({
+      html: true,
+      stylesheets: []
+    });
+  });
+</script>
+
