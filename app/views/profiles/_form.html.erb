@@ -45,11 +45,11 @@
             <!--<span class="help-block">Required field</span>-->
           </label>
 
-          <div class="col-sm-4">
+          <div class="col-sm-5">
             <input id="profile-image-upload" class="hidden" type="file" name="profile[photo]">
             <div id="profile-image" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change profile image</div>
           </div>
-          <div class="col-sm-offset-1 col-md-offset-1 col-md-3 col-sm-3">
+          <div class="col-md-3 col-sm-3">
             <%= image_tag current_profile.photo.present? ? current_profile.photo_url(:profile) : 'avatar.png', :id => "uploaded-profile-image", alt: 'your image' %>
           </div>
         </div>
