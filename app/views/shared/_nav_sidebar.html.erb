@@ -34,8 +34,8 @@
           <i class="toggle fa fa-angle-down"></i>
         </a>
         <ul id="sidebar-dashboard" class="collapse in">
-          <li class="active"><a href="<%= dashboard_path %>">Dashboard</a></li>
-          <li><a href="<%= edit_profile_path(current_user.profile) %>" data-no-turbolink>My Profile</a></li>
+          <li class="<%= @dash_tab %>"><a href="<%= dashboard_path %>">Dashboard</a></li>
+          <li class="<%= @profile_tab %>"><%= link_to 'My profile', edit_profile_path(current_user.profile)%></li>
         </ul>
       </li>
       <li>

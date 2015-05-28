@@ -4,6 +4,6 @@ class DashboardController < ApplicationController
   layout 'dashboard'
 
   def index
-
+    @dash_tab = 'active'
   end
 end
