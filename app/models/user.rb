@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_admin?
+    self.email == 'admin@jobsflyer.com'
+  end
+
   private
 
   def create_default_profile
