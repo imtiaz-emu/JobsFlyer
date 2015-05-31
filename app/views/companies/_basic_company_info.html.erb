@@ -9,9 +9,7 @@
 
         <div class="col-sm-7">
           <div class="input-group">
-            <!--<span class="input-group-addon"><i class="fa fa-user"></i></span>-->
             <%= f.select :organization_category_id, options_for_select(OrganizationCategory.all.collect{|oc| [oc.name, oc.id]}, @company.organization_category), :class=>"form-control" %>
-            <!--<input type="text" name="profile[first_name]" placeholder="First name" size="16"  id="prepended-input" value="<%= current_profile.first_name %>" required="true">-->
           </div>
         </div>
       </div>
@@ -22,9 +20,7 @@
 
         <div class="col-sm-7">
           <div class="">
-            <!--<span class="input-group-addon"><i class="fa fa-user"></i></span>-->
             <%= f.text_field :name, :class => 'form-control', :placeholder => 'your company name', :required => true %>
-            <!--<input type="text" name="profile[last_name]" placeholder="Last name" size="16" class="form-control" id="prepended-input2" value="<%= current_profile.last_name %>" required="true">-->
           </div>
         </div>
       </div>
