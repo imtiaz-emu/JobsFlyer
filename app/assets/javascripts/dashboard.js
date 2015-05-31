@@ -29,4 +29,5 @@
 //= require app
 //= require wysihtml5-0.3.0.min
 //= require bootstrap3-wysihtml5
+//= require tab
 

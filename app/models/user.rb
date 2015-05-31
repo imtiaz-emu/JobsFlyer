@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   after_create :create_default_profile
   # associations
   has_one :profile, :dependent => :destroy
-
+  has_many :companies, :dependent => :destroy
   # validations
 
   # scopes

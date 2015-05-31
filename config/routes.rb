@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :companies
+
   ActiveAdmin.routes(self)
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
