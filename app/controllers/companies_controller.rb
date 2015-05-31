@@ -27,6 +27,7 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
+    params[:company][:user_id] = current_user.id
     @company = Company.new(company_params)
 
     respond_to do |format|
@@ -43,6 +44,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
+    params[:company][:user_id] = current_user.id
     respond_to do |format|
       if @company.update(company_params)
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
