@@ -35,8 +35,9 @@
 
         <div class="col-sm-7">
           <div class="">
-            <%= f.text_field :web_address, :class => 'form-control', :placeholder => 'company url', :required => true %>
+            <%= f.text_field :web_address, :class => 'form-control', :placeholder => 'company url', :required => true, :id=>'c-web-url', :autocomplete => :off %>
           </div>
+          <div id="web-address-uniqueness" data-companies="<%= all_companies %>"></div>
         </div>
       </div>
 
@@ -51,7 +52,7 @@
           <div id="company-logo" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change company logo</div>
           <div class="row">
             <div class="col-md-offset-4 col-md-8 col-sm-12">
-              <%= image_tag @company.logo.present? ? @company.logo_url(:profile) : 'jf_logo.jpg', :id => "uploaded-company-logo", alt: 'Company Logo' %>
+              <%= image_tag @company.logo.present? ? @company.logo_url(:logo) : 'jf_logo.jpg', :id => "uploaded-company-logo", alt: 'Company Logo' %>
             </div>
           </div>
         </div>
@@ -96,7 +97,7 @@
           <div id="company-banner" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change company banner</div>
           <div class="row">
             <div class="col-sm-12">
-              <%= image_tag @company.bg_image.present? ? @company.bg_image_url(:profile) : 'jf_banner.jpg', :id => "uploaded-company-banner", alt: 'Company Banner' %>
+              <%= image_tag @company.bg_image.present? ? @company.bg_image_url(:banner) : 'jf_banner.jpg', :id => "uploaded-company-banner", alt: 'Company Banner' %>
             </div>
           </div>
         </div>
@@ -116,6 +117,8 @@
 
 <script>
   $(document).ready(function(){
+
+    //    company logo image preview
 
     $('#company-logo').on('click', function() {
       $('#company-logo-upload').click();
@@ -137,6 +140,8 @@
       readURL(this);
     });
 
+//    company banner image preview
+
     $('#company-banner').on('click', function() {
       $('#company-banner-upload').click();
     });
@@ -155,6 +160,29 @@
 
     $("#company-banner-upload").change(function(){
       readBannerURL(this);
+    });
+
+//    uniqueness test for company web address
+
+    var companies = $('#web-address-uniqueness').data('companies');
+
+    $( "#c-web-url" ).keyup(function() {
+      value = $("#c-web-url").prop('value');
+      compUrl = value.replace(/\W/g, '').toLowerCase();
+
+      if (compUrl.length >= 5){
+        if( companies.indexOf($('#c-web-url').val()) > -1 ){
+          document.getElementById('web-address-uniqueness').innerHTML = (compUrl) + ' <i class="fa fa-warning" style="margin-bottom: 15px;"></i> Web URL taken!'
+        }
+        else{
+          document.getElementById('web-address-uniqueness').innerHTML = (compUrl) + '<i class="fa fa-check" style="margin-bottom: 15px;"></i> Web URL available!'
+        }
+        if ($('#c-web-url').val().length <= 0){
+          document.getElementById('web-address-uniqueness').innerHTML = ''
+        }
+      }else{
+        document.getElementById('web-address-uniqueness').innerHTML = (compUrl) + ' <i class="fa fa-warning" style="margin-bottom: 15px;"></i> Web URL taken!'
+      }
     });
 
   });

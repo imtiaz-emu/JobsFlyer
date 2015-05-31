@@ -24,7 +24,7 @@
     </div>
     <!-- main notification links are placed inside of .sidebar-nav -->
     <ul class="sidebar-nav">
-      <li class="active">
+      <li class="<%= @dash_tab %>">
         <!-- an example of nested submenu. basic bootstrap collapse component -->
         <a href="#sidebar-dashboard" data-toggle="collapse" data-parent="#sidebar">
                     <span class="icon">
@@ -49,8 +49,8 @@
                     </span>
         </a>
       </li>
-      <li>
-        <a href="<%= companies_path %>">
+      <li class="<%= @company_tab %>">
+        <a href="<%= user_companies_path(current_user) %>">
                     <span class="icon">
                         <i class="fa fa-bar-chart"></i>
                     </span>

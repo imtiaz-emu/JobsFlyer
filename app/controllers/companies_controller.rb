@@ -8,6 +8,7 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @companies = current_user.companies
+    @company_tab = 'active'
   end
 
   # GET /companies/1
@@ -17,6 +18,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
+    @company_tab = 'active'
     @company = Company.new
   end
 
@@ -28,6 +30,7 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     params[:company][:user_id] = current_user.id
+    params[:company][:web_address] = params[:company][:web_address].gsub!(/\W/,'')
     @company = Company.new(company_params)
 
     respond_to do |format|
@@ -45,6 +48,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1.json
   def update
     params[:company][:user_id] = current_user.id
+    params[:company][:web_address] = params[:company][:web_address].gsub!(/\W/,'')
     respond_to do |format|
       if @company.update(company_params)
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }

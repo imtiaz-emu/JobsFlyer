@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  resources :companies
 
   ActiveAdmin.routes(self)
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
   resources :profiles
+
+  resources :companies, except: [:index, :destroy], path: ''
 
   # devise_for :users
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -15,4 +16,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'home/load_states'
+  resources :users do
+    get '/companies', to: 'companies#index'
+    get '/companies/new', to: 'companies#new'
+  end
 end
