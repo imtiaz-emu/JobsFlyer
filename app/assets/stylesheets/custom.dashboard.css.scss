@@ -3,6 +3,14 @@
   src: url('/assets/glyphicons-halflings-regular.eot');
   src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:300;src:local("Open Sans Light"),local("OpenSans-Light"),url(/assets/open-sans-light.woff) format("woff")}
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local("Open Sans"),local("OpenSans"),url(/assets/open-sans.woff) format("woff")}
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:600;src:local("Open Sans Semibold"),local("OpenSans-Semibold"),url(/assets/open-sans-semibold.woff) format("woff")}
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local("Open Sans Bold"),local("OpenSans-Bold"),url(/assets/open-sans-bold.woff) format("woff")}
+@font-face{font-family:'Open Sans';font-style:italic;font-weight:300;src:local("Open Sans Light Italic"),local("OpenSansLight-Italic"),url(/assets/open-sans-light-italic.woff) format("woff")}
+@font-face{font-family:'Open Sans';font-style:italic;font-weight:400;src:local("Open Sans Italic"),local("OpenSans-Italic"),url(/assets/open-sans-italic.woff) format("woff")}
+@font-face{font-family:'Open Sans';font-style:italic;font-weight:600;src:local("Open Sans Semibold Italic"),local("OpenSans-SemiboldItalic"),url(/assets/open-sans-semibold-italic.woff) format("woff")}
+@font-face{font-family:'Open Sans';font-style:italic;font-weight:700;src:local("Open Sans Bold Italic"),local("OpenSans-BoldItalic"),url(/assets/open-sans-bold-italic.woff) format("woff")}
 .profiles{
   #uploaded-profile-image{
     border-radius: 100px;
