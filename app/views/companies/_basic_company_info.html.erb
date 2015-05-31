@@ -1,0 +1,150 @@
+<div class="row">
+  <div class="col-lg-12">
+    <fieldset>
+      <legend><strong>Edit</strong> Company</legend>
+
+      <!--Input for Company Type -->
+      <div class="form-group">
+        <label for="prepended-input" class="col-sm-4 control-label">Company Type</label>
+
+        <div class="col-sm-7">
+          <div class="input-group">
+            <!--<span class="input-group-addon"><i class="fa fa-user"></i></span>-->
+            <%= f.select :organization_category_id, options_for_select(OrganizationCategory.all.collect{|oc| [oc.name, oc.id]}, @company.organization_category), :class=>"form-control" %>
+            <!--<input type="text" name="profile[first_name]" placeholder="First name" size="16"  id="prepended-input" value="<%= current_profile.first_name %>" required="true">-->
+          </div>
+        </div>
+      </div>
+
+      <!--Input for last name-->
+      <div class="form-group">
+        <label for="prepended-input" class="col-sm-4 control-label">Company Name</label>
+
+        <div class="col-sm-7">
+          <div class="">
+            <!--<span class="input-group-addon"><i class="fa fa-user"></i></span>-->
+            <%= f.text_field :name, :class => 'form-control', :placeholder => 'your company name', :required => true %>
+            <!--<input type="text" name="profile[last_name]" placeholder="Last name" size="16" class="form-control" id="prepended-input2" value="<%= current_profile.last_name %>" required="true">-->
+          </div>
+        </div>
+      </div>
+
+      <!--profile photo section -->
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="hint-field">
+          Company Logo
+        </label>
+
+        <div class="col-sm-8">
+          <input id="company-logo-upload" class="hidden" type="file" name="company[logo]">
+          <div id="company-logo" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change company logo</div>
+          <div class="row">
+            <div class="col-md-offset-4 col-md-8 col-sm-12">
+              <%= image_tag @company.logo.present? ? @company.logo_url(:profile) : 'jf_logo.jpg', :id => "uploaded-company-logo", alt: 'Company Logo' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Input for company description-->
+      <div class="form-group">
+        <label for="wysiwyg" class="col-sm-4 control-label">
+          About company
+                                        <span class="help-block">
+                                            Write something about your company
+                                        </span>
+        </label>
+
+        <div class="col-sm-8">
+          <textarea rows="4" class="form-control" id=""></textarea>
+        </div>
+
+      </div>
+
+      <!--input for address-->
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="hint-field">
+          External Website
+          <!--<span class="help-block">Required field</span>-->
+        </label>
+
+        <div class="col-sm-7">
+          <%= f.text_field :website, :class => 'form-control', :id => 'address-field', :placeholder => 'have any company website?' %>
+        </div>
+      </div>
+
+      <!--Input company banner-->
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="hint-field">
+          Company Banner
+          <!--<span class="help-block">Required field</span>-->
+        </label>
+
+        <div class="col-sm-8">
+          <input id="company-banner-upload" class="hidden" type="file" name="company[bg_image]">
+          <div id="company-banner" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change company banner</div>
+          <div class="row">
+            <div class="col-sm-12">
+              <%= image_tag @company.bg_image.present? ? @company.bg_image_url(:profile) : 'jf_banner.jpg', :id => "uploaded-company-banner", alt: 'Company Banner' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Input for country-->
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="default-select">Employee Range</label>
+        <div class="col-sm-7">
+          <%= f.select :employee_range, Company::EMPLOYEE_RANGE , id: "default-select", class: 'form-control' %>
+        </div>
+      </div>
+
+    </fieldset>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+
+    $('#company-logo').on('click', function() {
+      $('#company-logo-upload').click();
+    });
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#uploaded-company-logo').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#company-logo-upload").change(function(){
+      readURL(this);
+    });
+
+    $('#company-banner').on('click', function() {
+      $('#company-banner-upload').click();
+    });
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#uploaded-company-banner').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#company-banner-upload").change(function(){
+      readURL(this);
+    });
+
+  });
+</script>

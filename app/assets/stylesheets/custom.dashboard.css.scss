@@ -24,3 +24,17 @@
     border: none;
   }
 }
+.companies .row.mb-lg{
+  #company-logo, #company-banner{
+    border: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  #uploaded-company-banner{
+    width: 100%;
+    height: 250px;
+  }
+  #uploaded-company-logo{
+    width: 70%;
+  }
+}
