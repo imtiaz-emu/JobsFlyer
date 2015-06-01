@@ -88,7 +88,7 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:organization_category_id, :user_id, :name, :logo, :bg_image, :description, :employee_range, :website, :web_address)
+      params.require(:company).permit(:organization_category_id, :user_id, :name, :logo, :bg_image, :description, :employee_range, :website, :web_address, company_locations_attributes: [:id, :branch_type, :phone, :country, :city, :state, :_destroy])
     end
 
     def user_verify_on_edit

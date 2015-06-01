@@ -1,6 +1,10 @@
 class Company < ActiveRecord::Base
   belongs_to :organization_category
   belongs_to :user
+  has_many :company_locations, :dependent => :destroy
+
+
+  accepts_nested_attributes_for :company_locations, :reject_if => proc {|attributes| attributes[:branch_type].blank? || attributes[:phone].blank? || attributes[:country].blank? || attributes[:state].blank?}, :allow_destroy => true
 
   extend FriendlyId
   friendly_id :web_address, use: :slugged

@@ -1,0 +1,61 @@
+<div class="nested-fields branch-locations">
+  <div class="form-group field">
+    <label for="prepended-input" class="col-sm-4 control-label">Branch Type
+      <span class="help-block">E.g. "Head Office", "Corporate office"</span>
+    </label>
+
+    <div class="col-sm-7">
+      <div class="">
+        <%= f.text_field :branch_type, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <!--Input for country-->
+  <div class="form-group field">
+    <label class="col-sm-4 control-label" for="default-select">Your country</label>
+    <div class="col-sm-7">
+      <%#= f.country_select :country, { include_blank: 'Select Country'}, id: "default-country-select", class: 'form-control', title: 'Country', rel: 'tooltip' %>
+      <%= f.text_field :country, :class => 'form-control', :id => 'country-field', :placeholder => 'your country', :required => true %>
+    </div>
+  </div>
+
+  <!--input for state-->
+  <div class="form-group field" id="profile_state_wrapper">
+    <label class="col-sm-4 control-label" for="default-select">Your state</label>
+    <div class="col-sm-7 subregion-select">
+      <%# if f.object.country.present? %>
+        <%#= f.subregion_select :state, f.object.country, {prompt: 'Select State/Province'}, class: 'form-control', title: 'State', rel: 'tooltip' %>
+      <%# else %>
+        <%#= f.select :state, [[]], {include_blank: 'Select State'}, disabled: true, class: 'form-control', title: 'State', rel: 'tooltip' %>
+      <%# end %>
+      <%= f.text_field :state, :class => 'form-control', :id => 'state-field', :placeholder => 'your state', :required => true %>
+    </div>
+  </div>
+
+  <!--input for city-->
+  <div class="form-group field">
+    <label class="col-sm-4 control-label" for="hint-field">
+      City
+      <!--<span class="help-block">Required field</span>-->
+    </label>
+
+    <div class="col-sm-7">
+      <%= f.text_field :city, :class => 'form-control', :id => 'city-field', :placeholder => 'your city' %>
+    </div>
+  </div>
+
+  <div class="form-group field">
+    <label class="col-sm-4 control-label" for="hint-field">
+      Phone
+      <span class="help-block">Required field</span>
+    </label>
+
+    <div class="col-sm-7">
+      <%= f.text_field :phone, :class => 'form-control', :id => 'phone-field', :placeholder => 'Branch phone', :required => true %>
+    </div>
+  </div>
+
+  <div class="col-sm-11"><%= link_to_remove_association "remove location", f, :class => 'pull-right btn btn-danger btn-xs' %></div>
+</div>
+

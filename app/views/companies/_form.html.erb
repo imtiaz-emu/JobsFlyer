@@ -14,8 +14,15 @@
           <%= render :partial => 'companies/basic_company_info', locals: {:f => f} %>
         </div>
         <div class="tab-pane" id="tab2">
-          <p>Why don't use Lore Ipsum? I think if some one says don't use lore ipsum it's very controversial
-            point. I think the opposite actually. Everyone knows what is lore ipsum - it is easy to understand if text is lore ipsum.</p>
+          <h3>Branch Locations</h3><hr>
+          <div id="company-locations">
+            <%= f.fields_for :company_locations do |cl| %>
+              <%= render 'companies/company_location_fields', :f => cl %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association 'add location', f, :company_locations, :class => 'btn btn-primary btn-xs' %>
+            </div>
+          </div>
         </div>
         <div class="tab-pane" id="tab3">
           <p> If you will think too much it will sink in the swamp of never implemented plans and

@@ -37,6 +37,7 @@ gem 'mini_magick', '~> 4.0.1'
 gem 'carmen-rails', '~>1.0.1'
 gem 'activeadmin', github: 'activeadmin'
 gem 'friendly_id', '~> 5.1.0'
+gem 'cocoon', '~> 1.2.6'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
