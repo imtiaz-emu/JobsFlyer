@@ -30,7 +30,7 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     params[:company][:user_id] = current_user.id
-    params[:company][:web_address] = params[:company][:web_address].gsub!(/\W/,'')
+    # params[:company][:web_address] = params[:company][:web_address].gsub!(/\W/,'')
     @company = Company.new(company_params)
 
     respond_to do |format|
@@ -48,9 +48,9 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1.json
   def update
     params[:company][:user_id] = current_user.id
-    params[:company][:web_address] = params[:company][:web_address].gsub!(/\W/,'')
+    # params[:company][:web_address] = params[:company][:web_address].gsub!(/\W/,'')
     respond_to do |format|
-      if @company.update(company_params)
+      if @company.update_attributes(company_params)
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @company }
       else
@@ -67,6 +67,14 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def availability
+    unless Company.friendly.exists? params[:slug]
+      @availability = true
+    else
+      @availability = false
     end
   end
 

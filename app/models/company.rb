@@ -11,4 +11,9 @@ class Company < ActiveRecord::Base
   mount_uploader :bg_image, CompanyUploader
 
   EMPLOYEE_RANGE = ['1-5', '6-15', '16-30', '30-50', '50+']
+
+  private
+  def should_generate_new_friendly_id?
+    slug.blank? || web_address_changed?
+  end
 end

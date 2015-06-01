@@ -33,11 +33,14 @@
           </span>
         </label>
 
-        <div class="col-sm-7">
+        <div class="col-sm-4">
           <div class="">
-            <%= f.text_field :web_address, :class => 'form-control', :placeholder => 'company url', :required => true, :id=>'c-web-url', :autocomplete => :off %>
+            <%= f.text_field :web_address, :class => 'form-control', :placeholder => 'company url', :required => true, :id=>'c-web-url' %>
           </div>
           <div id="web-address-uniqueness" data-companies="<%= all_companies %>"></div>
+        </div>
+        <div class="col-sm-3">
+          <a href="javascript:void(0)" class="check-availability-btn btn btn-gray btn-xs form-control">Check availability</a>
         </div>
       </div>
 
@@ -164,25 +167,13 @@
 
 //    uniqueness test for company web address
 
-    var companies = $('#web-address-uniqueness').data('companies');
-
-    $( "#c-web-url" ).keyup(function() {
-      value = $("#c-web-url").prop('value');
-      compUrl = value.replace(/\W/g, '').toLowerCase();
-
-      if (compUrl.length >= 5){
-        if( companies.indexOf($('#c-web-url').val()) > -1 ){
-          document.getElementById('web-address-uniqueness').innerHTML = (compUrl) + ' <i class="fa fa-warning" style="margin-bottom: 15px;"></i> Web URL taken!'
-        }
-        else{
-          document.getElementById('web-address-uniqueness').innerHTML = (compUrl) + '<i class="fa fa-check" style="margin-bottom: 15px;"></i> Web URL available!'
-        }
-        if ($('#c-web-url').val().length <= 0){
-          document.getElementById('web-address-uniqueness').innerHTML = ''
-        }
-      }else{
-        document.getElementById('web-address-uniqueness').innerHTML = (compUrl) + ' <i class="fa fa-warning" style="margin-bottom: 15px;"></i> Web URL taken!'
-      }
+    $('.check-availability-btn').click(function(){
+      console.log("Hi");
+      $.ajax({
+        type: "GET",
+        url: '<%= companies_availability_path %>',
+        data: {slug: $('#c-web-url').prop('value')}
+      });
     });
 
   });
