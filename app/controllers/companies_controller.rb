@@ -2,6 +2,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   before_filter :update_your_profile
+  before_filter :user_verify_on_edit, :only => [:edit, :update]
 
   layout 'dashboard'
   # GET /companies
@@ -88,6 +89,12 @@ class CompaniesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
       params.require(:company).permit(:organization_category_id, :user_id, :name, :logo, :bg_image, :description, :employee_range, :website, :web_address)
+    end
+
+    def user_verify_on_edit
+      unless Company.friendly.find(params[:id]).user == current_user
+        redirect_to user_companies_path(current_user), notice: "You're trying to modify other user's company!"
+      end
     end
 
 end
