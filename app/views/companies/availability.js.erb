@@ -1,0 +1,5 @@
+<% if @availability %>
+  document.getElementById('web-address-uniqueness').innerHTML = ' <i class="fa fa-check" style="margin-bottom: 15px;"></i> Web URL available!';
+<% else %>
+  document.getElementById('web-address-uniqueness').innerHTML = ' <i class="fa fa-warning" style="margin-bottom: 15px;"></i> Web URL taken!';
+<% end %>
