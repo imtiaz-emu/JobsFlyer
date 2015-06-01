@@ -38,7 +38,7 @@ class CompanyUploader < CarrierWave::Uploader::Base
   end
 
   version :banner do
-    process :resize_to_fit => [750, 450]
+    process :resize_to_fit => [650, 350]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

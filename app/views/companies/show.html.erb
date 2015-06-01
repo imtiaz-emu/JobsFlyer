@@ -1,4 +1,91 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <div class="col-md-12">
+    <section class="widget widget-invoice">
+      <header>
+        <div class="row">
+          <div class="col-sm-6 col-print-6">
+            <!--<img src="demo/img/logo/invoice-logo.png" alt="Logo" class="invoice-logo"/>-->
+            <%= image_tag @company.logo_url(:logo), class: 'imvoice-logo', alt: 'logo' %>
+            <%= %>
+          </div>
+          <div class="col-sm-6 col-print-6">
+            <div class="text-muted fs-larger text-align-right">
+              other company links, likes, followers will be here
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <%= image_tag @company.bg_image_url(:banner), class: 'company-banner', alt: 'company banner' %>
+          </div>
+        </div>
+      </header>
+      <div class="widget-body">
+        <div class="row mb-lg">
+          <div class="col-md-12">
+            <h4 class="text-muted">About <strong><%= @company.name.upcase %></strong></h4>
+
+            <div class="company-description"><%= @company.description if @company.description.present? %></div>
+          </div>
+        </div>
+
+        <div class="row mb-lg">
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Industry</h4>
+
+            <h5 class="company-name">
+              <%= @company.organization_category.name %>
+            </h5>
+          </section>
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Employee Range</h4>
+
+            <h5 class="client-name">
+              <%= @company.employee_range %>
+            </h5>
+          </section>
+          <% if @company.website.present? %>
+            <section class="col-sm-6 col-md-4 col-xs-12">
+              <h4 class="text-muted no-margin">Website</h4>
+
+              <h5 class="client-name">
+                <%= @company.website %>
+              </h5>
+            </section>
+          <% end %>
+        </div>
+
+        <div class="row mb-lg">
+          <section class="col-md-12">
+            <h4 class="text-muted no-margin">Company Branches</h4>
+            <div class="row">
+              <% @company.company_locations.each do |branch| %>
+
+                <div class="col-sm-6 col-print-6">
+                  <h3 class="company-name">
+                    <%= branch.branch_type %>
+                  </h3>
+                  <address>
+                    <strong><%= Carmen::Country.coded(branch.country) %></strong><br>
+                    <%= branch.state %><br>
+                    <%= branch.city %><br>
+                    <abbr title="Work Phone">phone:</abbr> <%= branch.phone %><br>
+                  </address>
+                </div>
+
+              <% end %>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<%= link_to 'Back', user_companies_path(current_user) %>
