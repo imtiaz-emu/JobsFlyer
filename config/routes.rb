@@ -17,8 +17,8 @@ Rails.application.routes.draw do
 
   get 'home/load_states'
   get '/companies/availability', to: 'companies#availability'
+  get '/companies/new', to: 'companies#new'
   resources :users do
     get '/companies', to: 'companies#index'
-    get '/companies/new', to: 'companies#new'
   end
 end

@@ -1,25 +1,41 @@
 <p id="notice"><%= notice %></p>
+<h3>My Companies <%= link_to "<i class='fa fa-plus fw'></i> New company".html_safe, companies_new_path, class: 'btn btn-gray' %></h3>
 
-<h1>Listing Companies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row">
+<% if @companies.count > 0 %>
     <% @companies.each do |company| %>
-      <tr>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <section class="widget widget-sm bg-primary">
+          <div class="widget-body">
+            <p class="mb-xs"><i class="fa fa-arrow-circle-up fa-3x opacity-50"></i></p>
+
+            <p class="text-light mb">
+              <%= link_to company_path(company), target: '_blank' do %>
+                <time><%= root_url%><%= company.slug %></time>
+              <% end %>
+            </p>
+            <h3>
+              <span class="fw-semi-bold"><%= company.name %></span>
+            </h3>
+
+            <p class="fs-mini mt">
+              <span class="fw-semi-bold">214</span> Followers
+              &nbsp;
+              <span class="fw-semi-bold">96</span> Jobs
+            </p>
+
+            <div class="xs-actions">
+              <%= link_to "Show", company_path(company), class: 'btn btn-warning btn-xs' %>
+              <%= link_to "Edit", edit_company_path(company), class: 'btn btn-warning btn-xs' %>
+              <%= link_to "Destroy", company, :method => :delete, class: 'btn btn-warning btn-xs' %>
+            </div>
+          </div>
+        </section>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Company', user_companies_new_path(current_user) %>
+<% else %>
+    <p class="fs-mini mt">
+      Currently you don't have any company
+    </p>
+<% end %>
+</div>

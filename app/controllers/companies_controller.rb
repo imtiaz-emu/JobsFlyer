@@ -71,10 +71,10 @@ class CompaniesController < ApplicationController
   end
 
   def availability
-    unless Company.friendly.exists? params[:slug]
-      @availability = true
-    else
+    if params[:slug].length < 5 || Company.friendly.exists?(params[:slug])
       @availability = false
+    else
+      @availability = true
     end
   end
 

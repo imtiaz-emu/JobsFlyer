@@ -41,3 +41,10 @@
     margin-top: 25px;
   }
 }
+.companies.index{
+  .widget-body .text-light.mb a{
+    color: #ffffff;
+    font-weight: normal;
+    &:hover{ font-weight: bold; text-decoration: none}
+  }
+}
