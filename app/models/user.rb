@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # associations
   has_one :profile, :dependent => :destroy
   has_many :companies, :through => :company_admins
-  has_many :company_admins
+  has_many :company_admins, :dependent => :destroy
   # validations
 
   # scopes

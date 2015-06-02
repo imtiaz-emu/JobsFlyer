@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
   belongs_to :organization_category
   has_many :users, :through => :company_admins
-  has_many :company_admins
+  has_many :company_admins, :dependent => :destroy
   has_many :company_locations, :dependent => :destroy
 
 
