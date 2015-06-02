@@ -4,7 +4,7 @@
 <div class="row">
 <% if @companies.count > 0 %>
     <% @companies.each do |company| %>
-      <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="col-md-6 col-sm-6 col-xs-12">
         <section class="widget widget-sm bg-primary">
           <div class="widget-body">
             <p class="mb-xs"><i class="fa fa-arrow-circle-up fa-3x opacity-50"></i></p>
@@ -18,13 +18,13 @@
               <span class="fw-semi-bold"><%= company.name %></span>
             </h3>
 
-            <p class="fs-mini mt">
+            <p class="fs-mini mt text-center">
               <span class="fw-semi-bold">214</span> Followers
               &nbsp;
               <span class="fw-semi-bold">96</span> Jobs
             </p>
 
-            <div class="xs-actions">
+            <div class="xs-actions text-center">
               <%= link_to "Show", company_path(company), class: 'btn btn-warning btn-xs' %>
               <%= link_to "Edit", edit_company_path(company), class: 'btn btn-warning btn-xs' %>
               <%= link_to "Destroy", company, :method => :delete, class: 'btn btn-warning btn-xs' %>
