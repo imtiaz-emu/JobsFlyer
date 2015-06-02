@@ -50,12 +50,20 @@
         </a>
       </li>
       <li class="<%= @company_tab %>">
-        <a href="<%= user_companies_path(current_user) %>">
+        <a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
                     <span class="icon">
-                        <i class="fa fa-bar-chart"></i>
+                        <i class="fa fa-building"></i>
                     </span>
           Companies
+          <i class="toggle fa fa-angle-down"></i>
         </a>
+        <ul id="sidebar-forms" class="collapse">
+          <li><a href="<%= user_companies_path(current_user) %>">My Companies</a></li>
+          <li class="divider"></li>
+          <% current_user.companies.each do |company| %>
+            <li><a href="<%= company_path(company) %>"><%= company.name %></a></li>
+          <% end %>
+        </ul>
       </li>
     </ul>
     <!-- every .sidebar-nav may have a title -->
