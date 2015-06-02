@@ -6,7 +6,7 @@
         <ul id="tabs1" class="nav nav-tabs pull-left"> <!-- remove pull-left to get a cool effect too -->
           <li class="active"><a href="#tab1" data-toggle="tab">Basic</a></li>
           <li class=""><a href="#tab2" data-toggle="tab">Locations</a></li>
-          <li class=""><a href="#tab3" data-toggle="tab">Admin Roles</a></li>
+          <% if (!@company.new_record? && is_company_admin(@company)) %><li class=""><a href="#tab3" data-toggle="tab">Admin Roles</a></li><% end %>
         </ul>
       </div>
       <div id="tabs1c" class="tab-content mb-lg">
@@ -25,10 +25,15 @@
           </div>
         </div>
         <div class="tab-pane" id="tab3">
-          <p> If you will think too much it will sink in the swamp of never implemented plans and
-            ideas or will just go away or will be implemented by someone else.</p>
-          <p><strong>5 months of doing everything to achieve nothing.</strong></p>
-          <p>You'll automatically skip - because you know - it's just non-informative stub. But what if there some text like this one?</p>
+          <h3>Admin Roles</h3><hr>
+          <div id="company-admins">
+            <%= f.fields_for :company_admins do |ca| %>
+              <%= render 'companies/company_admin_fields', :f => ca %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association 'add admin', f, :company_admins, :class => 'btn btn-primary btn-xs' %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -38,7 +43,8 @@
     <div class="row">
       <div class="col-sm-offset-4 col-sm-7">
         <button class="btn btn-primary" type="submit">Save Changes</button>
-        <button class="btn btn-inverse" type="button">Cancel</button>
+        <!--<button class="btn btn-inverse" type="button" href="'">Cancel</button>-->
+        <%= link_to "Cancel", user_companies_path(current_user), :class => "btn btn-inverse" %>
       </div>
     </div>
   </div>

@@ -21,21 +21,22 @@ class CompaniesController < ApplicationController
   def new
     @company_tab = 'active'
     @company = Company.new
+    @all_users = User.all
   end
 
   # GET /companies/1/edit
   def edit
+    @all_users = User.all
   end
 
   # POST /companies
   # POST /companies.json
   def create
-    params[:company][:user_id] = current_user.id
-    # params[:company][:web_address] = params[:company][:web_address].gsub!(/\W/,'')
     @company = Company.new(company_params)
 
     respond_to do |format|
       if @company.save
+        @company.company_admins.create(:user_id => current_user.id, :company_id => @company.id, :user_role => 'admin')
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
@@ -48,13 +49,19 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
-    params[:company][:user_id] = current_user.id
-    # params[:company][:web_address] = params[:company][:web_address].gsub!(/\W/,'')
-    respond_to do |format|
-      if @company.update_attributes(company_params)
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
-        format.json { render :show, status: :ok, location: @company }
-      else
+    @all_users = User.all
+    if @company.check_for_atleast_one_admin(params[:company]['company_admins_attributes'].collect{|i| i[1]}.flatten)
+      respond_to do |format|
+        if @company.update_attributes(company_params)
+          format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+          format.json { render :show, status: :ok, location: @company }
+        else
+          format.html { render :edit }
+          format.json { render json: @company.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
         format.html { render :edit }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
@@ -72,7 +79,7 @@ class CompaniesController < ApplicationController
   end
 
   def availability
-    if params[:slug].length < 5 || Company.friendly.exists?(params[:slug])
+    if params[:slug].length < 4 || Company.friendly.exists?(params[:slug])
       @availability = false
     else
       @availability = true
@@ -88,11 +95,11 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:organization_category_id, :user_id, :name, :logo, :bg_image, :description, :employee_range, :website, :web_address, company_locations_attributes: [:id, :branch_type, :phone, :country, :city, :state, :_destroy])
+      params.require(:company).permit(:organization_category_id, :user_id, :name, :logo, :bg_image, :description, :employee_range, :website, :web_address, company_locations_attributes: [:id, :branch_type, :phone, :country, :city, :state, :_destroy], company_admins_attributes: [:id, :user_id, :company_id, :user_role, :_destroy])
     end
 
     def user_verify_on_edit
-      unless Company.friendly.find(params[:id]).user == current_user
+      unless Company.friendly.find(params[:id]).users.include?(current_user)
         redirect_to user_companies_path(current_user), notice: "You're trying to modify other user's company!"
       end
     end

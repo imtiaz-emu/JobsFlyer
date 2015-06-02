@@ -9,7 +9,7 @@
 
         <div class="col-sm-7">
           <div class="input-group">
-            <%= f.select :organization_category_id, options_for_select(OrganizationCategory.all.collect{|oc| [oc.name, oc.id]}, @company.organization_category), :class=>"form-control" %>
+            <%= f.select :organization_category_id, options_for_select(OrganizationCategory.all.collect{|oc| [oc.name, oc.id]}, :selected => @company.organization_category_id), :class=>"form-control" %>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
         </label>
 
         <div class="col-sm-8">
-          <textarea rows="4" class="form-control" id="" name="company[description]" ><%= @company.description.html_safe %></textarea>
+          <textarea rows="4" class="form-control" id="" name="company[description]" ><%= @company.description.html_safe if @company.description.present? %></textarea>
         </div>
 
       </div>

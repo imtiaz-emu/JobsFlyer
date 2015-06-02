@@ -1,0 +1,21 @@
+
+<div class="nested-fields company-admin-roles">
+<!--<div class="row">-->
+  <div class="form-group field">
+    <label class="col-sm-4 control-label" for="default-select">select user</label>
+    <div class="col-sm-8">
+      <%= f.select :user_id, options_for_select(@all_users.collect{|u| [u.email, u.id]}, :selected => f.object.user_id) %>
+    </div>
+  </div>
+<!--</div>-->
+<!--<div class="row">-->
+  <div class="form-group field">
+    <label class="col-sm-4 control-label" for="default-select">select user role</label>
+    <div class="col-sm-8">
+      <%= f.select :user_role, options_for_select(Company::ADMIN_ROLE, :selected => f.object.user_role) %>
+    </div>
+  </div>
+<!--</div>-->
+
+<div class="col-sm-11"><%= link_to_remove_association "remove user", f, :class => 'pull-right btn btn-danger btn-xs' %></div>
+</div>
