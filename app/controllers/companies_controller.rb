@@ -37,7 +37,7 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       if @company.save
         @company.company_admins.create(:user_id => current_user.id, :company_id => @company.id, :user_role => 'admin')
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+        format.html { redirect_to @company, flash: {:success => 'Company was successfully created.'} }
         format.json { render :show, status: :created, location: @company }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class CompaniesController < ApplicationController
     if @company.check_for_atleast_one_admin(params[:company]['company_admins_attributes'].collect{|i| i[1]}.flatten)
       respond_to do |format|
         if @company.update_attributes(company_params)
-          format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+          format.html { redirect_to @company, flash: {:success => 'Company was successfully updated.'}  }
           format.json { render :show, status: :ok, location: @company }
         else
           format.html { render :edit }
@@ -100,7 +100,7 @@ class CompaniesController < ApplicationController
 
     def user_verify_on_edit
       unless Company.friendly.find(params[:id]).users.include?(current_user)
-        redirect_to user_companies_path(current_user), notice: "You're trying to modify other user's company!"
+        redirect_to user_companies_path(current_user), flash: {:alert => "You're trying to modify other user's company!"}
       end
     end
 
