@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
         if resource.is_admin?
           admin_dashboard_path
         else
-          dashboard_path
+          session["user_return_to"] || dashboard_path
         end
   end
 

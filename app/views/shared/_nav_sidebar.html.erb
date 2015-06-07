@@ -102,12 +102,12 @@
           <li><a href="ui_list_groups.html">List Groups</a></li>
         </ul>
       </li>
-      <li>
-        <a href="grid.html">
+      <li class="<%= @subscription_tab %>">
+        <a href="<%= user_subscriptions_path(current_user) %>">
                     <span class="icon">
-                        <i class="fa fa-th"></i>
+                        <i class="fa fa-sitemap"></i>
                     </span>
-          Grid
+          Subscriptions
         </a>
       </li>
       <li>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :jobs
+
   ActiveAdmin.routes(self)
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
@@ -18,7 +20,9 @@ Rails.application.routes.draw do
   get 'home/load_states'
   get '/companies/availability', to: 'companies#availability'
   get '/companies/new', to: 'companies#new'
+  get '/dashboard/calculate_price', to: 'dashboard#calculate_price'
   resources :users do
     get '/companies', to: 'companies#index'
+    resources :subscriptions
   end
 end

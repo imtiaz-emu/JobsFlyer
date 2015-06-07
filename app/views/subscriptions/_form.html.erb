@@ -1,0 +1,158 @@
+<section class="widget">
+  <header>
+
+    <div class="widget-controls">
+      <!--<a href="#"><i class="fa fa-cog"></i></a>-->
+      <a href="#"><i class="fa fa-refresh"></i></a>
+      <!--<a data-widgster="close" href="#"><i class="fa fa-remove"></i></a>-->
+    </div>
+  </header>
+  <div class="widget-body">
+    <%= form_for([current_user, @subscription], :html => {:class => 'form-horizontal', multipart: true}) do |f| %>
+      <%= render :partial => 'shared/error_messages', :locals => {:obj => f.object} %>
+      <!--<form role="form" class="form-horizontal">-->
+      <fieldset>
+        <legend><strong>New</strong> subscription</legend>
+
+        <!--Input for no. of non-featured-job -->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 control-label">Number of Non-Featured job
+            <span class="help-block"><i class="fa fa-money"> Each non-feature job costs <%= Subscription::NORMAL_JOB_PRICE %> taka </i></span>
+          </label>
+
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-star-o"></i></span>
+              <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 1 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off' %>
+            </div>
+          </div>
+        </div>
+
+        <!--Input for no. of featured-job -->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 control-label">Number of Featured job
+            <span class="help-block"><i class="fa fa-money"> Each feature job costs <%= Subscription::FEATURE_JOB_PRICE %> taka </i></span>
+          </label>
+
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-star"></i></span>
+              <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 1 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off' %>
+            </div>
+          </div>
+        </div>
+
+        <!--Expire date for search -->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 control-label">Subscription expires
+            <span class="help-block"><i class="fa fa-money"> Each month search resume costs <%= Subscription::PER_MONTH %> taka </i></span>
+          </label>
+
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              <%= f.select :total_month, options_for_select(month_list.collect{|m| [m, m.split(' ')[0].to_i]}), :class => 'form-control', :id => 'search-resume-expires' %>
+            </div>
+          </div>
+        </div>
+
+
+        <hr>
+        <!-- money calculation -->
+        <div class="form-group" id="money-calculation-portion">
+          <label for="prepended-input" class="col-sm-4 control-label">Each section pricing list</label>
+
+          <div class="col-sm-7">
+            <ul class="list-group">
+              <% (1..3).each do |index| %>
+                <li class="list-group-item" id="money-calculate-<%= index %>">
+                  <span class="badge">Amount</span>
+                  <p>Non-feature job</p>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <hr>
+        <!-- money calculation -->
+        <div class="form-group" >
+          <label for="prepended-input" class="col-sm-4 control-label">Total Calculated amount</label>
+
+          <div class="col-sm-7" id="total-calculated-money">
+            <h4 class="pull-right">Amount</h4>
+          </div>
+        </div>
+
+        <hr>
+        <!--transaction number of bkash -->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 control-label">Bkash Transaction Number
+            <span class="help-block"><i class="fa fa-money"> Each month search resume costs <%= Subscription::PER_MONTH %> taka </i></span>
+          </label>
+
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <%= f.text_field :bkash_transaction_no, :class => 'form-control', :id => 'subscription-transaction-number', :autocomplete => 'off' %>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-sm-offset-4 col-sm-7">
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <!--<button class="btn btn-success" type="button">Save as Draft</button>-->
+            <button class="btn btn-inverse" type="button">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <!--</form>-->
+    <% end %>
+  </div>
+</section>
+
+
+<script>
+  $(document).ready(function(){
+    var feature_job_price = $('#no-of-feature-job').val();
+    var each_month_price = $('#subscription_total_month').val();
+    var normal_job_price = $('#no-of-normal-job').val();
+
+    $.ajax({
+      type: "GET",
+      url: '<%= dashboard_calculate_price_path %>',
+      data: {normal_job: normal_job_price, feature_job: feature_job_price, total_month: each_month_price }
+    });
+
+    $('#no-of-normal-job').keyup(function(){
+      normal_job_price = $('#no-of-normal-job').val();
+      $.ajax({
+        type: "GET",
+        url: '<%= dashboard_calculate_price_path %>',
+        data: {normal_job: normal_job_price, feature_job: feature_job_price, total_month: each_month_price }
+      });
+    })
+
+    $('#no-of-feature-job').keyup(function(){
+      feature_job_price = $('#no-of-feature-job').val();
+      $.ajax({
+        type: "GET",
+        url: '<%= dashboard_calculate_price_path %>',
+        data: {normal_job: normal_job_price, feature_job: feature_job_price, total_month: each_month_price }
+      });
+    })
+
+    $('#subscription_total_month').change(function(){
+      each_month_price = $('#subscription_total_month').val();
+      $.ajax({
+        type: "GET",
+        url: '<%= dashboard_calculate_price_path %>',
+        data: {normal_job: normal_job_price, feature_job: feature_job_price, total_month: each_month_price }
+      });
+    })
+
+  });
+</script>

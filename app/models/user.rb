@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_one :profile, :dependent => :destroy
   has_many :companies, :through => :company_admins
   has_many :company_admins, :dependent => :destroy
+  has_many :subscriptions, :dependent => :destroy
+  has_many :jobs, :dependent => :destroy
   # validations
 
   # scopes

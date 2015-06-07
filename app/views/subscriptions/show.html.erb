@@ -1,0 +1,29 @@
+<section class="widget widget-sm">
+  <header>
+    <h5>Subscription <span class="fw-semi-bold">Overview</span> <span class="label label-<%= subscription_status(@subscription) %>"><%= @subscription.status.titleize %></span></h5>
+  </header>
+  <div class="widget-body">
+    <div class="clearfix fs-mini">
+      <span class="pull-right no-margin fw-semi-bold">Non-Featured Job</span>
+      <span class="fs-mini">Total purchased <%= @subscription.normal_job %></span>
+    </div>
+    <div class="progress progress-xs">
+      <div class="progress-bar" style="width: 70%;"></div>
+    </div>
+    <div class="clearfix fs-mini mt">
+      <span class="pull-right no-margin fw-semi-bold">Featured Job</span>
+      <span class="fs-mini">Total purchased <%= @subscription.feature_job %></span>
+    </div>
+    <div class="progress progress-xs">
+      <div class="progress-bar progress-bar-warning" style="width: 29%;"></div>
+    </div>
+    <div class="clearfix fs-mini mt">
+      <span class="pull-right no-margin fw-semi-bold">Search for resume expires </span>
+      <span class="fs-mini">Search for resume expires <%= (@subscription.created_at + @subscription.total_month.months).to_date %></span>
+    </div>
+    <div class="progress progress-xs">
+      <div class="progress-bar progress-bar-danger" style="width: 48%;"></div>
+    </div>
+
+  </div>
+</section>

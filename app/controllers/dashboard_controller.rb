@@ -6,4 +6,11 @@ class DashboardController < ApplicationController
   def index
     @dash_tab = 'active'
   end
+
+  def calculate_price
+    @normal_price = params[:normal_job].to_i * Subscription::NORMAL_JOB_PRICE
+    @feature_price = params[:feature_job].to_i * Subscription::FEATURE_JOB_PRICE
+    @month_price = params[:total_month].to_i * Subscription::PER_MONTH
+    @total_price = @normal_price + @feature_price + @month_price
+  end
 end
