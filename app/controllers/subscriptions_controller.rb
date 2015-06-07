@@ -82,7 +82,7 @@ class SubscriptionsController < ApplicationController
     end
 
     def cannot_edit_active_subscriptions
-      if ['pending', 'draft'].include?(@subscription.status)
+      if ['pending', 'draft'].include?(@subscription.status) && @subscription.user == current_user
         redirect_to edit_user_subscription_path(current_user, @subscription)
       else
         redirect_to user_subscriptions_path(current_user), flash: {:error => 'You cannot edit previously subscribed packages.'}
