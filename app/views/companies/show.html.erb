@@ -87,5 +87,7 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', user_companies_path(current_user) %>
+<% if company_admin(@company) %>
+  <%= link_to 'Edit', edit_company_path(@company) %> |
+  <%= link_to 'Back', user_companies_path(current_user) %>
+<% end %>

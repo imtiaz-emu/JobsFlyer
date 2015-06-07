@@ -1,10 +1,11 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
-  before_filter :update_your_profile
+  before_filter :authenticate_user!, :except => [:show]
+  before_filter :update_your_profile, :except => [:show]
   before_filter :user_verify_on_edit, :only => [:edit, :update]
 
-  layout 'dashboard'
+  layout :check_layout
+
   # GET /companies
   # GET /companies.json
   def index
@@ -101,6 +102,12 @@ class CompaniesController < ApplicationController
     def user_verify_on_edit
       unless Company.friendly.find(params[:id]).users.include?(current_user)
         redirect_to user_companies_path(current_user), flash: {:alert => "You're trying to modify other user's company!"}
+      end
+    end
+
+    def check_layout
+      if current_user.present?
+        'dashboard'
       end
     end
 
