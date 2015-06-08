@@ -29,8 +29,13 @@
             <div class="progress-bar progress-bar-danger" style="width: 48%;"></div>
           </div>
 
-          <% if ['pending', 'draft'].include?(subscription.status) %><span class="pull-right"><%= link_to 'Edit', edit_subscription_path(subscription), :class => ' btn btn-xs btn-warning' %></span><% end %>
-          <span class="pull-right"><%= link_to 'Show', subscription_path(subscription), :class => ' btn btn-xs btn-warning' %></span>
+          <div class="xs-actions text-center">
+            <% if ['pending', 'draft'].include?(subscription.status) %>
+              <span><%= link_to 'Edit', edit_subscription_path(subscription), :class => ' btn btn-xs btn-warning' %></span>
+            <% end %>
+            <span><%= link_to 'Show', subscription_path(subscription), :class => ' btn btn-xs btn-warning' %></span>
+          </div>
+
         </div>
       </section>
     </div>
