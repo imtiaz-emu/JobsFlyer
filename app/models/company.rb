@@ -3,6 +3,8 @@ class Company < ActiveRecord::Base
   has_many :users, :through => :company_admins
   has_many :company_admins, :dependent => :destroy
   has_many :company_locations, :dependent => :destroy
+  has_many :jobs, :dependent => :destroy
+  has_many :subscriptions, :dependent => :destroy
 
 
   accepts_nested_attributes_for :company_locations, :reject_if => proc {|attributes| attributes[:branch_type].blank? || attributes[:phone].blank? || attributes[:country].blank? || attributes[:state].blank?}, :allow_destroy => true

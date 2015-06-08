@@ -2,6 +2,7 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   before_filter :cannot_edit_active_subscriptions, :only => [:edit, :update]
+  before_filter :load_companies
 
   layout 'dashboard'
 
@@ -9,7 +10,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions.json
   def index
     @subscription_tab = 'active'
-    @subscriptions = current_user.subscriptions
+    @subscriptions = Subscription.all
   end
 
   # GET /subscriptions/1
@@ -19,8 +20,12 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/new
   def new
-    @subscription_tab = 'active'
-    @subscription = Subscription.new
+    if @user_companies.count > 0
+      @subscription_tab = 'active'
+      @subscription = Subscription.new
+    else
+      redirect_to companies_new_path, :flash => {notice: 'Please create a company first to buy any subscription.'}
+    end
   end
 
   # GET /subscriptions/1/edit
@@ -30,13 +35,12 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    params[:subscription][:user_id] = params[:user_id]
     params[:subscription][:total_amount] = params[:subscription][:total_month].to_f * Subscription::PER_MONTH.to_f
     @subscription = Subscription.new(subscription_params)
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to user_subscription_path(@subscription.user,@subscription), flash: {:success => 'Subscription was successfully created.'} }
+        format.html { redirect_to subscription_path(@subscription), flash: {:success => 'Subscription was successfully created.'} }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -70,22 +74,26 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subscription
-      @subscription_tab = 'active'
-      @subscription = Subscription.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_subscription
+    @subscription_tab = 'active'
+    @subscription = Subscription.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def subscription_params
-      params.require(:subscription).permit(:user_id, :normal_job, :feature_job, :total_month, :discount, :total_amount, :bkash_transaction_no, :status)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def subscription_params
+    params.require(:subscription).permit(:company_id, :normal_job, :feature_job, :total_month, :discount, :total_amount, :bkash_transaction_no, :status)
+  end
 
-    def cannot_edit_active_subscriptions
-      if ['pending', 'draft'].include?(@subscription.status) && @subscription.user == current_user
-        return true
-      else
-        redirect_to user_subscriptions_path(current_user), flash: {:error => 'You cannot edit previously subscribed packages.'}
-      end
+  def cannot_edit_active_subscriptions
+    if ['pending', 'draft'].include?(@subscription.status) #&& @subscription.user == current_user
+      return true
+    else
+      redirect_to subscriptions_path(@subscription), flash: {:error => 'You cannot edit previously subscribed packages.'}
     end
+  end
+
+  def load_companies
+    @user_companies = CompanyAdmin.where(:user_id => current_user.id, :user_role => 'admin' ).collect{|ca| ca.company}.flatten
+  end
 end

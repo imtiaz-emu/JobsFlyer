@@ -39,14 +39,14 @@
           <li class="<%= @profile_tab %>"><%= link_to 'My profile', edit_profile_path(current_user.profile)%></li>
         </ul>
       </li>
-      <li>
-        <a href="inbox.html">
+      <li class="<%= @jobs_tab %>">
+        <a href="#">
                     <span class="icon">
-                        <i class="fa fa-envelope"></i>
+                        <i class="fa fa-briefcase"></i>
                     </span>
-          Email
+          Jobs
                     <span class="label label-danger">
-                        9
+                        0
                     </span>
         </a>
       </li>
@@ -103,7 +103,7 @@
         </ul>
       </li>
       <li class="<%= @subscription_tab %>">
-        <a href="<%= user_subscriptions_path(current_user) %>">
+        <a href="<%= subscriptions_path %>">
                     <span class="icon">
                         <i class="fa fa-sitemap"></i>
                     </span>

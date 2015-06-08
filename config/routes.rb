@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :jobs
-
   ActiveAdmin.routes(self)
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
   resources :profiles
+  resources :subscriptions
 
-  resources :companies, except: [:index, :destroy], path: ''
+  resources :companies, except: [:index, :destroy], path: '' do
+    resources :jobs
+  end
 
   # devise_for :users
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -23,6 +24,5 @@ Rails.application.routes.draw do
   get '/dashboard/calculate_price', to: 'dashboard#calculate_price'
   resources :users do
     get '/companies', to: 'companies#index'
-    resources :subscriptions
   end
 end

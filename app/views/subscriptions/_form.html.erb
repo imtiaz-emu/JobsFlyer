@@ -8,11 +8,11 @@
     </div>
   </header>
   <div class="widget-body">
-    <%= form_for([current_user, @subscription], :html => {:class => 'form-horizontal', multipart: true}) do |f| %>
+    <%= form_for([@subscription], :html => {:class => 'form-horizontal', multipart: true}) do |f| %>
       <%= render :partial => 'shared/error_messages', :locals => {:obj => f.object} %>
       <!--<form role="form" class="form-horizontal">-->
       <fieldset>
-        <legend><strong>New</strong> subscription</legend>
+        <legend><strong><%= params[:action].titleize %></strong> subscription</legend>
 
         <!--Input for no. of non-featured-job -->
         <div class="form-group">
@@ -85,6 +85,20 @@
         </div>
 
         <hr>
+        <!--Company under which subscribe -->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 control-label">Select company
+            <span class="help-block"><i class="fa fa-building"> Select a company under which you want to buy the subscription </i></span>
+          </label>
+
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-building"></i></span>
+              <%= f.select :company_id, options_for_select(@user_companies.collect{|c| [c.name, c.id]}, @subscription.company_id), :class => 'form-control' %>
+            </div>
+          </div>
+        </div>
+
         <!--transaction number of bkash -->
         <div class="form-group">
           <label for="prepended-input" class="col-sm-4 control-label">Bkash Transaction Number

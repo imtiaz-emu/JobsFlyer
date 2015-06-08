@@ -1,7 +1,7 @@
 class CreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :subscriptions do |t|
-      t.integer       :user_id
+      t.integer       :company_id
       t.integer       :normal_job
       t.integer       :feature_job
       t.integer       :total_month

@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :company
 
   scope :active_subscriptions, -> { where(status: 'active') }
   scope :pending_subscriptions, -> { where(status: 'pending') }
