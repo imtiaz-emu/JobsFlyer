@@ -40,13 +40,13 @@
         </ul>
       </li>
       <li class="<%= @jobs_tab %>">
-        <a href="#">
+        <a href="<%= jobs_path %>">
                     <span class="icon">
                         <i class="fa fa-briefcase"></i>
                     </span>
           Jobs
                     <span class="label label-danger">
-                        0
+                        <%= user_jobs.count %>
                     </span>
         </a>
       </li>

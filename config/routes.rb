@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   resources :profiles
   resources :subscriptions
+  resources :jobs
 
-  resources :companies, except: [:index, :destroy], path: '' do
-    resources :jobs
-  end
+  resources :companies, except: [:index, :destroy], path: ''
+
 
   # devise_for :users
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

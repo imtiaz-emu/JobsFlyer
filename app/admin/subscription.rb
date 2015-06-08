@@ -27,7 +27,7 @@ ActiveAdmin.register Subscription do
     selectable_column
     column :id
     column 'User' do |sub|
-      sub.user.email
+      sub.company.name
     end
     column 'Non featured job' do |sub|
       sub.normal_job

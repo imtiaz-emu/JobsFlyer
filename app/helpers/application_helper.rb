@@ -22,5 +22,8 @@ module ApplicationHelper
     nil
   end
 
+  def user_jobs
+    current_user.companies.collect { |company| company.jobs }.flatten
+  end
 
 end
