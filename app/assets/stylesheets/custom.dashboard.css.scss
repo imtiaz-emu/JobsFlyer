@@ -70,5 +70,8 @@
 .subscriptions{
   .list-group-item{
     border: none;
+    p{
+      margin-bottom: 0px;
+    }
   }
 }
