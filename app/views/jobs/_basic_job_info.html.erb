@@ -70,7 +70,8 @@
 
   <div class="col-sm-7">
     <div class="input-group">
-      <textarea name="job[skills]" placeholder="Type to search for skills you required for this job" id="skills-textarea" class="autogrow form-control transition-height" rows="2"></textarea>
+      <%= f.text_field :job_skills_attributes,  "data-pre" => @job.skills.map(&:attributes).to_json %>
+      <!--<textarea name="job[job_skills_attributes]" placeholder="Type to search for skills you required for this job" id="skills-textarea" class="autogrow form-control transition-height" rows="2"></textarea>-->
     </div>
   </div>
 </div>

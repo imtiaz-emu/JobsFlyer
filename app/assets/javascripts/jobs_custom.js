@@ -57,4 +57,10 @@ $(document).ready(function(){
         maxDate: dt.getDate() + 40,
         dateFormat: "dd-mm-yy"
     });
+
+    // skills token
+
+
+    $('#job_job_skills_attributes').tokenInput('/dashboard/skills.json', { crossDomain: false });
+
 })

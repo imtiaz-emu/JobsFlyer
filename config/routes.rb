@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :jobs
 
-  resources :companies, except: [:index, :destroy], path: ''
-
-
   # devise_for :users
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.
@@ -23,7 +20,11 @@ Rails.application.routes.draw do
   get '/companies/new', to: 'companies#new'
   get '/dashboard/calculate_price', to: 'dashboard#calculate_price'
   get '/dashboard/job_locations', to: 'dashboard#job_locations'
+  get '/dashboard/skills', to: 'dashboard#skills'
   resources :users do
     get '/companies', to: 'companies#index'
   end
+
+  resources :companies, except: [:index, :destroy], path: ''
+
 end

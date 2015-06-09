@@ -15,6 +15,7 @@
  *= require font-awesome
  *= require bootstrap-slider
  *= require jquery-ui.min
+ *= require token-input
  *= require custom.dashboard
  *= require_self
  */

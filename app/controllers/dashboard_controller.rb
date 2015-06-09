@@ -17,4 +17,12 @@ class DashboardController < ApplicationController
   def job_locations
     @company_locations = Company.find(params[:company_id]).company_locations
   end
+
+  def skills
+    @skills = Skill.where("name ilike ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.html
+      format.json { render :json => @skills.map(&:attributes) }
+    end
+  end
 end

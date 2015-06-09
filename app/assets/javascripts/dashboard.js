@@ -34,3 +34,4 @@
 //= require jobs_custom
 //= require bootstrap-slider
 //= require jquery-ui.min
+//= require jquery.tokeninput
