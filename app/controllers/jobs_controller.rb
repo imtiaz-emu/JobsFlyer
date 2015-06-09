@@ -8,7 +8,11 @@ class JobsController < ApplicationController
   # GET /jobs.json
   def index
     @jobs_tab = 'active'
-    @jobs = current_user.companies.collect { |company| company.jobs }.flatten.sort_by{|j| -j.updated_at}
+    if params[:all].present?
+      @jobs = Job.active_jobs.flatten.sort { |p1, p2| p2.deadline <=> p1.deadline }
+    else
+      @jobs = current_user.companies.collect { |company| company.jobs }.flatten.sort { |p1, p2| p2.deadline <=> p1.deadline }
+    end
   end
 
   # GET /jobs/1

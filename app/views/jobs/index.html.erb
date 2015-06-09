@@ -1,32 +1,50 @@
+<div class="custom-margin-wrapper-bottom">
+  <%= link_to "<i class='fa fa-plus fa-fw'></i> New Job".html_safe, new_job_path, :class => 'btn btn-default' %>
+</div>
+
 <% if @jobs.count > 0  %>
 
   <% @jobs.each do |job| %>
     <section class="search-result-item">
       <a class="image-link" href="#">
-        <%= image_tag 'jf_logo.jpg', class: 'image' %>
+        <%= image_tag job.company.logo.present? ? job.company.logo_url(:logo) : 'jf_logo.jpg', class: 'image' %>
       </a>
       <div class="search-result-item-body">
         <div class="row">
           <div class="col-sm-9">
             <h4 class="search-result-item-heading">
-              <a href="#">Next generation admin template</a>
+              <a href="<%= job_path(job) %>"><%= job.title %></a>
             </h4>
             <p class="info">
-              New York, NY 20188
+              <% if job.anywhere_in %>
+                Anywhere in <%= job.anywhere_place.present? ? job.anywhere_place : job_location(job.company) %>
+              <% else %>
+                <%= job_location(CompanyLocation.find(job.job_location)) %>
+              <% end %>
+            </p>
+            <p class="info">
+              <span class="label label-primary"><%= Job::JOB_TYPES[0].keys[job.job_type.to_i-1] %></span>
             </p>
             <p class="description">
-              Not just usual Metro. But something bigger. Not just usual widgets, but real
-              widgets. Not just yet another admin template, but next generation admin template.
+              <!--Not just usual Metro. But something bigger. Not just usual widgets, but real-->
+              <!--widgets. Not just yet another admin template, but next generation admin template.-->
+              <% job.skills.each do |skill| %>
+                <span class="badge"><%= skill.name %></span>
+              <% end %>
             </p>
           </div>
           <div class="col-sm-3 text-align-center">
             <p class="value3 mt-sm">
-              $9, 700
+              <% if job.is_negotiable %>
+                Salary Negotiable
+              <% else %>
+                <%= job.payment_currency %> <%= job.salary_range %>
+              <% end %>
             </p>
             <p class="fs-mini text-muted">
-              PER WEEK
+              <%= Job::JOB_PAYMENT_TYPE[0].keys[job.payment_type.to_i-1] %>
             </p>
-            <a class="btn btn-primary btn-info btn-sm" href="#">Learn More</a>
+            <a class="btn btn-primary btn-info btn-sm" href="<%= job_path(job) %>">Learn More</a>
           </div>
         </div>
       </div>
@@ -36,6 +54,3 @@
   <h3>No job posts have been made.</h3>
 <% end %>
 
-<!--<div class="col-sm-12">-->
-  <%= link_to 'New Job', new_job_path %>
-<!--</div>-->

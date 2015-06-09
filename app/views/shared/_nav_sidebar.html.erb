@@ -40,15 +40,22 @@
         </ul>
       </li>
       <li class="<%= @jobs_tab %>">
-        <a href="<%= jobs_path %>">
+        <a class="collapsed" href="#sidebar-ui" data-toggle="collapse" data-parent="#sidebar">
                     <span class="icon">
                         <i class="fa fa-briefcase"></i>
                     </span>
           Jobs
-                    <span class="label label-danger">
-                        <%= user_jobs.count %>
-                    </span>
+          <i class="toggle fa fa-angle-down"></i>
         </a>
+        <ul id="sidebar-ui" class="collapse">
+          <li><a href="<%= jobs_path %>">My Jobs</a></li>
+          <li><a href="<%= jobs_path(:all => 'active') %>">All active Jobs</a></li>
+          <li class="divider"></li>
+          <li><a href="ui_icons.html">Icons</a></li>
+          <li><a href="ui_buttons.html">Buttons</a></li>
+          <li><a href="ui_tabs_accordion.html">Tabs & Accordion</a></li>
+          <li><a href="ui_list_groups.html">List Groups</a></li>
+        </ul>
       </li>
       <li class="<%= @company_tab %>">
         <a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
