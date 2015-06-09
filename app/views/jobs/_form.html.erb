@@ -1,0 +1,60 @@
+<section class="widget">
+  <header>
+
+    <div class="widget-controls">
+      <!--<a href="#"><i class="fa fa-cog"></i></a>-->
+      <a href="#"><i class="fa fa-refresh"></i></a>
+      <!--<a data-widgster="close" href="#"><i class="fa fa-remove"></i></a>-->
+    </div>
+  </header>
+  <div class="widget-body">
+    <%= form_for([@job], :html => {:class => 'form-horizontal', multipart: true}) do |f| %>
+      <%= render :partial => 'shared/error_messages', :locals => {:obj => f.object} %>
+      <!--<form role="form" class="form-horizontal">-->
+      <fieldset>
+        <legend><strong><%= params[:action].titleize %></strong> Job</legend>
+
+        <legend>Basic job requirement</legend>
+
+        <%= render :partial => 'jobs/basic_job_info', locals: {:f => f}  %>
+
+        <legend>Job payment information</legend>
+
+        <%= render :partial => 'jobs/job_payment_info', locals: {:f => f}  %>
+
+        <legend>Job Age, Experience requirement</legend>
+
+        <%= render :partial => 'jobs/experience_info', locals: {:f => f}  %>
+
+        <legend>Job Location</legend>
+
+        <%= render :partial => 'jobs/location_info', locals: {:f => f}  %>
+
+        <legend>Apply Instructions</legend>
+
+        <!-- input for skills -->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 control-label">Instruction for apply
+          </label>
+
+          <div class="col-sm-7">
+            <div class="input-group">
+              <textarea name="job[apply_instructions]" placeholder="write how to apply" id="apply-instructions-textarea" class="autogrow form-control transition-height" rows="4"><%= @job.apply_instructions.html_safe if @job.apply_instructions.present? %></textarea>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-sm-offset-4 col-sm-7">
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <!--<button class="btn btn-success" type="button">Save as Draft</button>-->
+            <button class="btn btn-inverse" type="button">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <!--</form>-->
+    <% end %>
+  </div>
+</section>

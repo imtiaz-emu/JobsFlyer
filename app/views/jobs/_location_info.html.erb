@@ -1,0 +1,32 @@
+<!--Input for job location -->
+<div class="form-group">
+  <div class="job-location-selection">
+    <label for="prepended-input" class="col-sm-4 control-label">Select location
+      <span class="help-block">Select a location for job</span>
+    </label>
+
+    <div class="col-sm-7">
+      <div class="input-group">
+        <%= f.select :job_location, options_for_select(CompanyLocation.all.collect{|c| [c.company.name, c.company.id]}, @job.job_location), :class => 'form-control select2', :prompt => "select location" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Input for job location -->
+<div class="form-group">
+  <div class="col-sm-5 anywhere-job-checkbox">
+    <div class="checkbox">
+      <%= f.check_box :anywhere_in, id: 'checkbox-anywhere' %>
+      <label for="checkbox-anywhere">
+        Job Location anywhere in
+      </label>
+    </div>
+  </div>
+
+  <div class="col-sm-6 anywhere-job-location">
+    <div class="input-group">
+      <%= f.text_field :anywhere_place, :class => 'form-control' %>
+    </div>
+  </div>
+</div>

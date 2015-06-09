@@ -31,4 +31,6 @@
 //= require bootstrap3-wysihtml5
 //= require tab
 //= require cocoon
-
+//= require jobs_custom
+//= require bootstrap-slider
+//= require jquery-ui.min

@@ -13,4 +13,8 @@ class DashboardController < ApplicationController
     @month_price = params[:total_month].to_i * Subscription::PER_MONTH
     @total_price = @normal_price + @feature_price + @month_price
   end
+
+  def job_locations
+    @company_locations = Company.find(params[:company_id]).company_locations
+  end
 end

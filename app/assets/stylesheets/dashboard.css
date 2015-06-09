@@ -13,6 +13,8 @@
  *= require bootstrap
  *= require dashboard.theme
  *= require font-awesome
+ *= require bootstrap-slider
+ *= require jquery-ui.min
  *= require custom.dashboard
  *= require_self
  */

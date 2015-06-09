@@ -1,0 +1,104 @@
+<!--Input for job title  -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Job title
+    <span class="help-block">Enter a title for your job post</span>
+  </label>
+
+  <div class="col-sm-7">
+    <div class="input-group">
+      <%= f.text_field :title, :class => 'form-control', :autocomplete => 'off', :required => true %>
+    </div>
+  </div>
+</div>
+
+<!--Input for company -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Select Company
+    <span class="help-block">Select a company under which you want to post this job</span>
+  </label>
+
+  <div class="col-sm-7">
+    <div class="input-group">
+      <%= f.select :company_id, options_for_select(subscribed_companies.collect{|c| [c.name, c.id]}, @job.company_id), :class => 'form-control select2' %>
+    </div>
+  </div>
+</div>
+
+<!--Input for job title  -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Job Vacancies
+    <span class="help-block">Number of vacancies for this position</span>
+  </label>
+
+  <div class="col-sm-7">
+    <div class="input-group">
+      <%= f.text_field :vacancies, :class => 'form-control', :autocomplete => 'off', :required => true %>
+    </div>
+  </div>
+</div>
+
+
+<!--Input for job type -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Choose your job type
+    <span class="help-block">Choose the type of the job</span>
+  </label>
+
+  <div class="col-sm-7" id="job-type-radios">
+    <div class="input-group">
+      <div class="row">
+        <% Job::JOB_TYPES[0].each do |type| %>
+          <div class="col-sm-6">
+            <div class="radio">
+              <%= f.radio_button :job_type, type[1] ,id: "radio_job_#{type[1]}" %>
+              <label for="radio_<%= type[1] %>">
+                <%= type[0] %>
+              </label>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- input for skills -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Skills required
+    <span class="help-block">Type to search for skills you required for this job</span>
+  </label>
+
+  <div class="col-sm-7">
+    <div class="input-group">
+      <textarea name="job[skills]" placeholder="Type to search for skills you required for this job" id="skills-textarea" class="autogrow form-control transition-height" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- input for additional requirement -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Additional requirement
+    <span class="help-block">Optional requirements</span>
+  </label>
+
+  <div class="col-sm-7">
+    <div class="input-group">
+      <%= f.text_area :additional_requirement, :class => 'autogrow form-control transition-height', :rows => 3, :placeholder => 'other requirements' %>
+    </div>
+  </div>
+</div>
+
+<!-- input for additional requirement -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Deadline
+    <span class="help-block">Default deadline for job is 40 days</span>
+  </label>
+
+  <div class="col-sm-7">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+      <%= f.text_field :deadline, :class => 'form-control' %>
+    </div>
+  </div>
+</div>
+

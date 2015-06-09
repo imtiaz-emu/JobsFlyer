@@ -1,0 +1,55 @@
+<!--Input for job payment type -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Choose your payment type
+    <span class="help-block">Choose the type of the job payment system</span>
+  </label>
+
+  <div class="col-sm-7" id="job-payment-type-radios">
+    <div class="input-group">
+      <div class="row">
+        <% Job::JOB_PAYMENT_TYPE[0].each do |type| %>
+          <div class="col-sm-6">
+            <div class="radio">
+              <%= f.radio_button :payment_type, type[1] ,id: "radio_payment_#{type[1]}" %>
+              <label for="radio_<%= type[1] %>">
+                <%= type[0] %>
+              </label>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Input for cuurency -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Select Currency
+    <span class="help-block">Select a currency type for job payment</span>
+  </label>
+
+  <div class="col-sm-7">
+    <div class="input-group">
+      <%= f.select :payment_currency, options_for_select(Money::Currency, @job.payment_currency), :class => 'form-control select2' %>
+    </div>
+  </div>
+</div>
+
+ <!--payment info negotiate or range-->
+<div class="form-group">
+  <div class="col-sm-4">
+    <div class="checkbox">
+      <%= f.check_box :is_negotiable, id: 'checkbox-negotiate' %>
+      <label for="checkbox-negotiate">
+        Salary Negotiable
+      </label>
+    </div>
+  </div>
+
+  <div class="col-sm-8">
+    <div class="input-group">
+      <%= f.text_field :salary_range, class: 'form-control', placeholder: '20000-30000' %>
+    </div>
+  </div>
+</div>
+

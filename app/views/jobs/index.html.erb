@@ -1,0 +1,41 @@
+<% if @jobs.count > 0  %>
+
+  <% @jobs.each do |job| %>
+    <section class="search-result-item">
+      <a class="image-link" href="#">
+        <%= image_tag 'jf_logo.jpg', class: 'image' %>
+      </a>
+      <div class="search-result-item-body">
+        <div class="row">
+          <div class="col-sm-9">
+            <h4 class="search-result-item-heading">
+              <a href="#">Next generation admin template</a>
+            </h4>
+            <p class="info">
+              New York, NY 20188
+            </p>
+            <p class="description">
+              Not just usual Metro. But something bigger. Not just usual widgets, but real
+              widgets. Not just yet another admin template, but next generation admin template.
+            </p>
+          </div>
+          <div class="col-sm-3 text-align-center">
+            <p class="value3 mt-sm">
+              $9, 700
+            </p>
+            <p class="fs-mini text-muted">
+              PER WEEK
+            </p>
+            <a class="btn btn-primary btn-info btn-sm" href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end %>
+<% else %>
+  <h3>No job posts have been made.</h3>
+<% end %>
+
+<!--<div class="col-sm-12">-->
+  <%= link_to 'New Job', new_job_path %>
+<!--</div>-->

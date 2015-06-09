@@ -58,6 +58,8 @@ GEM
       activesupport (>= 3.0.0)
     arel (6.0.0)
     bcrypt (3.1.10)
+    bootstrap-slider-rails (4.8.1)
+      railties (>= 3.2, < 5.0)
     bourbon (4.2.3)
       sass (~> 3.4)
       thor
@@ -132,6 +134,8 @@ GEM
     mini_magick (4.0.4)
     mini_portile (0.6.2)
     minitest (5.6.1)
+    money (6.5.1)
+      i18n (>= 0.6.4, <= 0.7.0)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -240,6 +244,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  bootstrap-slider-rails
   carmen-rails (~> 1.0.1)
   carrierwave (~> 0.10.0)
   cocoon (~> 1.2.6)
@@ -250,6 +255,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick (~> 4.0.1)
+  money
   omniauth (~> 1.2.2)
   omniauth-facebook (~> 2.0.0)
   omniauth-google-oauth2 (~> 0.2.6)
