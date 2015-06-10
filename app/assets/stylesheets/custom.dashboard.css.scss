@@ -83,7 +83,10 @@
     width: 100%;
   }
   .search-result-item-body .value3{font-size: 14px}
-  &.show .widget-body{ margin-top: 35px}
+  &.show{
+    .widget-body{ margin-top: 35px}
+    body{color: #000}
+  }
 }
 .custom-margin-wrapper-bottom{
   margin-bottom: 15px;
@@ -107,4 +110,9 @@
 }
 .navbar-fixed-top{
   position: fixed;
+}
+.btn-jobsflyer{
+  background-color: #f2be35;
+  border-color: #f2be35;
+  color: #242424;
 }
