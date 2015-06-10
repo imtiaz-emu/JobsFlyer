@@ -1,3 +1,18 @@
+<% if @feature_job %>
+  <div class="form-group">
+    <label for="prepended-input" class="col-sm-4 control-label">
+      <span class="help-block">Featured jobs will appear in the top of the job list</span>
+    </label>
+    <div class="col-sm-8">
+      <div class="checkbox">
+        <%= f.check_box :featured_job, id: 'checkbox-featured-job' %>
+        <label for="checkbox-featured-job">
+          Make it a featured job
+        </label>
+      </div>
+    </div>
+  </div>
+<% end %>
 <!--Input for job payment type -->
 <div class="form-group">
   <label for="prepended-input" class="col-sm-4 control-label">Choose your payment type

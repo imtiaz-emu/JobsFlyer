@@ -85,13 +85,15 @@ class JobsController < ApplicationController
     end
 
     def has_subscription?
+      @feature_job = false
+      @normal_job = false
       active_subscriptions = current_user.companies.collect{|com| com.subscriptions.active_subscriptions}.flatten
       if active_subscriptions.count > 0
         active_subscriptions.each do |subscription|
-          if subscription.normal_job > 0 || subscription.feature_job > 0
-            return true
-          end
+          @feature_job = true if subscription.feature_job > 0
+          @normal_job = true if subscription.normal_job > 0
         end
+        return true if @feature_job || @normal_job
         redirect_to dashboard_path, flash: {:notice => "You've posted as many job as you subscribed. If you want to post a new job now then please re-subscribe!"}
       else
         redirect_to new_subscription_path, flash: {:error => "You've no active subscriptions. Please subscribe to post job!"}

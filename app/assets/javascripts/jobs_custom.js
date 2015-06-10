@@ -1,14 +1,13 @@
 $(document).ready(function(){
     //range sliders
-    $("#salary-range").slider({});
     $("#experience-range").slider({});
     $("#age-range").slider({});
     $("#checkbox-negotiate").click(function() {
         if(this.checked) {
-            $("#salary-range").slider("disable");
+            document.getElementById('job_salary_range').disabled=true;
         }
         else {
-            $("#salary-range").slider("enable");
+            document.getElementById('job_salary_range').disabled=false;
         }
     });
 
