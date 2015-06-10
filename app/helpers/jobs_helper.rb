@@ -7,7 +7,7 @@ module JobsHelper
         companies << subscription.company
       end
     end
-    return companies
+    return companies.uniq
   end
 
   def job_location(company)
