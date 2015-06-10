@@ -11,7 +11,7 @@ class JobsController < ApplicationController
     if params[:all].present?
       @jobs = Job.active_jobs.flatten.sort { |p1, p2| p2.deadline <=> p1.deadline }
     else
-      @jobs = current_user.companies.collect { |company| company.jobs }.flatten.sort { |p1, p2| p2.deadline <=> p1.deadline }
+      @jobs = current_user.companies.collect { |company| company.jobs.active_jobs }.flatten.sort { |p1, p2| p2.deadline <=> p1.deadline }
     end
   end
 
