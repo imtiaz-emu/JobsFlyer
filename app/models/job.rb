@@ -12,6 +12,9 @@ class Job < ActiveRecord::Base
   validates_presence_of :title, :vacancies, :job_type, :deadline, :apply_instructions
   validates_numericality_of :vacancies
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   after_create :manage_subscription
 
   JOB_TYPES = [
@@ -50,5 +53,10 @@ class Job < ActiveRecord::Base
         break
       end
     end
+  end
+
+  private
+  def should_generate_new_friendly_id?
+    slug.blank? || title_changed?
   end
 end
