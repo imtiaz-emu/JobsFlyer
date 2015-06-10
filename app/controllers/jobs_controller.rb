@@ -81,7 +81,7 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:company_id, :title, :job_type, :salary_range, :is_negotiable, :payment_type, :apply_instructions, :deadline, :additional_requirement, :organization_category_id, :vacancies, :experience_range, :age_range, :job_location, :anywhere_in, :anywhere_place, :status, :payment_currency, :job_skills_attributes => [])
+      params.require(:job).permit(:company_id, :title, :job_type, :salary_range, :is_negotiable, :payment_type, :apply_instructions, :deadline, :additional_requirement, :organization_category_id, :vacancies, :experience_range, :age_range, :job_location, :anywhere_in, :anywhere_place, :status, :payment_currency, :featured_job, :job_skills_attributes => [])
     end
 
     def has_subscription?
