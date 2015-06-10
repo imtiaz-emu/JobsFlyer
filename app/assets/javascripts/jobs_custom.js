@@ -50,12 +50,6 @@ $(document).ready(function(){
         html: true,
         stylesheets: []
     });
-    var dt = new Date();
-    $( "#job_deadline" ).datepicker({
-        minDate: dt,
-        maxDate: dt.getDate() + 40,
-        dateFormat: "dd-mm-yy"
-    });
 
     // skills token
 

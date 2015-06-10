@@ -11,6 +11,7 @@ class Job < ActiveRecord::Base
 
   validates_presence_of :title, :vacancies, :job_type, :deadline, :apply_instructions
   validates_numericality_of :vacancies
+  validate :check_job_deadline
 
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -51,6 +52,18 @@ class Job < ActiveRecord::Base
         subscription.normal_job -= 1
         subscription.save(:validate => false)
         break
+      end
+    end
+  end
+
+  def check_job_deadline
+    if self.new_record?
+      if self.deadline > Date.today + 40.days
+        errors[:base] << "You're trying to post the job deadline out of the range."
+      end
+    else
+      if self.deadline > self.created_at + 40.days
+        errors[:base] << "You're trying to post the job deadline out of the range."
       end
     end
   end

@@ -60,3 +60,21 @@
 </section>
 
 <%= javascript_include_tag 'jobs_custom' %>
+
+<script>
+  $(document).ready(function(){
+    var mindt, maxdt;
+    <% if @job.new_record? %>
+      mindt = new Date();
+      maxdt = new Date().getDate() + 30;
+    <% else %>
+      mindt = new Date(<%= @job.created_at.to_date.strftime('%Y-%m-%d') %>);
+      maxdt = mindt.getDate() + 40;
+    <% end %>
+    $( "#job_deadline" ).datepicker({
+      minDate: mindt,
+      maxDate: maxdt,
+      dateFormat: "yy-mm-dd"
+    });
+  })
+</script>
