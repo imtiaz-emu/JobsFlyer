@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/dashboard/calculate_price', to: 'dashboard#calculate_price'
   get '/dashboard/job_locations', to: 'dashboard#job_locations'
   get '/dashboard/skills', to: 'dashboard#skills'
+  get '/companies', to: 'dashboard#all_companies'
   resources :users do
     get '/companies', to: 'companies#index'
   end

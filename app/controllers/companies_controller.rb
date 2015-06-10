@@ -4,7 +4,8 @@ class CompaniesController < ApplicationController
   before_filter :update_your_profile, :except => [:show]
   before_filter :user_verify_on_edit, :only => [:edit, :update]
 
-  layout :check_layout
+  # layout :check_layout
+  layout 'dashboard'
 
   # GET /companies
   # GET /companies.json
@@ -105,10 +106,10 @@ class CompaniesController < ApplicationController
       end
     end
 
-    def check_layout
-      if current_user.present?
-        'dashboard'
-      end
-    end
+    # def check_layout
+    #   if current_user.present?
+    #     'dashboard'
+    #   end
+    # end
 
 end

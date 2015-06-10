@@ -1,8 +1,8 @@
-<% unless guest_user? %>
-  <h3>My Companies <%= link_to "<i class='fa fa-plus fw'></i> New company".html_safe, companies_new_path, class: 'btn btn-gray' %></h3>
-<% end %>
+
+<h3>All Companies</h3>
+
 <div class="row">
-<% if @companies.count > 0 %>
+  <% if @companies.count > 0 %>
     <% @companies.each do |company| %>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <section class="widget widget-sm bg-primary">
@@ -36,9 +36,9 @@
         </section>
       </div>
     <% end %>
-<% else %>
+  <% else %>
     <p class=" col-sm-12 fs-mini mt">
-      Currently you don't have any company
+      Currently there is no company.
     </p>
-<% end %>
+  <% end %>
 </div>

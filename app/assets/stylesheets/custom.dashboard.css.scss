@@ -96,3 +96,11 @@
 .custom-margin-wrapper-right{
   margin-right: 15px;
 }
+.all_companies .widget-body .text-light.mb a {
+  color: #ffffff;
+  font-weight: normal;
+  &:hover{
+    font-weight: bold;
+    text-decoration: none;
+  }
+}

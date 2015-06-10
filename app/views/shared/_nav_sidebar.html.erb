@@ -58,22 +58,32 @@
         </ul>
       </li>
       <li class="<%= @company_tab %>">
-        <a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
+        <% if guest_user? %>
+          <a href="<%= companies_path %>">
                     <span class="icon">
                         <i class="fa fa-building"></i>
                     </span>
-          Companies
-          <i class="toggle fa fa-angle-down"></i>
-        </a>
-        <ul id="sidebar-forms" class="collapse">
-          <li><a href="<%= guest_user? ? new_user_session_path : user_companies_path(current_user) %>">My Companies</a></li>
-          <li class="divider"></li>
-          <% unless guest_user? %>
-            <% current_user.companies.each do |company| %>
-              <li><a href="<%= company_path(company) %>"><%= company.name %></a></li>
+            Companies
+          </a>
+        <% else %>
+          <a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
+                    <span class="icon">
+                        <i class="fa fa-building"></i>
+                    </span>
+            Companies
+            <i class="toggle fa fa-angle-down"></i>
+          </a>
+          <ul id="sidebar-forms" class="collapse">
+            <li><a href="<%= companies_path %>">All Companies</a></li>
+            <li><a href="<%= guest_user? ? new_user_session_path : user_companies_path(current_user) %>">My Companies</a></li>
+            <li class="divider"></li>
+            <% unless guest_user? %>
+              <% current_user.companies.each do |company| %>
+                <li><a href="<%= company_path(company) %>"><%= company.name %></a></li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
+          </ul>
+        <% end %>
       </li>
     </ul>
     <!-- every .sidebar-nav may have a title -->

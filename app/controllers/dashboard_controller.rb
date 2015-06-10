@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:all_companies]
   layout 'dashboard'
 
   def index
@@ -25,4 +25,10 @@ class DashboardController < ApplicationController
       format.json { render :json => @skills.map(&:attributes) }
     end
   end
+
+  def all_companies
+    @company_tab = 'active'
+    @companies = Company.all
+  end
+
 end
