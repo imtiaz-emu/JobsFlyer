@@ -35,11 +35,11 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    params[:subscription][:total_amount] = params[:subscription][:total_month].to_f * Subscription::PER_MONTH.to_f
     @subscription = Subscription.new(subscription_params)
 
     respond_to do |format|
       if @subscription.save
+        @subscription.price_calculate_and_save
         format.html { redirect_to subscription_path(@subscription), flash: {:success => 'Subscription was successfully created.'} }
         format.json { render :show, status: :created, location: @subscription }
       else
@@ -54,6 +54,7 @@ class SubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
+        @subscription.price_calculate_and_save
         format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
         format.json { render :show, status: :ok, location: @subscription }
       else

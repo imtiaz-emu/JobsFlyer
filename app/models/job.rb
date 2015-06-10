@@ -12,6 +12,8 @@ class Job < ActiveRecord::Base
   validates_presence_of :title, :vacancies, :job_type, :deadline, :apply_instructions
   validates_numericality_of :vacancies
 
+  after_create :manage_subscription
+
   JOB_TYPES = [
       'Full-time' => 1,
       'Part-time' => 2,
@@ -33,6 +35,20 @@ class Job < ActiveRecord::Base
 
     skill_ids.each do |id|
       self.job_skills.create(:skill_id => id.to_i) unless (self.job_skills.select(:skill_id).include?(id.to_i))
+    end
+  end
+
+  def manage_subscription
+    self.company.subscriptions.active_subscriptions.each do |subscription|
+      if subscription.feature_job > 0 && self.featured_job
+        subscription.feature_job -= 1
+        subscription.save(:validate => false)
+        break
+      elsif subscription.normal_job > 0 && !self.featured_job
+        subscription.normal_job -= 1
+        subscription.save(:validate => false)
+        break
+      end
     end
   end
 end

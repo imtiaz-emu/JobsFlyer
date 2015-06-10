@@ -12,4 +12,10 @@ class Subscription < ActiveRecord::Base
   NORMAL_JOB_PRICE = 1500
   FEATURE_JOB_PRICE = 3500
   PER_MONTH = 1500
+
+  def price_calculate_and_save
+    calculation = self.feature_job.to_f * FEATURE_JOB_PRICE.to_f + self.normal_job.to_f * NORMAL_JOB_PRICE.to_f + self.total_month.to_f * PER_MONTH.to_f
+    self.total_amount = calculation
+    self.save(:validate => false)
+  end
 end
