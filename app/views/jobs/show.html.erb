@@ -1,3 +1,141 @@
+<div class="row">
+  <div class="col-md-12">
+    <section class="widget widget-invoice">
+      <header>
+        <div class="row">
+          <div class="col-sm-6 col-print-6">
+            <!--<img src="demo/img/logo/invoice-logo.png" alt="Logo" class="invoice-logo"/>-->
+            <%= image_tag @job.company.logo_url(:logo), class: 'imvoice-logo', alt: 'logo' %>
+            <%= %>
+          </div>
+          <div class="col-sm-6 col-print-6">
+            <div class="text-muted fs-larger text-align-right">
+              <span><a href="#" class="btn btn-success">Apply now</a></span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="widget-body">
+        <div class="row mb-lg">
+          <div class="col-md-12">
+            <h4 class="text-muted">Job Description of <strong><%= @job.title %></strong></h4>
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', guest_user? ? new_user_session_path : jobs_path %>
+            <div class="company-description"><%= @job.additional_requirement if @job.additional_requirement.present? %></div>
+          </div>
+        </div>
+
+        <div class="row mb-lg">
+          <div class="col-md-12">
+            <h4 class="text-muted">Required skills</h4>
+
+            <div class="company-description">
+              <% @job.skills.each do |skill| %>
+                <span class="badge"><%= skill.name %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-lg">
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Industry</h4>
+
+            <h5 class="company-name">
+              <%= @job.company.name %>
+            </h5>
+          </section>
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Organization</h4>
+
+            <h5 class="client-name">
+              <%= @job.company.organization_category.name %>
+            </h5>
+          </section>
+
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Salary</h4>
+
+            <h5 class="client-name">
+              <% if @job.is_negotiable %>
+                Salary Negotiable
+              <% else %>
+                <%= @job.payment_currency %> <%= @job.salary_range %>
+              <% end %>
+            </h5>
+          </section>
+
+        </div>
+
+        <div class="row mb-lg">
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Job Location</h4>
+
+            <h5 class="company-name">
+              <% if @job.anywhere_in %>
+                Anywhere in <%= @job.anywhere_place.present? ? @job.anywhere_place : job_location(@job.company) %>
+              <% else %>
+                <%= job_location(CompanyLocation.find(@job.job_location)) %>
+              <% end %>
+            </h5>
+          </section>
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Job type</h4>
+
+            <h5 class="client-name">
+              <span class="label label-primary"><%= Job::JOB_TYPES[0].keys[@job.job_type.to_i-1] %></span>
+            </h5>
+          </section>
+          <% if @job.company.website.present? %>
+            <section class="col-sm-6 col-md-4 col-xs-12">
+              <h4 class="text-muted no-margin">Company Website</h4>
+
+              <h5 class="client-name">
+                <%= @job.company.website %>
+              </h5>
+            </section>
+          <% end %>
+        </div>
+
+        <div class="row mb-lg">
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Vacancies</h4>
+
+            <h5 class="company-name">
+              <span class="label-success label"><%= @job.vacancies %></span>
+            </h5>
+          </section>
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Age Range</h4>
+
+            <h5 class="client-name">
+              Age <%= range_values(@job.age_range)[0] %> - <%= range_values(@job.age_range)[1] %>
+            </h5>
+          </section>
+
+          <section class="col-sm-6 col-md-4 col-xs-12">
+            <h4 class="text-muted no-margin">Experience range</h4>
+
+            <h5 class="client-name">
+              <%= range_values(@job.experience_range)[0] %> - <%= range_values(@job.experience_range)[1] %> years
+            </h5>
+          </section>
+
+        </div>
+
+        <div class="row mb-lg">
+          <div class="col-md-12">
+            <h4 class="text-muted">Apply Instructions </h4>
+
+            <div class="company-description"><%= @job.apply_instructions.html_safe if @job.apply_instructions.present? %></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<% if company_admin(@job.company) %>
+  <%= link_to 'Edit', "#" %> |
+  <%= link_to 'Back', "#" %>
+<% end %>
