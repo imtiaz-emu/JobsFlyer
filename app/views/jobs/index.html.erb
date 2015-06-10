@@ -1,5 +1,5 @@
 <div class="custom-margin-wrapper-bottom">
-  <%= link_to "<i class='fa fa-plus fa-fw'></i> New Job".html_safe, new_job_path, :class => 'btn btn-default' %>
+  <%= link_to "<i class='fa fa-plus fa-fw'></i> New Job".html_safe, guest_user? ? new_user_session_path : new_job_path, :class => 'btn btn-default' %>
 </div>
 
 <% if @jobs.count > 0  %>

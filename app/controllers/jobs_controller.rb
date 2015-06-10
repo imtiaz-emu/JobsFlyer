@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :has_subscription?, :only => [:create, :new]
 
   layout 'dashboard'

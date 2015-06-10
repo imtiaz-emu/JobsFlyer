@@ -26,4 +26,8 @@ module ApplicationHelper
     current_user.companies.collect { |company| company.jobs }.flatten
   end
 
+  def guest_user?
+    current_user.nil?
+  end
+
 end

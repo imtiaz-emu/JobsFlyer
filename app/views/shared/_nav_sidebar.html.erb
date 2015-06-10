@@ -35,8 +35,8 @@
           <i class="toggle fa fa-angle-down"></i>
         </a>
         <ul id="sidebar-dashboard" class="collapse in">
-          <li class="<%= @dash_tab %>"><a href="<%= dashboard_path %>">Dashboard</a></li>
-          <li class="<%= @profile_tab %>"><%= link_to 'My profile', edit_profile_path(current_user.profile)%></li>
+          <li class="<%= @dash_tab %>"><a href="<%= guest_user? ? new_user_session_path : dashboard_path %>">Dashboard</a></li>
+          <li class="<%= @profile_tab %>"><%= link_to 'My profile', guest_user? ? new_user_session_path :  edit_profile_path(current_user.profile)%></li>
         </ul>
       </li>
       <li class="<%= @jobs_tab %>">
@@ -48,7 +48,7 @@
           <i class="toggle fa fa-angle-down"></i>
         </a>
         <ul id="sidebar-ui" class="collapse">
-          <li><a href="<%= jobs_path %>">My Jobs</a></li>
+          <li><a href="<%= guest_user? ? new_user_session_path : jobs_path %>">My Jobs</a></li>
           <li><a href="<%= jobs_path(:all => 'active') %>">All active Jobs</a></li>
           <li class="divider"></li>
           <li><a href="ui_icons.html">Icons</a></li>
@@ -66,10 +66,12 @@
           <i class="toggle fa fa-angle-down"></i>
         </a>
         <ul id="sidebar-forms" class="collapse">
-          <li><a href="<%= user_companies_path(current_user) %>">My Companies</a></li>
+          <li><a href="<%= guest_user? ? new_user_session_path : user_companies_path(current_user) %>">My Companies</a></li>
           <li class="divider"></li>
-          <% current_user.companies.each do |company| %>
-            <li><a href="<%= company_path(company) %>"><%= company.name %></a></li>
+          <% unless guest_user? %>
+            <% current_user.companies.each do |company| %>
+              <li><a href="<%= company_path(company) %>"><%= company.name %></a></li>
+            <% end %>
           <% end %>
         </ul>
       </li>
@@ -110,7 +112,7 @@
         </ul>
       </li>
       <li class="<%= @subscription_tab %>">
-        <a href="<%= subscriptions_path %>">
+        <a href="<%= guest_user? ? new_user_session_path : subscriptions_path %>">
                     <span class="icon">
                         <i class="fa fa-sitemap"></i>
                     </span>
