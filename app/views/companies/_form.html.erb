@@ -1,4 +1,4 @@
-<%= form_for(@company, :html => {:class => 'form-horizontal', multipart: true}) do |f| %>
+<%= form_for(@company, :method => "#{@company.new_record? ? 'post' : 'put'}", :html => {:class => 'form-horizontal', multipart: true}) do |f| %>
   <%= render :partial => 'shared/error_messages', :locals => {:obj => f.object} %>
   <div class="row mb-lg">
     <div class="col-md-12">

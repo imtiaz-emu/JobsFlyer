@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'home/load_states'
   get '/companies/availability', to: 'companies#availability'
   get '/companies/new', to: 'companies#new'
+  post '/companies', to: 'companies#create'
   get '/dashboard/calculate_price', to: 'dashboard#calculate_price'
   get '/dashboard/job_locations', to: 'dashboard#job_locations'
   get '/dashboard/skills', to: 'dashboard#skills'
