@@ -11,10 +11,14 @@
           </div>
           <div class="col-sm-6 col-print-6">
             <div class="text-muted fs-larger text-align-right" id="follow-unfollow-link">
-              <% if @company.followers.collect{|f| f.user_id}.include?(current_user.id) %>
-                <%= link_to 'Unfollow', 'javascript:void(0)' , class: 'btn btn-default', id: 'unfollow-link', :onclick => 'unfollow();'  %>
+              <% if current_user.present? %>
+                <% if is_a_company_follower(@company) %>
+                  <%= link_to 'Unfollow', 'javascript:void(0)' , class: 'btn btn-default', id: 'unfollow-link', :onclick => 'unfollow();'  %>
+                <% else %>
+                  <%= link_to 'Follow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'follow-link', :onclick => 'follow();' %>
+                <% end %>
               <% else %>
-                <%= link_to 'Follow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'follow-link', :onclick => 'follow();' %>
+                <%= link_to 'Follow', new_user_session_path , class: 'btn btn-jobsflyer' %>
               <% end %>
             </div>
           </div>
