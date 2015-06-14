@@ -40,6 +40,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'cocoon', '~> 1.2.6'
 gem 'bootstrap-slider-rails'
 gem 'money'
+gem 'pg_search', '~> 1.0.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

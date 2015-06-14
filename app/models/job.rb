@@ -16,6 +16,14 @@ class Job < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  include PgSearch
+  pg_search_scope :quick_search,
+                  against: [:title, :additional_requirement],
+                  associated_against: {
+                      skills: [:name],
+                      company: [:name]
+                  }
+
   after_create :manage_subscription
 
   JOB_TYPES = [

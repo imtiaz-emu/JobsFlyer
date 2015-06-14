@@ -40,13 +40,13 @@
     <!-- this part is hidden for xs screens -->
     <div class="collapse navbar-collapse">
       <!-- search form! link it to your search server -->
-      <form class="navbar-form navbar-left" role="search">
+      <form action="<%= search_index_path %>" class="navbar-form navbar-left" role="search" method="get">
         <div class="form-group">
           <div class="input-group input-group-no-border">
                     <span class="input-group-addon">
                         <i class="fa fa-search"></i>
                     </span>
-            <input class="form-control" type="text" placeholder="Search Dashboard">
+            <input class="form-control" type="text" placeholder="Search Dashboard" name="q">
           </div>
         </div>
       </form>
