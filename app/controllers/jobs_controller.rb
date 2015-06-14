@@ -9,9 +9,9 @@ class JobsController < ApplicationController
   def index
     @jobs_tab = 'active'
     if params[:all].present?
-      @jobs = Job.active_jobs.flatten.sort { |p1, p2| p2.deadline <=> p1.deadline }
+      @jobs = Job.active_jobs.flatten.sort { |p1, p2| p1.deadline <=> p2.deadline }
     else
-      @jobs = current_user.companies.collect { |company| company.jobs.active_jobs }.flatten.sort { |p1, p2| p2.deadline <=> p1.deadline }
+      @jobs = current_user.companies.collect { |company| company.jobs.active_jobs }.flatten.sort { |p1, p2| p1.deadline <=> p2.deadline }
     end
   end
 

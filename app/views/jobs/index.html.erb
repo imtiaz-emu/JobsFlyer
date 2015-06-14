@@ -6,7 +6,7 @@
 
   <% @jobs.each do |job| %>
     <section class="search-result-item">
-      <a class="image-link" href="#">
+      <a class="image-link" href="<%= company_path(job.company) %>">
         <%= image_tag job.company.logo.present? ? job.company.logo_url(:logo) : 'jf_logo.jpg', class: 'image' %>
       </a>
       <div class="search-result-item-body">
@@ -24,6 +24,7 @@
             </p>
             <p class="info">
               <span class="label label-primary"><%= Job::JOB_TYPES[0].keys[job.job_type.to_i-1] %></span>
+              <span class="label label-danger">Deadline: <%= job.deadline.to_date.strftime('%v') %></span>
             </p>
             <p class="description">
               <!--Not just usual Metro. But something bigger. Not just usual widgets, but real-->
