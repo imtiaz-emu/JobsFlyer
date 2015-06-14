@@ -8,12 +8,11 @@
           <div class="col-sm-6 col-print-6">
             <!--<img src="demo/img/logo/invoice-logo.png" alt="Logo" class="invoice-logo"/>-->
             <%= image_tag @company.logo_url(:logo), class: 'imvoice-logo', alt: 'logo' %>
-            <%= %>
           </div>
           <div class="col-sm-6 col-print-6">
             <div class="text-muted fs-larger text-align-right" id="follow-unfollow-link">
               <% if @company.followers.collect{|f| f.user_id}.include?(current_user.id) %>
-                <%= link_to 'Unfollow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'unfollow-link', :onclick => 'unfollow();'  %>
+                <%= link_to 'Unfollow', 'javascript:void(0)' , class: 'btn btn-default', id: 'unfollow-link', :onclick => 'unfollow();'  %>
               <% else %>
                 <%= link_to 'Follow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'follow-link', :onclick => 'follow();' %>
               <% end %>
