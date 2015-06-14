@@ -6,10 +6,14 @@ class Company < ActiveRecord::Base
   has_many :jobs, :dependent => :destroy
   has_many :subscriptions, :dependent => :destroy
 
+  has_many :users, :through => :followers
+  has_many :followers, :dependent => :destroy
+
 
   accepts_nested_attributes_for :company_locations, :reject_if => proc {|attributes| attributes[:branch_type].blank? || attributes[:phone].blank? || attributes[:country].blank? || attributes[:state].blank?}, :allow_destroy => true
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :company_admins, :allow_destroy => true
+  accepts_nested_attributes_for :followers, :allow_destroy => true
 
   extend FriendlyId
   friendly_id :web_address, use: :slugged

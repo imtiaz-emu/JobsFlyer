@@ -11,8 +11,12 @@
             <%= %>
           </div>
           <div class="col-sm-6 col-print-6">
-            <div class="text-muted fs-larger text-align-right">
-              other company links, likes, followers will be here
+            <div class="text-muted fs-larger text-align-right" id="follow-unfollow-link">
+              <% if @company.followers.collect{|f| f.user_id}.include?(current_user.id) %>
+                <%= link_to 'Unfollow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'unfollow-link', :onclick => 'unfollow();'  %>
+              <% else %>
+                <%= link_to 'Follow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'follow-link', :onclick => 'follow();' %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -91,3 +95,29 @@
   <%= link_to 'Edit', edit_company_path(@company) %> |
   <%= link_to 'Back', user_companies_path(current_user) %>
 <% end %>
+
+
+<script>
+
+    var company = <%= @company.id %>;
+
+    function unfollow() {
+      $.ajax({
+        type: "GET",
+        url: '<%= dashboard_follow_unfollow_path %>',
+        data: {company_id: company, remove: 1}
+      });
+      return false;
+    }
+
+    function follow() {
+      $.ajax({
+        type: "GET",
+        url: '<%= dashboard_follow_unfollow_path %>',
+        data: {company_id: company, remove: 0}
+      });
+      return false;
+    }
+
+
+</script>

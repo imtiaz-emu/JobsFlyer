@@ -1,0 +1,5 @@
+<% if @company.followers.collect{|f| f.user_id}.include?(current_user.id) %>
+  $('#follow-unfollow-link').html('<%= link_to 'Unfollow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'unfollow-link', :onclick => 'unfollow();'  %>')
+<% else %>
+  $('#follow-unfollow-link').html('<%= link_to 'Follow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'follow-link', :onclick => 'follow();' %>')
+<% end %>

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/dashboard/job_locations', to: 'dashboard#job_locations'
   get '/dashboard/skills', to: 'dashboard#skills'
   get '/companies', to: 'dashboard#all_companies'
+  get '/dashboard/follow_unfollow', to: 'dashboard#follow_unfollow'
 
   resources :search
   resources :users do

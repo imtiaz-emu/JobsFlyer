@@ -31,4 +31,12 @@ class DashboardController < ApplicationController
     @companies = Company.all
   end
 
+  def follow_unfollow
+    @company = Company.find(params[:company_id])
+    if params[:remove] == '1'
+      @company.followers.where(:user_id => current_user.id).first.destroy
+    else
+      @company.followers.create(:user_id => current_user.id)
+    end
+  end
 end

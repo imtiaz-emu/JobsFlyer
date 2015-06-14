@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :companies, :through => :company_admins
   has_many :company_admins, :dependent => :destroy
 
+  has_many :companies, :through => :followers
+  has_many :followers, :dependent => :destroy
+
   # validations
 
   # scopes
