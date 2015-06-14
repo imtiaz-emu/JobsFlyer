@@ -4,9 +4,7 @@
       <header>
         <div class="row">
           <div class="col-sm-6 col-print-6">
-            <!--<img src="demo/img/logo/invoice-logo.png" alt="Logo" class="invoice-logo"/>-->
-            <%= image_tag @job.company.logo_url(:logo), class: 'imvoice-logo', alt: 'logo' %>
-            <%= %>
+            <%= image_tag @job.company.logo_url(:logo), class: 'invoice-logo', alt: 'logo' %>
           </div>
           <div class="col-sm-6 col-print-6">
             <h3 class="text-align-right">
@@ -19,6 +17,7 @@
         </div>
       </header>
       <div class="widget-body">
+        <%= render :partial => 'share_job_options' %>
         <div class="row mb-lg">
           <div class="col-md-12">
             <h4 class="text-muted">Job Description of <strong><%= @job.title %></strong></h4>

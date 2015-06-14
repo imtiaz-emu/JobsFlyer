@@ -116,3 +116,18 @@
   border-color: #f2be35;
   color: #242424;
 }
+.jobs.show{
+  .left-sc-box {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    top: 38%;
+    width: auto;
+    i{
+      font-size: 18px;
+    }
+  }
+}
