@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:all_companies]
-  layout 'dashboard'
+  layout 'dashboard_widget'
 
   def index
     @dash_tab = 'active'
