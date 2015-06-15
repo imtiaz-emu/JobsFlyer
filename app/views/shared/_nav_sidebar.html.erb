@@ -78,7 +78,7 @@
             <li><a href="<%= guest_user? ? new_user_session_path : user_companies_path(current_user) %>">My Companies</a></li>
             <li class="divider"></li>
             <% unless guest_user? %>
-              <% current_user.companies.each do |company| %>
+              <% my_companies.each do |company| %>
                 <li><a href="<%= company_path(company) %>"><%= company.name %></a></li>
               <% end %>
             <% end %>
