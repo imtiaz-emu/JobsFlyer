@@ -101,8 +101,7 @@ class CompaniesController < ApplicationController
     end
 
     def user_verify_on_edit
-      company = Company.friendly.find(params[:id])
-      if CompanyAdmin.where(:company_id => company.id, :user_id => current_user.id).count < 0
+      unless Company.friendly.find(params[:id]).users.include?(current_user)
         redirect_to user_companies_path(current_user), flash: {:alert => "You're trying to modify other user's company!"}
       end
     end

@@ -12,10 +12,11 @@ module CompaniesHelper
   end
 
   def my_companies
-    companies = []
-    CompanyAdmin.where(:user_id => current_user.id).each do |ca|
-      companies << Company.find(ca.company_id)
-    end
-    return companies.uniq
+    # companies = []
+    # CompanyAdmin.where(:user_id => current_user.id).each do |ca|
+    #   companies << Company.find(ca.company_id)
+    # end
+    # return companies.uniq
+    current_user.companies
   end
 end

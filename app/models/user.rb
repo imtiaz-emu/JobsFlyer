@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   has_many :companies, :through => :company_admins
   has_many :company_admins, :dependent => :destroy
 
-  has_many :companies, :through => :followers
+  has_many :followed_companies, :through => :followers, :class_name => 'Company'
+  # has_many :companies, :through => :followers
   has_many :followers, :dependent => :destroy
 
   # validations

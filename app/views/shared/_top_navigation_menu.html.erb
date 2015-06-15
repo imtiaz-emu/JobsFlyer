@@ -42,12 +42,23 @@
       <!-- search form! link it to your search server -->
       <form action="<%= search_index_path %>" class="navbar-form navbar-left" role="search" method="get">
         <div class="form-group">
-          <div class="input-group input-group-no-border">
+          <div class="input-group">
                     <span class="input-group-addon">
                         <i class="fa fa-search"></i>
                     </span>
-            <input class="form-control" type="text" placeholder="Search Dashboard" name="q">
+            <input class="form-control" type="text" placeholder="What" name="q">
           </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-question"></i>
+                    </span>
+            <input class="form-control" type="text" placeholder="Where" name="p">
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-jobsflyer btn-xs">Search</button>
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">

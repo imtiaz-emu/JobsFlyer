@@ -10,7 +10,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions.json
   def index
     @subscription_tab = 'active'
-    @subscriptions = @user_companies.collect{|c| c.subscriptions}.flatten
+    @subscriptions = current_user.companies.collect{|c| c.subscriptions}.flatten
   end
 
   # GET /subscriptions/1
@@ -87,7 +87,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def cannot_edit_active_subscriptions
-    if ['pending', 'draft'].include?(@subscription.status) && CompanyAdmin.where(:company_id => @subscription.company.id, :user_id => current_user.id).count > 0
+    if ['pending', 'draft'].include?(@subscription.status) && @subscription.company.users.include?(current_user) #CompanyAdmin.where(:company_id => @subscription.company.id, :user_id => current_user.id).count > 0
       return true
     else
       redirect_to subscriptions_path(@subscription), flash: {:error => 'You cannot edit previously subscribed packages.'}
