@@ -39,4 +39,12 @@ class DashboardController < ApplicationController
       @company.followers.create(:user_id => current_user.id)
     end
   end
+
+  def all_job_locations
+    @company_locations = CompanyLocation.where("full_location ilike ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.html
+      format.json { render :json => @company_locations.map(&:attributes).compact }
+    end
+  end
 end

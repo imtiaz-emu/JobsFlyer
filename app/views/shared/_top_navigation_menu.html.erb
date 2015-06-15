@@ -46,7 +46,7 @@
                     <span class="input-group-addon">
                         <i class="fa fa-search"></i>
                     </span>
-            <input class="form-control" type="text" placeholder="What" name="q">
+            <input class="form-control" type="text" placeholder="What" name="query">
           </div>
         </div>
         <div class="form-group">
@@ -54,7 +54,7 @@
                     <span class="input-group-addon">
                         <i class="fa fa-question"></i>
                     </span>
-            <input class="form-control" type="text" placeholder="Where" name="p">
+            <input class="form-control" type="text" id="job_locations_attributes">
           </div>
         </div>
         <div class="form-group">
@@ -247,3 +247,14 @@
     </div>
   </div>
 </nav>
+
+<script>
+  $(document).ready(function(){
+    $('#job_locations_attributes').tokenInput('/dashboard/all_job_locations.json', {
+      crossDomain: false,
+      propertyToSearch: 'full_location',
+      tokenLimit: 1
+
+    });
+  });
+</script>
