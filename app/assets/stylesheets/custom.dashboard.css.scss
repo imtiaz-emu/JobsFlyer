@@ -115,7 +115,12 @@
   background-color: #f2be35;
   border-color: #f2be35;
   color: #242424;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  margin-top: -22px;
 }
+.btn-jobsflyer:hover,.btn-jobsflyer:focus,.btn-jobsflyer:focus{ background-color: #F2BE35;}
+
 .jobs.show{
   .left-sc-box {
     background: #fff none repeat scroll 0 0;
@@ -134,3 +139,17 @@
 .search{
   .value3{font-size: 14px}
 }
+.search-jobs-flyer ul.token-input-list{width:auto;border: 1px solid #ccc;}
+.search-jobs-flyer  ul.token-input-list li input{width:auto;  height: 32px;}
+.search-jobs-flyer  input[name=query]:focus{border: 1px solid #f2be35;}
+.search-jobs-flyer  .li.token-input-token{padding: 4px 5px;}
+.search-jobs-flyer  li.token-input-token {
+  background-color: #fff;
+  color: #555;
+  font-weight:  normal;
+  height: auto !important;
+  font-family: open sans;
+  padding: 4px 5px;
+}
+.search-jobs-flyer  li.token-input-token:focus{border: 1px solid #f2be35;}
+
