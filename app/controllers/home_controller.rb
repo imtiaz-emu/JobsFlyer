@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  layout 'dashboard_widget'
   def index
   end
 

@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:all_companies]
+  before_filter :authenticate_user!, :except => [:all_companies, :all_job_locations]
   layout :resolve_layout
 
   def index

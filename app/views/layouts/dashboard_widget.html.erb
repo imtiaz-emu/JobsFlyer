@@ -9,9 +9,13 @@
 <body class="<%= params[:controller] %> <%= params[:action] %>">
 
 <!--<div class="container">-->
-<%= render :partial => 'shared/nav_sidebar' %>
-<%= render :partial => 'shared/top_navigation_menu' %>
-<div class="content-wrap">
+<% if params[:controller] == 'home' %>
+  <%= render :partial => 'shared/home_topnav_menu' %>
+<% else %>
+  <%= render :partial => 'shared/nav_sidebar' %>
+  <%= render :partial => 'shared/top_navigation_menu' %>
+<% end %>
+<div class="<%= params[:controller] == 'home' ? '' : 'content-wrap' %>">
   <!-- main page content. the place to put widgets in. usually consists of .row > .col-md-* > .widget.  -->
   <main id="content" class="content" role="main">
     <div class="row">
@@ -21,6 +25,7 @@
       </div>
     </div>
   </main>
+  <%= render :partial => 'shared/footer_home' %>
 </div>
 <!--</div>-->
 
@@ -29,6 +34,8 @@
 </body>
 </html>
 
+<% unless params[:controller] == 'home' %>
 <script>
   $(document).pjax('a', '#sidebar-dashboard', {push: false})
 </script>
+<% end %>
