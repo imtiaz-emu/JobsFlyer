@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:all_companies]
-  layout 'dashboard_widget'
+  layout :resolve_layout
 
   def index
     @dash_tab = 'active'
@@ -28,7 +28,7 @@ class DashboardController < ApplicationController
 
   def all_companies
     @company_tab = 'active'
-    @companies = Company.all
+    @companies = Company.all.order('created_at ASC')
   end
 
   def follow_unfollow
@@ -45,6 +45,14 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render :json => @company_locations.map(&:attributes).compact }
+    end
+  end
+
+  def resolve_layout
+    if params[:action] == 'all_companies'
+      'dashboard'
+    else
+      'dashboard_widget'
     end
   end
 end
