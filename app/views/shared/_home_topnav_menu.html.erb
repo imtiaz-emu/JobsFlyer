@@ -14,32 +14,46 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="#">About <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">FAQ</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Jobs <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="<%= guest_user? ? new_user_session_path : jobs_path  %>">My jobs</a></li>
+            <li><a href="<%= jobs_path(:all => 'active') %>">All jobs</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="<%= new_job_path %>">Post a new job</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Companies <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="<%= guest_user? ? new_user_session_path : user_companies_path(current_user) %>">My companies</a></li>
+            <li><a href="<%= companies_path %>">All companies</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="<%= companies_new_path %>">Create new company</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Best company</a></li>
           </ul>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <li><a href="#">Advance Search</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <% if current_user.present? %>
+              <li><a href="<%= destroy_user_session_path %>">Logout</a></li>
+            <% else %>
+              <li><a href="<%= new_user_session_path %>">Sign In</a></li>
+              <li class="divider"></li>
+              <li><a href="<%= new_user_registration_path %>">Sign Up</a></li>
+            <% end %>
+
+            <li><a href="#">Invite a friend</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="http://dropresume.com">Upload Resume</a></li>
           </ul>
         </li>
       </ul>
