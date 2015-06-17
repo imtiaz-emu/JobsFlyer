@@ -13,7 +13,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require jquery
+//= require jquery.min
 //= require jquery.pjax
 //= require transition
 //= require collapse
