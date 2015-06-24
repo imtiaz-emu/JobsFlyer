@@ -19,4 +19,8 @@ module CompaniesHelper
     # return companies.uniq
     current_user.companies
   end
+
+  def all_users
+    User.all
+  end
 end
