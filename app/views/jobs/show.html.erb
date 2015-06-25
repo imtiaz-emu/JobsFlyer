@@ -11,7 +11,7 @@
               <span class="fw-semi-bold">Deadline</span> : <small><%= @job.deadline.to_date.strftime('%v') %></small>
             </h3>
             <div class="text-muted fs-larger text-align-right custom-margin-wrapper-top">
-              <a href="#" class="btn btn-jobsflyer">Apply now</a>
+              <%= link_to 'Apply now', job_applied_jobs_path(@job), method: :post, class: 'btn btn-jobsflyer' %>
             </div>
           </div>
         </div>
