@@ -4,7 +4,7 @@ require 'capistrano/setup'
 # Includes default deployment tasks
 require 'capistrano/deploy'
 
-load 'deploy/assets'
+#load 'deploy/assets'
 
 require 'capistrano/rails'
 require 'rvm1/capistrano3'
