@@ -1,5 +1,13 @@
 class AppliedJobsController < ApplicationController
 
+  before_filter :authenticate_user!
+  layout 'dashboard'
+
+  def index
+    @jobs = current_user.jobs
+    @jobs_tab = 'active'
+  end
+
   def create
     begin
       api_url = YAML.load_file('config/api_information.yml')['dropresume']['user'] + '?email=' + current_user.email

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :search
   resources :users do
     get '/companies', to: 'companies#index'
+    get '/my-job-applications', to: 'applied_jobs#index'
   end
 
   resources :companies, except: [:index, :destroy], path: ''

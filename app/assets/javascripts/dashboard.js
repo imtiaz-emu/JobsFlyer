@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
 //= require bootstrap
 //= require jquery.min
+//= require jquery
 //= require jquery_ujs
 //= require jquery.pjax
 //= require transition
