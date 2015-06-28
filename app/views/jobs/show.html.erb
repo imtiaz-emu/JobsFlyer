@@ -1,3 +1,9 @@
+<% if company_admin(@job.company) %>
+<div class="custom-margin-wrapper-bottom pull-right">
+    <%= link_to 'Edit', edit_job_path(@job), class: 'btn btn-xs btn-warning' %> |
+    <%= link_to 'Back', jobs_path, class: 'btn btn-xs btn-default' %>
+</div>
+<% end %>
 <div class="row">
   <div class="col-md-12">
     <section class="widget widget-invoice">
@@ -137,7 +143,4 @@
   </div>
 </div>
 
-<% if company_admin(@job.company) %>
-  <%= link_to 'Edit', edit_job_path(@job) %> |
-  <%= link_to 'Back', jobs_path %>
-<% end %>
+<%= render :partial => 'jobs/applied_jobs', locals: {:job => @job} %>

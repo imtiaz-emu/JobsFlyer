@@ -152,4 +152,126 @@
   padding: 4px 5px;
 }
 .search-jobs-flyer  li.token-input-token:focus{border: 1px solid #f2be35;}
+.widget-email{
+  .nav-email-folders > li > a {
+    color: #777;
+    font-weight: 400;
+  }
+  .nav-email-folders > li > a:hover {
+    background-color: #e5e5e5;
+    color: #555555;
+  }
+  .nav-email-folders > li > a > .glyphicon {
+    margin-right: 5px;
+  }
+  .nav-email-folders > li > a > .fa-circle {
+    margin-top: 3px;
+  }
+  .nav-email-folders > li > a > .badge {
+    background-color: #dd5826;
+  }
+  .nav-email-folders > li.active > a, .nav-email-folders > li.active > a:hover, .nav-email-folders > li.active > a:focus {
+    background-color: #ddd;
+    color: #555555;
+    font-weight: 600;
+  }
+  .nav-email-folders > li.active > a > .badge, .nav-email-folders > li.active > a:hover > .badge, .nav-email-folders > li.active > a:focus > .badge {
+    color: #555555;
+  }
 
+  .widget-email-count {
+    display: inline-block;
+    margin: 0;
+    font-size: 13px;
+    color: #999999;
+    line-height: 29px;
+  }
+  .widget-email-count + .widget-email-pagination {
+    margin-left: 10px;
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+    border-radius: 0;
+    vertical-align: -9px;
+  }
+
+  .widget-email-pagination {
+    margin: 0;
+  }
+
+  .table-emails {
+    margin-bottom: 0;
+  }
+  .table-emails td > .checkbox,
+  .table-emails th > .checkbox {
+    top: -9px;
+  }
+  .table-emails .name,
+  .table-emails .subject,
+  .table-emails .date {
+    cursor: pointer;
+  }
+  .table-emails .date {
+    text-align: right;
+    min-width: 65px;
+  }
+  .table-emails .unread {
+    font-weight: 600;
+    color: #555555;
+  }
+  .table-emails .starred {
+    color: #999999;
+    cursor: pointer;
+    -webkit-transition: color 0.2s;
+    -o-transition: color 0.2s;
+    transition: color 0.2s;
+  }
+  .table-emails .starred:hover {
+    color: #555555;
+  }
+  .table-emails .starred .fa-star {
+    color: #f0b518;
+  }
+
+  .email-view hr {
+    margin: 5px 0;
+  }
+  .email-view .email-body {
+    margin-top: 20px;
+  }
+
+  .email-details img {
+    width: 30px;
+    height: 30px;
+    float: left;
+  }
+
+  .email-details-content:before, .email-details-content:after {
+    content: " ";
+    display: table;
+  }
+  .email-details-content:after {
+    clear: both;
+  }
+  .email-details-content .email {
+    color: #999999;
+    font-size: 13px;
+  }
+  .email-details-content .receiver {
+    display: block;
+    color: #999999;
+    margin-top: -6px;
+  }
+  .email-details-content .email-date {
+    margin-right: 10px;
+    line-height: 24px;
+    vertical-align: middle;
+  }
+
+  .email-attachments .attachment img {
+    display: block;
+  }
+  .email-attachments .attachment .title {
+    margin: 0;
+    font-weight: bold;
+  }
+}
