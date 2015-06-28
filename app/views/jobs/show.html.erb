@@ -11,7 +11,7 @@
               <span class="fw-semi-bold">Deadline</span> : <small><%= @job.deadline.to_date.strftime('%v') %></small>
             </h3>
             <div class="text-muted fs-larger text-align-right custom-margin-wrapper-top">
-              <%= link_to 'Apply now', job_applied_jobs_path(@job), method: :post, class: 'btn btn-jobsflyer' %>
+              <%= link_to 'Apply now', job_applied_jobs_path(@job), method: :post, class: "btn btn-jobsflyer #{'disabled' if @job.users.include?(current_user)}", title: @job.users.include?(current_user) ? "Already applied" : "Apply now!"  %>
             </div>
           </div>
         </div>

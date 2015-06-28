@@ -3,6 +3,7 @@ class Job < ActiveRecord::Base
   belongs_to :company
   has_many :skills, :through => :job_skills
   has_many :job_skills, :dependent => :destroy
+  has_and_belongs_to_many :users
 
   attr_accessor :job_skills_attributes
 
