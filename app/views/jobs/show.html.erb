@@ -1,3 +1,9 @@
+<% if company_admin(@job.company) %>
+<div class="custom-margin-wrapper-bottom pull-right">
+    <%= link_to 'Edit', edit_job_path(@job), class: 'btn btn-xs btn-warning' %> |
+    <%= link_to 'Back', jobs_path, class: 'btn btn-xs btn-default' %>
+</div>
+<% end %>
 <div class="row">
   <div class="col-md-12">
     <section class="widget widget-invoice">
@@ -11,7 +17,7 @@
               <span class="fw-semi-bold">Deadline</span> : <small><%= @job.deadline.to_date.strftime('%v') %></small>
             </h3>
             <div class="text-muted fs-larger text-align-right custom-margin-wrapper-top">
-              <a href="#" class="btn btn-jobsflyer">Apply now</a>
+              <%= link_to 'Apply now', job_applied_jobs_path(@job), method: :post, class: "btn btn-jobsflyer #{'disabled' if @job.users.include?(current_user)}", title: @job.users.include?(current_user) ? "Already applied" : "Apply now!"  %>
             </div>
           </div>
         </div>
@@ -137,7 +143,4 @@
   </div>
 </div>
 
-<% if company_admin(@job.company) %>
-  <%= link_to 'Edit', edit_job_path(@job) %> |
-  <%= link_to 'Back', jobs_path %>
-<% end %>
+<%= render :partial => 'jobs/applied_jobs', locals: {:job => @job} %>

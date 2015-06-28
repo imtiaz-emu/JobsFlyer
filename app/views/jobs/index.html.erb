@@ -29,7 +29,7 @@
             <p class="description">
               <!--Not just usual Metro. But something bigger. Not just usual widgets, but real-->
               <!--widgets. Not just yet another admin template, but next generation admin template.-->
-              <% job.skills.each do |skill| %>
+              <% job.skills.first(4).each do |skill| %>
                 <span class="badge"><%= skill.name %></span>
               <% end %>
             </p>
@@ -43,7 +43,7 @@
               <% end %>
             </p>
             <p class="fs-mini text-muted">
-              <%= Job::JOB_PAYMENT_TYPE[0].keys[job.payment_type.to_i-1] %>
+              Payment: <%= Job::JOB_PAYMENT_TYPE[0].keys[job.payment_type.to_i-1] %>
             </p>
             <a class="btn btn-primary btn-info btn-sm" href="<%= job_path(job) %>">Learn More</a>
           </div>

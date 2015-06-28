@@ -1,0 +1,38 @@
+<div class="custom-margin-wrapper-bottom">
+  <h3>My Job applications</h3>
+</div>
+
+<% if @jobs.count > 0  %>
+
+    <% @jobs.each do |job| %>
+        <section class="search-result-item">
+          <a class="image-link" href="#">
+            <%= image_tag job.company.logo.present? ? job.company.logo_url(:logo) : 'jf_logo.jpg', class: 'image' %>
+          </a>
+          <div class="search-result-item-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4 class="search-result-item-heading custom-margin-wrapper-bottom">
+                  <a href="<%= job_path(job) %>"><%= job.title %></a>
+                </h4>
+
+                <p class="description">
+                  <% resume_url = applied_users_dropresume_url(current_user) %>
+                  <h4>My Resume: <span><%= link_to resume_url, resume_url, target: '_blank' %></span></h4>
+                </p>
+                <p class="description">
+                  <% job.skills.each do |skill| %>
+                      <span class="badge"><%= skill.name %></span>
+                  <% end %>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </section>
+    <% end %>
+<% else %>
+    <hr>
+    <h3>Don not applied to any job.</h3>
+<% end %>
+
