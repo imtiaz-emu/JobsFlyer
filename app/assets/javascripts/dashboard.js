@@ -35,3 +35,4 @@
 //= require bootstrap-slider
 //= require jquery-ui.min
 //= require jquery.tokeninput
+//= require_tree .

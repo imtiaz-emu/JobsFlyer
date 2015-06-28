@@ -22,4 +22,5 @@
 //= require widgster
 //= require settings
 //= require app
+//= require_tree .
 
