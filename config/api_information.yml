@@ -1,0 +1,2 @@
+dropresume:
+  user: 'http://localhost:3001/api/v1/user_profile/profile'
