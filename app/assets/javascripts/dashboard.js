@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require bootstrap
-//= require jquery.min
+//= require jquery.js
 //= require jquery_ujs
+//= require jquery-ui.min
 //= require jquery.pjax
 //= require transition
 //= require collapse
@@ -31,5 +32,4 @@
 //= require tab
 //= require cocoon
 //= require bootstrap-slider
-//= require jquery-ui.min
 //= require jquery.tokeninput
