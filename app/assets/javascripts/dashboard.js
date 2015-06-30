@@ -10,9 +10,8 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery.min
-//= require jquery_ujs
 //= require bootstrap
+//= require jquery.min
 //= require jquery_ujs
 //= require jquery.pjax
 //= require transition
@@ -34,4 +33,3 @@
 //= require bootstrap-slider
 //= require jquery-ui.min
 //= require jquery.tokeninput
-//= require_tree .

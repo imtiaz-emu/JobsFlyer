@@ -31,7 +31,7 @@ set :rvm1_ruby_version, "ruby-2.1.5"
 set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle}
 set :linked_dirs, fetch(:linked_dirs) + %w{public/system public/uploads}
 
 # Default value for default_env is {}
