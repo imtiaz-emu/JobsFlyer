@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="advance-job-search-results">
+    <%= render partial: 'search/searched_jobs', locals: {jobs: @jobs} %>
+  </div>
+  <div class="advance-job-search-filter">
+    <%= render partial: 'search/advance_search_form' %>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#job_skills').tokenInput('/dashboard/skills.json', {crossDomain: false, hintText: 'Job skill search'});
+        $('#job_location').tokenInput('/dashboard/all_job_locations.json', {
+            crossDomain: false,
+            propertyToSearch: 'full_location',
+            tokenLimit: 1,
+            hintText: 'Job location search'
+        });
+        $("#deadline").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        $('#search-for-job-form-btn').click(function(){
+            $.ajax({
+                type: 'GET',
+                url: '<%= advance_search_results_path %>',
+                data: {job_category_id: $('#job_category_id').val(),
+                    job_skills: $('#job_skills').val().split(','),
+                    deadline: $('#deadline').val(),
+                    job_location: $('#job_location').val(),
+                    exp_min: $('#experience-min').val(),
+                    exp_max: $('#experience-max').val()
+                }
+            });
+        });
+    });
+</script>

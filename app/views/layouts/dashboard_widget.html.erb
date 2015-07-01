@@ -25,7 +25,7 @@
       </div>
     </div>
   </main>
-  <%= render :partial => 'shared/footer_home' %>
+  <%= render :partial => 'shared/footer_home' if params[:controller] == 'home' %>
 </div>
 <!--</div>-->
 

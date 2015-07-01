@@ -27,9 +27,11 @@
 //= require jquery.touchSwipe
 //= require settings
 //= require app
+//= require bootstrap-select.min
 //= require wysihtml5-0.3.0.min
 //= require bootstrap3-wysihtml5
 //= require tab
 //= require cocoon
 //= require bootstrap-slider
 //= require jquery.tokeninput
+//= require select2.min

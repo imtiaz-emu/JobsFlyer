@@ -1,0 +1,106 @@
+<div class="col-md-4">
+  <section class="widget">
+    <header>
+      <h5>
+        <i class="fa fa-list-alt"></i>
+        Search job
+      </h5>
+
+      <div class="widget-controls">
+        <a href="#"><i class="fa fa-refresh"></i></a>
+      </div>
+    </header>
+    <div class="widget-body">
+      <form action="javascript:void(0)" class="form-horizontal form-label-left" role="form" id="search-for-job-form">
+        <fieldset>
+          <legend>Filter job with advanced search</legend>
+          <div class="form-group">
+            <!--<label class="col-sm-4 control-label" for="default-select">Select Job category</label>-->
+            <div class="col-sm-8">
+              <%= select_tag 'job_category_id', options_for_select(options_for_select(OrganizationCategory.all.collect { |oc| [oc.name, oc.id] })), prompt: "Select category" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <!--<label for="prepended-input" class="col-sm-4 control-label">Skills-->
+            <!--<span class="help-block">Type to search for skills you looking for</span>-->
+            <!--</label>-->
+
+            <div class="col-sm-7">
+              <div class="input-group">
+                <%= text_field_tag 'job_skills' %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <!--<label for="prepended-input" class="col-sm-4 control-label">Deadline-->
+            <!--</label>-->
+
+            <div class="col-sm-7">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                <%= text_field_tag 'deadline', nil, :class => 'form-control', placeholder: 'Deadline' %>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Dropdown based colored selects</legend>
+
+          <div class="form-group">
+            <!--<label for="prepended-input" class="col-sm-4 control-label">Job location-->
+            <!--<span class="help-block">Type your desired location</span>-->
+            <!--</label>-->
+
+            <div class="col-sm-7">
+              <div class="input-group">
+                <%= text_field_tag 'job_location' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <!--<label class="col-sm-4 control-label" for="simple-red-select">-->
+            <!--Experience range-->
+            <!--<span class="help-block">-->
+            <!--Showing in years-->
+            <!--</span>-->
+            <!--</label>-->
+            <div class="col-sm-12">
+              <select class="selectpicker" id="experience-min"
+                      data-style="btn-danger btn-sm"
+                      data-width="auto"
+                      tabindex="-1" id="simple-red-select"
+                      name="experience_min">
+                <option value="">Exp. (min)</option>
+                <% (1...6).each do |exp_min| %>
+                    <option value="<%= exp_min.to_i %>"><%= exp_min.to_s + " year" %></option>
+                <% end %>
+
+              </select>
+              <select class="selectpicker"
+                      data-style="btn-warning btn-sm"  id="experience-max"
+                      data-width="auto"
+                      tabindex="-1" id="simple-orange-select"
+                      name="experience_max">
+                <option value="">Exp. (max)</option>
+                <% (7...15).each do |exp_max| %>
+                    <option value="<%= exp_max.to_i %>"><%= exp_max.to_s + " year" %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <div class="form-actions">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <button class="btn btn-primary" type="submit" id="search-for-job-form-btn">Search</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+

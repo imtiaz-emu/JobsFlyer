@@ -34,7 +34,7 @@ class JobsController < ApplicationController
   # POST /jobs.json
   def create
     @job = Job.new(job_params)
-
+    @job.organization_category_id = @job.company.organization_category.id
     respond_to do |format|
       if @job.save
         @job.update_job_skills_attributes(params[:job][:job_skills_attributes])
@@ -50,6 +50,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
   def update
+    @job.organization_category_id = Company.find(params[:job][:company_id]).organization_category.id
     respond_to do |format|
       if @job.update(job_params)
         @job.update_job_skills_attributes(params[:job][:job_skills_attributes])
