@@ -37,7 +37,7 @@
         <ul id="sidebar-dashboard" class="collapse in">
           <li class="<%= @dash_tab %>"><a href="<%= guest_user? ? new_user_session_path : dashboard_path %>">Dashboard</a></li>
           <li class="<%= @profile_tab %>"><%= link_to 'My profile', guest_user? ? new_user_session_path :  edit_profile_path(current_user.profile)%></li>
-          <li class="<%= @profile_tab %>"><%= link_to 'Advance search', advance_search_path %></li>
+          <li class="<%= @search_tab %>"><%= link_to 'Advance search', advance_search_path %></li>
         </ul>
       </li>
       <li class="<%= @jobs_tab %>">
