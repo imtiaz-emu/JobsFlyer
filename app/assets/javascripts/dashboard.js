@@ -10,11 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require bootstrap
 //= require jquery.js
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require jquery.pjax
+//= require bootstrap
 //= require transition
 //= require collapse
 //= require dropdown
