@@ -5,6 +5,27 @@ class DashboardController < ApplicationController
 
   def index
     @dash_tab = 'active'
+    @no_skill_match = false
+    begin
+      api_url = YAML.load_file('config/api_information.yml')['dropresume']['user_skills'] + '?email=' + current_user.email
+      user_response = HTTParty.get api_url
+      skill_match = user_response.parsed_response
+      if @user_info['notice'].present?
+        @no_skill_match = true
+      else
+        @recommended_jobs = []
+        Job.active_jobs.each do |job|
+          job.skills.each do |skill|
+            if skill_match.include?(skill.name)
+              @recommended_jobs << job
+              break
+            end
+          end
+        end
+      end
+    rescue Exception => ex
+      Rails.logger.error "Api load error: #{ex.message}"
+    end
   end
 
   def calculate_price

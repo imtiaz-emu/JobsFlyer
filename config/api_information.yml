@@ -1,2 +1,3 @@
 dropresume:
   user: 'http://localhost:3001/api/v1/user_profile/profile'
+  user_skills: 'http://localhost:3001/api/v1/user_profile/user_job_match_skills'

@@ -20,7 +20,11 @@
       </div>
     </div>
     <div class="row">
-      <%= render :partial => 'top_companies' %>
+      <% if current_user.profile.looking_for_job %>
+        <%= render :partial => 'recommended_jobs' %>
+      <% else %>
+        <%= render :partial => 'top_companies' %>
+      <% end %>
     </div>
   </div>
 </div>
