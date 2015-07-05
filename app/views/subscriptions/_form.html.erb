@@ -108,7 +108,7 @@
           <div class="col-sm-7">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-              <%= f.text_field :bkash_transaction_no, :class => 'form-control', :id => 'subscription-transaction-number', :autocomplete => 'off' %>
+              <%= f.text_field :bkash_transaction_no , :class => 'form-control', :id => 'subscription-transaction-number', :autocomplete => 'off', :disabled => Subscription::FREE_COUPON, :value => Subscription::FREE_COUPON ? Subscription::FREE_COUPON_BKASH_TRANSACTION : ''  %>
             </div>
           </div>
         </div>

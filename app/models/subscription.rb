@@ -9,9 +9,11 @@ class Subscription < ActiveRecord::Base
 
   validates_presence_of :bkash_transaction_no
 
-  NORMAL_JOB_PRICE = 1500
-  FEATURE_JOB_PRICE = 3500
-  PER_MONTH = 1500
+  FREE_COUPON = true
+  FREE_COUPON_BKASH_TRANSACTION = '123123123123'
+  NORMAL_JOB_PRICE = FREE_COUPON ? 0 : 1500
+  FEATURE_JOB_PRICE = FREE_COUPON ? 0 : 3500
+  PER_MONTH = FREE_COUPON ? 0 : 1500
 
   def price_calculate_and_save
     calculation = self.feature_job.to_f * FEATURE_JOB_PRICE.to_f + self.normal_job.to_f * NORMAL_JOB_PRICE.to_f + self.total_month.to_f * PER_MONTH.to_f
