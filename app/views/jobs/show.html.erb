@@ -143,4 +143,4 @@
   </div>
 </div>
 
-<%= render :partial => 'jobs/applied_jobs', locals: {:job => @job} %>
+<%= render :partial => 'jobs/applied_jobs', locals: {:job => @job}  if is_company_admin(@job.company)%>
