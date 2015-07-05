@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-12">
   <section class="widget">
     <header>
       <h5><span class="label label-danger">Recommended</span> Jobs</h5>
@@ -9,18 +9,24 @@
     </header>
     <div class="widget-body no-padding">
       <div class="list-group list-group-lg">
-        <% @recommended_jobs.each do |job| %>
+        <% if @recommended_jobs.present? %>
+            <% @recommended_jobs.each do |job| %>
+                <a class="list-group-item" href="#">
+                  <span class="thumb-sm pull-left mr">
+                    <%= image_tag job.company.logo.present? ? job.company.logo_url(:thumb) : 'jf_logo.jpg', class: 'img-circle' %>
+                    <!--<i class="status status-bottom bg-success"></i>-->
+                  </span>
+                  <h5 class=''><%= job.title %></h5>
+                  <p class="help-block text-ellipsis no-margin">
+                    <% job.skills.first(4).each do |skill| %>
+                        <span class="badge"><%= skill.name %></span>
+                    <% end %>
+                  </p>
+                </a>
+            <% end %>
+        <% else%>
             <a class="list-group-item" href="#">
-            <span class="thumb-sm pull-left mr">
-              <%= image_tag job.company.logo.present? ? job.company.logo_url(:thumb) : 'jf_logo.jpg', class: 'img-circle' %>
-                <i class="status status-bottom bg-success"></i>
-            </span>
-              <h5 class="no-margin"><%= job.title %></h5>
-              <p class="help-block text-ellipsis no-margin">
-                <% job.skills.first(4).each do |skill| %>
-                    <span class="badge"><%= skill.name %></span>
-                <% end %>
-              </p>
+              <h5 class=''>No job matching for you!</h5>
             </a>
         <% end %>
       </div>

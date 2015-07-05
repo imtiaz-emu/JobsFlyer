@@ -7,16 +7,17 @@ class DashboardController < ApplicationController
     @dash_tab = 'active'
     @no_skill_match = false
     begin
-      api_url = YAML.load_file('config/api_information.yml')['dropresume']['user_skills'] + '?email=' + current_user.email
+      # api_url = YAML.load_file('config/api_information.yml')['dropresume']['user_skills'] + '?email=' + current_user.email
+      api_url = YAML.load_file('config/api_information.yml')['dropresume']['user_skills'] + '?email=emu@emu.com'
       user_response = HTTParty.get api_url
       skill_match = user_response.parsed_response
-      if @user_info['notice'].present?
+      if skill_match['notice'].present?
         @no_skill_match = true
       else
         @recommended_jobs = []
         Job.active_jobs.each do |job|
           job.skills.each do |skill|
-            if skill_match.include?(skill.name)
+            if skill_match['user_skills'].include?(skill.name)
               @recommended_jobs << job
               break
             end
