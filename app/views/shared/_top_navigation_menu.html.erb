@@ -65,11 +65,11 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle dropdown-toggle-notifications" id="notifications-dropdown-toggle" data-toggle="dropdown">
                         <span class="thumb-sm avatar pull-left">
-                          <%= image_tag 'avatar.png', class: 'img-circle' %>
+                          <%= image_tag (!guest_user? && current_user.profile.photo.present?) ? current_user.profile.photo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
                           <!--<img class="img-circle" src="demo/img/people/a5.jpg" alt="...">-->
                         </span>
             &nbsp;
-            Philip <strong>Smith</strong>&nbsp;
+            <%= current_profile.first_name %> <strong><%= current_profile.last_name %></strong>&nbsp;
                         <span class="circle bg-warning fw-bold">
                             13
                         </span>
