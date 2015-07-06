@@ -28,6 +28,9 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
+    if @job.deadline < Time.now
+      redirect_to job_path(@job), flash: {notice: 'This job is expired.'}
+    end
   end
 
   # POST /jobs
