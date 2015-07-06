@@ -26,4 +26,14 @@ class AppliedJobsController < ApplicationController
     end
   end
 
+  def hire_or_decline_job_applications
+    params[:job_applications].each do |application|
+      job_application = JobsUser.find(application.to_i)
+      job_application.status = params[:status]
+      job_application.save
+    end
+    @job = Job.friendly.find(params[:job_id])
+    @job_applications = @job.users.includes(:jobs_users)
+  end
+
 end

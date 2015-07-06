@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :profiles
   resources :subscriptions
   resources :jobs do
-    resources :applied_jobs
+    resources :applied_jobs do
+      collection do
+        get :hire_or_decline_job_applications
+      end
+    end
   end
 
   # devise_for :users
