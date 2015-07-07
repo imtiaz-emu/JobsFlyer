@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="resume-search-results">
+    <%= render partial: 'resume_search/searched_resumes' %>
+  </div>
+  <div class="resume-search-filter">
+    <%= render partial: 'resume_search/search_form' %>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#user_skills').tokenInput('/dashboard/skills.json', {crossDomain: false, hintText: 'User skill search'});
+
+        $('#search-for-resume-form-btn').click(function(){
+            $.ajax({
+                type: 'GET',
+                url: '<%= advance_search_results_path %>',
+                data: {job_category_id: $('#job_category_id').val(),
+                    job_skills: $('#job_skills').val().split(','),
+                    deadline: $('#deadline').val(),
+                    job_location: $('#job_location').val(),
+                    exp_min: $('#experience-min').val(),
+                    exp_max: $('#experience-max').val()
+                }
+            });
+        });
+    });
+</script>

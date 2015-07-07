@@ -1,0 +1,76 @@
+<div class="col-md-4">
+  <section class="widget">
+    <header>
+      <h5>
+        <i class="fa fa-list-alt"></i>
+        Resume Search
+      </h5>
+
+      <div class="widget-controls">
+        <a href="#"><i class="fa fa-refresh"></i></a>
+      </div>
+    </header>
+    <div class="widget-body">
+      <form action="javascript:void(0)" class="form-horizontal form-label-left" role="form" id="search-for-job-form">
+        <fieldset>
+          <legend>Filter resume from our resume bank</legend>
+          <div class="form-group">
+            <div class="col-sm-7">
+              <div class="input-group">
+                <%= text_field_tag 'user_skills' %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Dropdown based colored selects</legend>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <select class="selectpicker" id="minimum-age"
+                      data-style="btn-danger btn-sm"
+                      data-width="auto"
+                      tabindex="-1" id="simple-orange-select"
+                      name="age">
+                <option value="">Minimum Age</option>
+                <% (18...45).each do |age| %>
+                    <option value="<%= age.to_i %>"><%= age.to_s + " year" %></option>
+                <% end %>
+
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <select class="selectpicker" id="experience-min"
+                      data-style="btn-danger btn-sm"
+                      data-width="auto"
+                      tabindex="-1" id="simple-red-select"
+                      name="experience">
+                <option value="">Minimum Experience</option>
+                <% (1...10).each do |exp_min| %>
+                    <option value="<%= exp_min.to_i %>"><%= exp_min.to_s + " year" %></option>
+                <% end %>
+
+              </select>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <div class="form-actions">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <button class="btn btn-primary" type="submit" id="search-for-job-form-btn">Search</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+

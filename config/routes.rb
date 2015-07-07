@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get '/dashboard/follow_unfollow', to: 'dashboard#follow_unfollow'
   get '/advance-search', to: 'search#advance_search'
   get '/advance-search/results', to: 'search#advance_search_results'
+  get 'resume-search', to: 'resume_search#index'
 
   resources :search
   resources :users do
