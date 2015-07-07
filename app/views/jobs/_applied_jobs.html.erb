@@ -41,9 +41,9 @@
             </td>
             <td><span class="starred"><i class="fa fa-star"></i></span></td>
             <td class="name hidden-xs"><%= full_user_name(applied_user) %></td>
-            <td class="date"><%= applied_user.jobs_users.first.status.capitalize %></td>
+            <td class="date"><span class="label bg-gray-light"><%= applied_user.jobs_users.first.status.capitalize %></span></td>
             <% resume_url = applied_users_dropresume_url(applied_user) %>
-            <td class="subject"><%= link_to resume_url, resume_url, target: '_blank' %></td>
+            <td class="subject"><%= link_to "View resume", resume_url, target: '_blank' %></td>
           </tr>
         <% end %>
       </tbody>
