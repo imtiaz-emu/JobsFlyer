@@ -12,16 +12,16 @@
         $('#user_skills').tokenInput('/dashboard/skills.json', {crossDomain: false, hintText: 'User skill search'});
 
         $('#search-for-resume-form-btn').click(function(){
+            var names = [];
+            $('.token-input-list').find('li p').each(function(){
+//                names.push($(this).html());
+                names.push($(this).text());//possibly better
+            });
+//            alert("Names are: " + names.join());
             $.ajax({
                 type: 'GET',
-                url: '<%= advance_search_results_path %>',
-                data: {job_category_id: $('#job_category_id').val(),
-                    job_skills: $('#job_skills').val().split(','),
-                    deadline: $('#deadline').val(),
-                    job_location: $('#job_location').val(),
-                    exp_min: $('#experience-min').val(),
-                    exp_max: $('#experience-max').val()
-                }
+                url: '<%= resume_search_results_path %>',
+                data: {skills: names.join()}
             });
         });
     });
