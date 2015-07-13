@@ -23,7 +23,11 @@
           <div class="col-sm-7">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-star-o"></i></span>
-              <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 1 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off', :disabled => Subscription::FREE_COUPON %>
+              <% if Subscription::FREE_COUPON %>
+                  <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 5 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off', disabled: true %>
+              <% else %>
+                  <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 1 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off' %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -37,7 +41,11 @@
           <div class="col-sm-7">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-star"></i></span>
-              <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 1 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off', :disabled => Subscription::FREE_COUPON %>
+              <% if Subscription::FREE_COUPON %>
+                  <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 3 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off', :disabled => true%>
+              <% else %>
+                  <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 1 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off' %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -51,7 +59,12 @@
           <div class="col-sm-7">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-              <%= f.select :total_month, options_for_select(month_list.collect{|m| [m, m.split(' ')[0].to_i]}), :class => 'form-control', :id => 'search-resume-expires' %>
+              <% if Subscription::FREE_COUPON %>
+                  <%= f.select :total_month, options_for_select([["3 month", 3]]), :class => 'form-control selectpicker', :id => 'simple-orange-select search-resume-expires' %>
+              <% else %>
+                  <%= f.select :total_month, options_for_select(month_list.collect{|m| [m, m.split(' ')[0].to_i]}), :class => 'form-control selectpicker', :id => 'simple-orange-select search-resume-expires' %>
+              <% end %>
+
             </div>
           </div>
         </div>
