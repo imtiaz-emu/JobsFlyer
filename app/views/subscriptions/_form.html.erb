@@ -23,7 +23,7 @@
           <div class="col-sm-7">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-star-o"></i></span>
-              <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 1 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off' %>
+              <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 1 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off', :disabled => Subscription::FREE_COUPON %>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
           <div class="col-sm-7">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-star"></i></span>
-              <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 1 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off' %>
+              <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 1 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off', :disabled => Subscription::FREE_COUPON %>
             </div>
           </div>
         </div>

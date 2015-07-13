@@ -1,6 +1,6 @@
 <div class="row">
   <div class="resume-search-results">
-    <%= render partial: 'resume_search/searched_resumes' %>
+    <%= render partial: 'resume_search/searched_resumes', locals: {resumes: []} %>
   </div>
   <div class="resume-search-filter">
     <%= render partial: 'resume_search/search_form' %>
@@ -9,20 +9,31 @@
 
 <script>
     $(document).ready(function () {
-        $('#user_skills').tokenInput('/dashboard/skills.json', {crossDomain: false, hintText: 'User skill search'});
+        $('#user_skills').tokenInput('/dashboard/skills.json', {crossDomain: false, hintText: 'User skill search', minChars: 2});
 
         $('#search-for-resume-form-btn').click(function(){
-            var names = [];
+            var names = [], age, experience;
             $('.token-input-list').find('li p').each(function(){
-//                names.push($(this).html());
                 names.push($(this).text());//possibly better
             });
-//            alert("Names are: " + names.join());
+
+            age = $('#minimum-age').val() ? parseInt($('#minimum-age').val()) : 20
+            experience =  $('#experience-min').val() ? parseInt($('#experience-min').val()) : 0
             $.ajax({
                 type: 'GET',
                 url: '<%= resume_search_results_path %>',
-                data: {skills: names.join()}
+                data: {skills: names.join(), age: age, experience: experience}
             });
+        });
+        $(function() {
+            $('#loading-indicator').hide();  // hide it initially.
+            $(document)
+                    .ajaxStart(function() {
+                        $('#loading-indicator').show(); // show on any Ajax event.
+                    })
+                    .ajaxStop(function() {
+                        $('#loading-indicator').hide(); // hide it when it is done.
+                    });
         });
     });
 </script>

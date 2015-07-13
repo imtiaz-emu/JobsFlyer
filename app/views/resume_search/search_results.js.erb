@@ -1,1 +1,1 @@
-$('.advance-resume-search-results').html('<%=j render partial: 'resume_search/searched_resumes', locals: {jobs: @user_resumes} %>');
+$('.resume-search-results').html('<%=j render partial: 'resume_search/searched_resumes', locals: {resumes: @user_resumes['user_resumes']} %>');
