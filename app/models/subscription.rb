@@ -16,6 +16,10 @@ class Subscription < ActiveRecord::Base
   PER_MONTH = FREE_COUPON ? 0 : 1500
 
   def price_calculate_and_save
+    if Subscription::FREE_COUPON
+      self.normal_job = 5
+      self.feature_job = 3
+    end
     calculation = self.feature_job.to_f * FEATURE_JOB_PRICE.to_f + self.normal_job.to_f * NORMAL_JOB_PRICE.to_f + self.total_month.to_f * PER_MONTH.to_f
     self.total_amount = calculation
     self.save(:validate => false)

@@ -15,4 +15,16 @@ module SubscriptionsHelper
         return 'warning'
     end
   end
+
+  def remaining_normal_jobs(subscription)
+    ((subscription.normal_job - subscription.company.jobs.normal_jobs.count).to_f/subscription.normal_job.to_f)*100.0
+  end
+
+  def remaining_featured_jobs(subscription)
+    ((subscription.feature_job - subscription.company.jobs.featured_jobs.count).to_f/subscription.feature_job.to_f)*100.0
+  end
+
+  def remaining_search_period(subscription)
+
+  end
 end

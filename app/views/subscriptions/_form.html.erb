@@ -24,7 +24,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-star-o"></i></span>
               <% if Subscription::FREE_COUPON %>
-                  <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 5 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off', disabled: true %>
+                  <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 5 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off', readonly: true %>
               <% else %>
                   <%= f.text_field :normal_job, :value => (@subscription.new_record? ? 1 : @subscription.normal_job) ,:class => 'form-control', :id => 'no-of-normal-job', :autocomplete => 'off' %>
               <% end %>
@@ -42,7 +42,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-star"></i></span>
               <% if Subscription::FREE_COUPON %>
-                  <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 3 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off', :disabled => true%>
+                  <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 3 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off', :readonly => true%>
               <% else %>
                   <%= f.text_field :feature_job, :value => (@subscription.new_record? ? 1 : @subscription.feature_job), :class => 'form-control', :id => 'no-of-feature-job',  :autocomplete => 'off' %>
               <% end %>
@@ -121,7 +121,7 @@
           <div class="col-sm-7">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-              <%= f.text_field :bkash_transaction_no , :class => 'form-control', :id => 'subscription-transaction-number', :autocomplete => 'off', :disabled => Subscription::FREE_COUPON, :value => Subscription::FREE_COUPON ? Subscription::FREE_COUPON_BKASH_TRANSACTION : ''  %>
+              <%= f.text_field :bkash_transaction_no , :class => 'form-control', :id => 'subscription-transaction-number', :autocomplete => 'off', :readonly => Subscription::FREE_COUPON, :value => Subscription::FREE_COUPON ? Subscription::FREE_COUPON_BKASH_TRANSACTION : ''  %>
             </div>
           </div>
         </div>

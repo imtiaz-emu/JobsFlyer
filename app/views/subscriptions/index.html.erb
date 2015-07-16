@@ -12,14 +12,14 @@
             <span class="fs-mini">Total purchased <%= subscription.normal_job %></span>
           </div>
           <div class="progress progress-xs">
-            <div class="progress-bar" style="width: 70%;"></div>
+            <div class="progress-bar" role="progressbar" aria-valuenow="<%= subscription.normal_job %>" aria-valuemin="0" aria-valuemax="<%= subscription.normal_job %>" style="width: <%= remaining_normal_jobs(subscription) %>%"></div>
           </div>
           <div class="clearfix fs-mini mt">
             <span class="pull-right no-margin fw-semi-bold">Featured Job</span>
             <span class="fs-mini">Total purchased <%= subscription.feature_job %></span>
           </div>
           <div class="progress progress-xs">
-            <div class="progress-bar progress-bar-warning" style="width: 29%;"></div>
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= subscription.feature_job %>" aria-valuemin="0" aria-valuemax="<%= subscription.feature_job %>" style="width: <%= remaining_featured_jobs(subscription) %>%"></div>
           </div>
           <div class="clearfix fs-mini mt">
             <span class="pull-right no-margin fw-semi-bold">Search for resume expires </span>

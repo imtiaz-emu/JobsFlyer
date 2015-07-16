@@ -10,6 +10,8 @@ class Job < ActiveRecord::Base
 
   scope :active_jobs, -> { where('deadline > ?', Date.today) }
   scope :expired_jobs, -> { where('deadline < ?', Date.today) }
+  scope :normal_jobs, -> { where('featured_job = ?', false) }
+  scope :featured_jobs, -> { where('featured_job = ?', true) }
 
   validates_presence_of :title, :vacancies, :job_type, :deadline, :apply_instructions
   validates_numericality_of :vacancies
