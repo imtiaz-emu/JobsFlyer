@@ -12,7 +12,7 @@ class ResumeSearchController < ApplicationController
   def search_results
     begin
       api_url = YAML.load_file('config/api_information.yml')['dropresume']['resumes'] + "?skills=#{params[:skills]}" + "&age=#{params[:age]}" + "&experience=#{params[:experience]}"
-      user_response = HTTParty.get api_url
+      user_response = HTTParty.get (URI.encode(api_url))
       @user_resumes = user_response.parsed_response
       # @user_resumes = @user_resumes['user_resumes']
     rescue Exception => ex

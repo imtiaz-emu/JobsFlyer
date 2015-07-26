@@ -29,7 +29,7 @@
                 <% resumes.each do |resume| %>
                   <tr>
                     <td><span class="fw-semi-bold"><%= resume['first_name'] %> <%= resume['last_name'] %></span></td>
-                    <td><span class="fw-semi-bold"><%= resume['gender'].capitalize %></span></td>
+                    <td><span class="fw-semi-bold"><%= resume['gender'].capitalize if resume['gender'].present? %></span></td>
                     <td class="hidden-xs"><%= link_to 'View resume', "http://dropresume.com/#{resume['username']}" %></td>
                     <td class="hidden-xs"><%= resume['skills'] %></td>
                     <td class="width-150">
