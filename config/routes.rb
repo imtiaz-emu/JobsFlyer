@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   get '/advance-search/results', to: 'search#advance_search_results'
   get 'resume-search', to: 'resume_search#index'
   get '/resume-search/results', to: 'resume_search#search_results'
+  get '/resume-search/add-remove-resume', to: 'resume_search#add_remove_from_bank'
+  get '/my-resume-bank', to: 'resume_search#my_resume_bank'
+  delete '/my-resume-bank/:id', :to => 'resume_search#destroy_saved_resume'
 
   resources :search
   resources :users do

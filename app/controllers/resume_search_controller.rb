@@ -22,6 +22,35 @@ class ResumeSearchController < ApplicationController
     end
   end
 
+  def add_remove_from_bank
+    resume_saved = current_user.saved_resumes.find_by_job_seeker_email(params[:email])
+    if resume_saved.present?
+      resume_saved.destroy
+    else
+      current_user.saved_resumes.create(:job_seeker_email => params[:email])
+    end
+    render :nothing => true
+  end
+
+  def my_resume_bank
+    @res_search_tab = 'active'
+    @my_saved_resumes = []
+    begin
+      current_user.saved_resumes.each do |resume|
+        api_url = YAML.load_file('config/api_information.yml')['dropresume']['user_details'] + "?email=#{resume.job_seeker_email}"
+        user_response = HTTParty.get (URI.encode(api_url))
+        @my_saved_resumes << user_response.parsed_response
+      end
+    rescue Exception => ex
+      Rails.logger.error "Api load error: #{ex.message}"
+    end
+  end
+
+  def destroy_saved_resume
+    SavedResume.find(params[:id]).destroy
+    redirect_to my_resume_bank_path, flash: {notice: 'Successfully deleted saved resume.'}
+  end
+
   private
   def check_has_subscription
     active_subscriptions = current_user.companies.collect{|com| com.subscriptions.active_subscriptions}.flatten

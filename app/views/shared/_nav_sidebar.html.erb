@@ -37,8 +37,6 @@
         <ul id="sidebar-dashboard" class="collapse in">
           <li class="<%= @dash_tab %>"><a href="<%= guest_user? ? new_user_session_path : dashboard_path %>">Dashboard</a></li>
           <li class="<%= @profile_tab %>"><%= link_to 'My profile', guest_user? ? new_user_session_path :  edit_profile_path(current_user.profile)%></li>
-          <li class="<%= @search_tab %>"><%= link_to 'Advance search', advance_search_path %></li>
-          <li class="<%= @res_search_tab %>"><%= link_to 'Resume search', resume_search_path %></li>
         </ul>
       </li>
       <li class="<%= @jobs_tab %>">
@@ -54,7 +52,7 @@
           <li><a href="<%= jobs_path(:all => 'active') %>">All active Jobs</a></li>
           <li class="divider"></li>
           <li><a href="<%= guest_user? ? new_user_session_path : user_my_job_applications_path(current_user) %>">My job applications</a></li>
-          <li><a href="ui_buttons.html">Buttons</a></li>
+          <li class="<%= @search_tab %>"><%= link_to 'Advance search', advance_search_path %></li>
           <li><a href="ui_tabs_accordion.html">Tabs & Accordion</a></li>
           <li><a href="ui_list_groups.html">List Groups</a></li>
         </ul>
@@ -87,42 +85,25 @@
           </ul>
         <% end %>
       </li>
+
+      <li class="<%= @res_search_tab %>">
+        <a class="collapsed" href="#sidebar-resume" data-toggle="collapse" data-parent="#sidebar">
+                    <span class="icon">
+                        <i class="fa fa-tree"></i>
+                    </span>
+          Resume
+          <i class="toggle fa fa-angle-down"></i>
+        </a>
+        <ul id="sidebar-resume" class="collapse">
+          <li><%= link_to 'Resume search', resume_search_path %></li>
+          <li><%= link_to 'My resume bank', my_resume_bank_path %></li>
+        </ul>
+      </li>
     </ul>
     <!-- every .sidebar-nav may have a title -->
     <h5 class="sidebar-nav-title">Template <a class="action-link" href="#"><i class="fa fa-refresh"></i></a></h5>
     <ul class="sidebar-nav">
-      <!--<li>-->
-        <!--&lt;!&ndash; an example of nested submenu. basic bootstrap collapse component &ndash;&gt;-->
-        <!--<a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">-->
-                    <!--<span class="icon">-->
-                        <!--<i class="fa fa-align-right"></i>-->
-                    <!--</span>-->
-          <!--Forms-->
-          <!--<i class="toggle fa fa-angle-down"></i>-->
-        <!--</a>-->
-        <!--<ul id="sidebar-forms" class="collapse">-->
-          <!--<li><a href="form_elements.html">Form Elements</a></li>-->
-          <!--<li><a href="form_validation.html">Form Validation</a></li>-->
-          <!--<li><a href="form_wizard.html">Form Wizard</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <li>
-        <a class="collapsed" href="#sidebar-ui" data-toggle="collapse" data-parent="#sidebar">
-                    <span class="icon">
-                        <i class="fa fa-tree"></i>
-                    </span>
-          UI Elements
-          <i class="toggle fa fa-angle-down"></i>
-        </a>
-        <ul id="sidebar-ui" class="collapse">
-          <li><a href="ui_components.html">Components</a></li>
-          <li><a href="ui_notifications.html">Notifications</a></li>
-          <li><a href="ui_icons.html">Icons</a></li>
-          <li><a href="ui_buttons.html">Buttons</a></li>
-          <li><a href="ui_tabs_accordion.html">Tabs & Accordion</a></li>
-          <li><a href="ui_list_groups.html">List Groups</a></li>
-        </ul>
-      </li>
+
       <li class="<%= @subscription_tab %>">
         <a href="<%= guest_user? ? new_user_session_path : subscriptions_path %>">
                     <span class="icon">

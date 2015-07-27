@@ -11,6 +11,7 @@ class SearchController < ApplicationController
 
   def advance_search
     @search_tab = 'active'
+    @jobs_tab = 'active'
     @jobs = Job.active_jobs
   end
 

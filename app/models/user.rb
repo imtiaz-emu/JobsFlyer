@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :followers, :dependent => :destroy
   has_many :jobs, :through => :jobs_users
   has_many :jobs_users
+  has_many :saved_resumes
 
   # validations
 

@@ -18,6 +18,7 @@
             <table id="datatable-table" class="table table-striped table-hover">
               <thead>
               <tr>
+                <th></th>
                 <th>Image</th>
                 <th>Name</th>
                 <th class="hidden-xs">Skills</th>
@@ -28,6 +29,9 @@
               <tbody>
                 <% resumes.each do |resume| %>
                   <tr>
+                    <td>
+                      <%= link_to "", 'javascript:void(0)', class: "fa #{already_saved(resume['email']) ? 'fa-heart' : 'fa-heart-o'}", :onclick => "add_to_resume_bank('#{resume['email']}', this);" %>
+                    </td>
                     <td>
                       <% if resume['image'].nil? %>
                         <%= image_tag 'avatar.png', class: 'img-circle', height: 50, width: 50 %>
@@ -43,7 +47,7 @@
                         Invite
                       </button>
                     </td>
-                    <td class="hidden-xs"><%= link_to 'View resume', "http://dropresume.com/#{resume['username']}" %></td>
+                    <td class="hidden-xs"><%= link_to 'View resume', "http://dropresume.com/#{resume['username']}", target: '_blank' %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -55,3 +59,22 @@
     </div>
   </section>
 </div>
+
+<script>
+    function add_to_resume_bank(email ,elm){
+      $.ajax({
+        type: 'GET',
+        url: '<%= resume_search_add_remove_resume_path %>',
+        data: {email: email},
+        success: function() {
+          if($(elm).hasClass("fa-heart-o")){
+            $(elm).removeClass("fa-heart-o");
+            $(elm).addClass("fa-heart");
+          }else{
+            $(elm).removeClass("fa-heart");
+            $(elm).addClass("fa-heart-o");
+          }
+        }
+      });
+    }
+</script>
