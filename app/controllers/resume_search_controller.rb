@@ -7,6 +7,7 @@ class ResumeSearchController < ApplicationController
 
   def index
     @res_search_tab = 'active'
+    @jobs = current_user.companies.collect { |com| com.jobs }.flatten
   end
 
   def search_results

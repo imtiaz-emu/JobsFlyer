@@ -7,6 +7,8 @@
   </div>
 </div>
 
+<%= render partial: 'resume_search/invite_users', locals: {jobs: @jobs} %>
+
 <script>
     $(document).ready(function () {
         $('#user_skills').tokenInput('/dashboard/skills.json', {crossDomain: false, hintText: 'User skill search', minChars: 2});

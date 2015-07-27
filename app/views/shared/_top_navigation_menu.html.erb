@@ -69,7 +69,7 @@
                           <!--<img class="img-circle" src="demo/img/people/a5.jpg" alt="...">-->
                         </span>
             &nbsp;
-            <%= current_profile.first_name %> <strong><%= current_profile.last_name %></strong>&nbsp;
+            <%= guest_user? ? "User" : current_profile.first_name %> <strong><%= guest_user? ? "Guest" : current_profile.last_name %></strong>&nbsp;
                         <span class="circle bg-warning fw-bold">
                             13
                         </span>
