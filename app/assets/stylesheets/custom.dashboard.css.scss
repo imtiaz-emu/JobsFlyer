@@ -11,6 +11,7 @@
 @font-face{font-family:'Open Sans';font-style:italic;font-weight:400;src:local("Open Sans Italic"),local("OpenSans-Italic"),url(/assets/open-sans-italic.woff) format("woff")}
 @font-face{font-family:'Open Sans';font-style:italic;font-weight:600;src:local("Open Sans Semibold Italic"),local("OpenSans-SemiboldItalic"),url(/assets/open-sans-semibold-italic.woff) format("woff")}
 @font-face{font-family:'Open Sans';font-style:italic;font-weight:700;src:local("Open Sans Bold Italic"),local("OpenSans-BoldItalic"),url(/assets/open-sans-bold-italic.woff) format("woff")}
+a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outline: none; }
 .profiles{
   #uploaded-profile-image{
     border-radius: 100px;
@@ -136,22 +137,7 @@
     }
   }
 }
-.search{
-  .value3{font-size: 14px}
-}
-.search-jobs-flyer ul.token-input-list{width:auto;border: 1px solid #ccc;}
-.search-jobs-flyer  ul.token-input-list li input{width:auto;  height: 32px;}
-.search-jobs-flyer  input[name=query]:focus{border: 1px solid #f2be35;}
-.search-jobs-flyer  .li.token-input-token{padding: 4px 5px;}
-.search-jobs-flyer  li.token-input-token {
-  background-color: #fff;
-  color: #555;
-  font-weight:  normal;
-  height: auto !important;
-  font-family: open sans;
-  padding: 4px 5px;
-}
-.search-jobs-flyer  li.token-input-token:focus{border: 1px solid #f2be35;}
+
 .widget-email{
   .nav-email-folders > li > a {
     color: #777;
@@ -281,4 +267,44 @@
 .home.index .navbar-brand{padding-top: 10px}
 #myModal18 .modal-backdrop{
   z-index: 0;
+}
+
+.timeline {
+  .time-left{width: auto;}
+  .icon-msg{left: 18%;}
+
+}
+
+
+.my-time-line::before{left: 18% !important;}
+
+.my-time-line {
+  .event{width: 73% !important;}
+  .event-icon-jobs-flyer{background: #f2be35;border-color: #E5B432;color: #fff;}
+}
+
+
+
+.search{
+  .value3{font-size: 14px}
+}
+
+
+.search-jobs-flyer ul.token-input-list{width:auto !important;border: 1px solid #ccc;}
+.search-jobs-flyer  ul.token-input-list li input{width:auto !important;  height: 32px ;}
+.search-jobs-flyer  input[name=query]:focus[name=query]:focus {border: 1px solid #f2be35 ;}
+.search-jobs-flyer  .li.token-input-token{padding: 4px 5px ;}
+.search-jobs-flyer  li.token-input-token {
+  background-color: #fff;
+  color: #555;
+  font-weight:  normal;
+  height: auto !important;
+  font-family: open sans;
+  padding: 4px 5px;
+}
+.search-jobs-flyer  li.token-input-token:focus{border: 1px solid #f2be35;}
+.btn-jobsflyer-color{  background-color: #f2be35;
+  border-color: #f2be35;}
+.jobs .search-jobs-flyer .input-group {
+  width: 245px !important;
 }
