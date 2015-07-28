@@ -1,13 +1,15 @@
 class ResumeSearchController < ApplicationController
 
+  protect_from_forgery except: :job_invitation
+
   before_filter :authenticate_user!
   before_filter :check_has_subscription
+  before_filter :load_user_jobs, :only => [:index, :my_resume_bank]
 
   layout 'dashboard_widget'
 
   def index
     @res_search_tab = 'active'
-    @jobs = current_user.companies.collect { |com| com.jobs }.flatten
   end
 
   def search_results
@@ -51,6 +53,28 @@ class ResumeSearchController < ApplicationController
     redirect_to my_resume_bank_path, flash: {notice: 'Successfully deleted saved resume.'}
   end
 
+  def job_invitation
+    job_ids = params[:job_ids].join(", ")
+    company_names, company_urls, job_titles, job_urls = [], [], [], []
+    params[:job_ids].each do |job_id|
+      job = Job.find(job_id.to_i)
+      company = job.company
+      company_names << company.name
+      company_urls << company_url(company)
+      job_titles << job.title
+      job_urls << job_url(job)
+    end
+
+    begin
+      api_url = YAML.load_file('config/api_information.yml')['dropresume']['job_invitation'] + "?email=#{params[:email]}" + "&job_ids=#{job_ids}" + "&job_titles=#{job_titles.join(",")}" + "&job_urls=#{job_urls.join(",")}" + "&company_names=#{company_names.join(",")}" + "&company_urls=#{company_urls.join(",")}"
+      user_response = HTTParty.get (URI.encode(api_url))
+      @my_saved_resumes << user_response.parsed_response
+    rescue Exception => ex
+      Rails.logger.error "Api load error: #{ex.message}"
+    end
+    redirect_to :back
+  end
+
   private
   def check_has_subscription
     active_subscriptions = current_user.companies.collect{|com| com.subscriptions.active_subscriptions}.flatten
@@ -64,5 +88,9 @@ class ResumeSearchController < ApplicationController
     else
       redirect_to new_subscription_path, flash: {:error => "You've no active subscriptions. Please subscribe!"}
     end
+  end
+
+  def load_user_jobs
+    @jobs = current_user.companies.collect { |com| com.jobs }.flatten
   end
 end

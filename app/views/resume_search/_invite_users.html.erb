@@ -4,18 +4,21 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title text-align-center fw-bold mt" id="myModalLabel18">Invite to my Job</h4>
+
         <p class="text-align-center fs-mini text-muted mt-sm">
           Send this user an invitation for applying to any of your job. You can also write
           some words to let his know about your job facilities.
         </p>
       </div>
-      <div class="modal-body bg-gray-lighter">
-        <form>
+      <form action="<%= my_resume_bank_job_invitations_path %>" method="post">
+        <div class="modal-body bg-gray-lighter">
+
           <div class="row">
+            <input type="hidden" name="email" class="hidden-email-field">
             <% jobs.each_with_index do |job, i| %>
               <div class="col-md-4">
                 <div class="checkbox checkbox-success">
-                  <input id="checkbox<%= i %>" type="checkbox">
+                  <input id="checkbox<%= i %>" type="checkbox" name="job_ids[]" value="<%= job.id %>">
                   <label for="checkbox<%= i %>">
                     <%= job.title %>
                   </label>
@@ -23,12 +26,13 @@
               </div>
             <% end %>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-gray" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Send invitation</button>
-      </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-gray" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Send invitation</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
