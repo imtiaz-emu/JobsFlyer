@@ -41,11 +41,15 @@
                     </td>
                     <td><span class="fw-semi-bold"><%= resume['first_name'] %> <%= resume['last_name'] %></span></td>
                     <td class="hidden-xs"><%= resume['skills'] %></td>
-                    <td>
-                      <button class="btn btn-gray" data-toggle="modal" data-target="#myModal18">
-                      <!--<button class="btn btn-gray">-->
+                    <td class="text-center">
+                      <button class="btn btn-gray btn-xs" data-toggle="modal" data-target="#myModal18" id="invitation-from-search" onclick="add_email_to_modal_form('<%= resume['email']%>', this);">
+                        <!--<button class="btn btn-gray">-->
                         Invite
                       </button>
+                      <i data-toggle="popover" title="" class="fa fa-info-circle"
+                         data-placement="bottom"
+                         data-content="<%= invited_jobs(resume['jobs_invited']) %>">
+                      </i>
                     </td>
                     <td class="hidden-xs"><%= link_to 'View resume', "http://dropresume.com/#{resume['username']}", target: '_blank' %></td>
                   </tr>
@@ -77,4 +81,12 @@
         }
       });
     }
+
+    function add_email_to_modal_form(email, evnt){
+      $('.hidden-email-field').val(email);
+      $('.hidden-check-field').val("1");
+    }
+    $(function () {
+      $('[data-toggle="popover"]').popover();
+    })
 </script>

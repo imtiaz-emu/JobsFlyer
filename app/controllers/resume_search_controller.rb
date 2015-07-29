@@ -72,7 +72,12 @@ class ResumeSearchController < ApplicationController
     rescue Exception => ex
       Rails.logger.error "Api load error: #{ex.message}"
     end
-    redirect_to :back
+
+    @from_search_page = params[:search] == "0" ? false : true
+
+    respond_to do |format|
+      format.js { render :file => "/resume_search/job_invitation.js.erb" }
+    end
   end
 
   private

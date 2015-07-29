@@ -10,11 +10,12 @@
           some words to let his know about your job facilities.
         </p>
       </div>
-      <form action="<%= my_resume_bank_job_invitations_path %>" method="post">
+      <form action="<%= my_resume_bank_job_invitations_path %>" method="post" data-remote="true">
         <div class="modal-body bg-gray-lighter">
 
           <div class="row">
             <input type="hidden" name="email" class="hidden-email-field">
+            <input type="hidden" name="search" class="hidden-check-field" value="0">
             <% jobs.each_with_index do |job, i| %>
               <div class="col-md-4">
                 <div class="checkbox checkbox-success">
