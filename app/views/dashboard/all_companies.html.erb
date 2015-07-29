@@ -4,23 +4,21 @@
 <div class="row">
   <% if @companies.count > 0 %>
     <% @companies.each do |company| %>
-      <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="col-md-3 col-sm-4 col-xs-12">
         <section class="widget widget-sm bg-primary">
           <div class="widget-body">
-            <p class="mb-xs"><i class="fa fa-arrow-circle-up fa-3x opacity-50"></i></p>
 
-            <p class="text-light mb">
-              <%= link_to company_path(company), target: '_blank' do %>
-                <time><%= root_url%><%= company.slug %></time>
-              <% end %>
-            </p>
+            <p class="text-center mb-xs"><%= image_tag company.logo.url(:logo), class: 'img-thumbnail img-responsive' if company.logo.present? %></p>
+
             <h3>
               <span class="fw-semi-bold"><%= company.name %></span>
             </h3>
 
             <p class="fs-mini mt text-center">
               <span class="fw-semi-bold"><%= company.followers.count %></span> Followers
-              &nbsp;
+            </p>
+
+            <p class="fs-mini text-center">
               <span class="fw-semi-bold"><%= company.jobs.count %></span> Jobs
             </p>
 

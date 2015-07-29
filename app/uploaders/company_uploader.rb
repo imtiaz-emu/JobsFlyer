@@ -37,7 +37,7 @@ class CompanyUploader < CarrierWave::Uploader::Base
   end
 
   version :logo do
-    process :resize_to_fit => [200, 100]
+    process :resize_to_fit => [180, 180]
   end
 
   version :banner do
