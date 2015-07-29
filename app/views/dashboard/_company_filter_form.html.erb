@@ -1,0 +1,64 @@
+<div class="row">
+  <form role="form">
+    <fieldset>
+      <legend><strong>Search</strong> Company</legend>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="search-input">Company name</label>
+            <div class="input-group">
+              <input type="search" class="form-control" id="search-company-name-input" onkeyup="filter_company();">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="type-dropdown-appended">Company Type</label>
+
+            <select id="phone-type" class="selectpicker"
+                    data-style="btn-default"
+                    data-width="100%" onchange="filter_company();">
+              <option>All</option>
+              <% @organizations.each do |organization| %>
+                <option value="<%= organization.id %>"><%= organization.name %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="search-input">Location</label>
+            <div class="input-group">
+              <input type="search" class="form-control" id="search-company-location-input">
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<hr>
+
+<script>
+  function filter_company(){
+    var company_name = $('#search-company-name-input').val();
+    var organization = null;
+    if($('.filter-option').text() != "All"){
+      organization = $('select').val();
+    }
+    var company_location = $('#search-company-location-input').val();
+
+    filter_company_with_parameters(company_name, organization);
+  }
+
+  function filter_company_with_parameters(company, organization){
+    $.ajax({
+      type: "GET",
+      url: '<%= companies_filter_companies_path %>',
+      data: {company_name: company, organization_id: organization}
+    })
+  }
+
+</script>

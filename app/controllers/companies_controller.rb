@@ -88,6 +88,12 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def filter_companies
+    @all_companies = Company.all
+    @all_companies = @all_companies.quick_search(params[:company_name]) if params[:company_name].present?
+    @all_companies = @all_companies.where(:organization_category_id => params[:organization_id].to_i) unless params[:organization_id].nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company

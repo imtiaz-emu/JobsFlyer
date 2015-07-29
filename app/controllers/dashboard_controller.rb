@@ -50,6 +50,7 @@ class DashboardController < ApplicationController
   def all_companies
     @company_tab = 'active'
     @companies = Company.all.order('created_at ASC')
+    @organizations = OrganizationCategory.all.sort{|a,b| b.companies.count <=> a.companies.count}
   end
 
   def follow_unfollow

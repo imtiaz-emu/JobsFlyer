@@ -26,6 +26,10 @@ class Company < ActiveRecord::Base
   mount_uploader :logo, CompanyUploader
   mount_uploader :bg_image, CompanyUploader
 
+  include PgSearch
+  pg_search_scope :quick_search,
+                  against: [:name]
+
   EMPLOYEE_RANGE = ['1-5', '6-15', '16-30', '30-50', '50+']
   ADMIN_ROLE = ['admin','editor']
 
