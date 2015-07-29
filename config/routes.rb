@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get '/resume-search/add-remove-resume', to: 'resume_search#add_remove_from_bank'
   get '/my-resume-bank', to: 'resume_search#my_resume_bank'
   delete '/my-resume-bank/:id', :to => 'resume_search#destroy_saved_resume'
+  post '/my-resume-bank/job-invitations', :to => 'resume_search#job_invitation'
 
   resources :search
   resources :users do
