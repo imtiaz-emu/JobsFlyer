@@ -89,7 +89,8 @@ class CompaniesController < ApplicationController
   end
 
   def filter_companies
-    @all_companies = Company.includes(:organization_category).all
+    @all_companies = Company.includes(:organization_category, :company_locations).all
+    @all_companies = @all_companies.where("name ilike ?", "%#{params[:company_name]}%") if params[:company_name].present?
     @all_companies = @all_companies.where("name ilike ?", "%#{params[:company_name]}%") if params[:company_name].present?
     @all_companies = @all_companies.where(:organization_category_id => params[:organization_id].to_i) if params[:organization_id].present?
   end

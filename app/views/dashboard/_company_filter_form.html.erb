@@ -50,14 +50,14 @@
     }
     var company_location = $('#search-company-location-input').val();
 
-    filter_company_with_parameters(company_name, organization);
+    filter_company_with_parameters(company_name, company_loc, organization);
   }
 
-  function filter_company_with_parameters(company, organization){
+  function filter_company_with_parameters(company, location, organization){
     $.ajax({
       type: "GET",
       url: '<%= companies_filter_companies_path %>',
-      data: {company_name: company, organization_id: organization}
+      data: {company_name: company, location: location, organization_id: organization}
     })
   }
 

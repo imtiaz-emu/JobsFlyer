@@ -5,3 +5,10 @@
 <div class="filtered-companies-widget">
   <%= render partial: 'dashboard/filtered_companies', locals: {:companies => @companies} %>
 </div>
+
+<script>
+  $('#search-company-location-input').tokenInput('/dashboard/all_job_locations.json', {
+    crossDomain: false,
+    tokenLimit: 1
+  });
+</script>
