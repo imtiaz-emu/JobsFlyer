@@ -14,6 +14,15 @@
 
         <div class="col-sm-4">
           <div class="form-group">
+            <label for="search-input">Location</label>
+            <div class="input-group">
+              <input type="search" class="form-control" id="search-company-location-input">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
             <label for="type-dropdown-appended">Company Type</label>
 
             <select id="phone-type" class="selectpicker"
@@ -24,15 +33,6 @@
                 <option value="<%= organization.id %>"><%= organization.name %></option>
               <% end %>
             </select>
-          </div>
-        </div>
-
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label for="search-input">Location</label>
-            <div class="input-group">
-              <input type="search" class="form-control" id="search-company-location-input">
-            </div>
           </div>
         </div>
       </div>
