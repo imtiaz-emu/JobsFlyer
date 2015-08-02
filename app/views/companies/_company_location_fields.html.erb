@@ -15,23 +15,18 @@
   <div class="form-group field">
     <label class="col-sm-4 control-label" for="default-select">select your country</label>
     <div class="col-sm-7">
-      <%= f.country_select :country, { include_blank: 'Select Country'}, id: "default-country-select", class: 'form-control', title: 'Country', rel: 'tooltip' %>
+      <%= f.country_select :country, { include_blank: 'Select Country'}, id: "default-country-select", class: 'form-control country-selector', title: 'Country', rel: 'tooltip' %>
       <%#= f.text_field :country, :class => 'form-control', :id => 'country-field', :placeholder => 'your country', :required => true %>
     </div>
   </div>
 
   <!--input for state-->
-  <div class="form-group field" id="profile_state_wrapper">
-    <label class="col-sm-4 control-label" for="default-select">Your state</label>
-    <div class="col-sm-7 subregion-select">
-      <%# if f.object.country.present? %>
-        <%#= f.subregion_select :state, f.object.country, {prompt: 'Select State/Province'}, class: 'form-control', title: 'State', rel: 'tooltip' %>
-      <%# else %>
-        <%#= f.select :state, [[]], {include_blank: 'Select State'}, disabled: true, class: 'form-control', title: 'State', rel: 'tooltip' %>
-      <%# end %>
-      <%= f.text_field :state, :class => 'form-control', :id => 'state-field', :placeholder => 'branch state', :required => true %>
-    </div>
-  </div>
+  <!--<div class="form-group field" id="profile_state_wrapper">-->
+    <!--<label class="col-sm-4 control-label" for="default-select">Your state</label>-->
+    <!--<div class="col-sm-7 subregion-select">-->
+      <!--<%#= f.text_field :state, :class => 'form-control', :id => 'state-field', :placeholder => 'branch state', :required => true %>-->
+    <!--</div>-->
+  <!--</div>-->
 
   <!--input for city-->
   <div class="form-group field">
@@ -40,8 +35,9 @@
       <!--<span class="help-block">Required field</span>-->
     </label>
 
-    <div class="col-sm-7">
-      <%= f.text_field :city, :class => 'form-control', :id => 'city-field', :placeholder => 'Branch city' %>
+    <div class="col-sm-7 select-country-based-city">
+      <%#= f.text_field :city, :class => 'form-control', :id => 'city-field', :placeholder => 'Branch city', :class => 'city-token-fields' %>
+      <%= f.select :city, options_for_select(City.all.collect{|c| [c.name, c.name]}, f.object.city), class: 'form-control', id: 'city-field', :prompt => 'Select city' %>
     </div>
   </div>
 

@@ -49,3 +49,43 @@
     </div>
   </div>
 <% end %>
+
+<script>
+
+    $('#default-country-select').change(function(){
+      $.ajax({
+        url: '<%= home_find_cities_path %>',
+        data: {c_code: $(this).val()},
+        type: 'GET',
+        success: function(result){
+          var $select = $('.select-country-based-city select');
+          $select.empty();
+          for(var i = 0; i < result.length; i++) {
+            console.log(result[i].name)
+            var $option = $("<option/>").attr("value", result[i].name).text(result[i].name);
+            $select.append($option);
+          }
+        }
+      })
+
+    });
+
+    $("#company-locations").on("cocoon:after-insert", function(e, inserted_item){
+        inserted_item.find('#default-country-select').change(function(){
+          $.ajax({
+            url: '<%= home_find_cities_path %>',
+            data: {c_code: $(this).val()},
+            type: 'GET',
+            success: function(result){
+              var $select = inserted_item.find('.select-country-based-city select');
+              $select.empty();
+              for(var i = 0; i < result.length; i++) {
+                console.log(result[i].name)
+                var $option = $("<option/>").attr("value", result[i].name).text(result[i].name);
+                $select.append($option);
+              }
+            }
+          })
+        });
+    });
+</script>

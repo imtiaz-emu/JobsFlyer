@@ -13,7 +13,7 @@ class Company < ActiveRecord::Base
   after_save :save_full_location
 
 
-  accepts_nested_attributes_for :company_locations, :reject_if => proc {|attributes| attributes[:branch_type].blank? || attributes[:phone].blank? || attributes[:country].blank? || attributes[:state].blank?}, :allow_destroy => true
+  accepts_nested_attributes_for :company_locations, :reject_if => proc {|attributes| attributes[:branch_type].blank? || attributes[:phone].blank? || attributes[:country].blank? || attributes[:city].blank?}, :allow_destroy => true
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :company_admins, :allow_destroy => true
   accepts_nested_attributes_for :followers, :allow_destroy => true
@@ -50,7 +50,7 @@ class Company < ActiveRecord::Base
 
   def save_full_location
     self.company_locations.each do |location|
-      location.full_location = location.city + ', '+ location.state + ', ' + Carmen::Country.coded(location.country).to_s
+      location.full_location = location.city + ', ' + Carmen::Country.coded(location.country).to_s
       location.save(:validate => false)
     end
   end

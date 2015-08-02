@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   delete '/my-resume-bank/:id', :to => 'resume_search#destroy_saved_resume'
   post '/my-resume-bank/job-invitations', :to => 'resume_search#job_invitation'
   get '/companies/filter-companies', :to => 'companies#filter_companies'
+  get '/home/find_cities'
 
   resources :search
   resources :users do

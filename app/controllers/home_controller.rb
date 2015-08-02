@@ -10,4 +10,12 @@ class HomeController < ApplicationController
       format.js
     end
   end
+
+  def find_cities
+    @cities = City.all
+    @cities = @cities.where(:country_code => params[:c_code]) if params[:c_code].present?
+    respond_to do |format|
+      format.json {render json: @cities }
+    end
+  end
 end
