@@ -276,13 +276,13 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 }
 
 
-.my-time-line::before{left: 18% !important;}
+.my-time-line::before{left: 0% ;background: 0;}
 
 .my-time-line {
-  .event{width: 73% !important;}
+  .event{width: 100% !important;}
   .event-icon-jobs-flyer{background: #f2be35;border-color: #E5B432;color: #fff;}
 }
-
+.timeline > li.on-left .event::before{border-left: none;}
 
 
 .search{
@@ -326,3 +326,11 @@ padding-bottom: 20px;
     .dropdown :hover, :focus, :active {background: none;}
   }
 }
+
+.widget-login-logo{
+  margin-bottom: 25px;
+  margin-top: 50px;
+ }
+.close-custom{ color: #999;
+  font-size: 11px;
+  font-weight: lighter;}
