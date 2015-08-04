@@ -15,8 +15,8 @@
         <div class="col-sm-4">
           <div class="form-group">
             <label for="search-input">Location</label>
-            <div class="input-group">
-              <input type="search" class="form-control" id="search-company-location-input">
+            <div class="input-group cus-location">
+              <input type="search" class="form-control " id="search-company-location-input">
             </div>
           </div>
         </div>
@@ -42,6 +42,18 @@
 <hr>
 
 <script>
+  $('#search-company-location-input').tokenInput('/dashboard/all_job_locations.json', {
+    crossDomain: false,
+    propertyToSearch: 'full_location',
+    tokenLimit: 1,
+    onAdd: function (item) {
+      filter_company();
+    },
+    onDelete: function (item) {
+      filter_company();
+    }
+  });
+
   function filter_company(){
     var company_name = $('#search-company-name-input').val();
     var organization = null;
@@ -50,7 +62,7 @@
     }
     var company_location = $('#search-company-location-input').val();
 
-    filter_company_with_parameters(company_name, company_loc, organization);
+    filter_company_with_parameters(company_name, company_location, organization);
   }
 
   function filter_company_with_parameters(company, location, organization){

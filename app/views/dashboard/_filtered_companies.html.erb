@@ -2,10 +2,27 @@
   <% if companies.count > 0 %>
     <% companies.each do |company| %>
       <div class="col-md-3 col-sm-4 col-xs-12">
+        <% unless guest_user? %>
+          <ul class="nav pull-right">
+            <li class="dropdown show-edit-options pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-caret-down fa-lg"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Show", company_path(company) %></li>
+                <li><%= link_to "Edit", edit_company_path(company) if is_company_admin(company) %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Destroy", company, :method => :delete if is_company_admin(company) %></li>
+              </ul>
+            </li>
+          </ul>
+        <% end %>
         <section class="widget widget-sm bg-primary">
           <div class="widget-body">
 
-            <p class="text-center mb-xs"><%= image_tag company.logo.url(:logo), class: 'img-thumbnail img-responsive' if company.logo.present? %></p>
+            <p class="text-center mb-xs">
+              <%= image_tag company.logo.url(:logo), class: 'img-thumbnail img-responsive' if company.logo.present? %>
+            </p>
 
             <h3>
               <span class="fw-semi-bold"><%= company.name %></span>
@@ -19,14 +36,6 @@
               <span class="fw-semi-bold"><%= company.jobs.count %></span> Jobs
             </p>
 
-            <% unless guest_user? %>
-              <div class="xs-actions text-center">
-                <%= link_to "Show", company_path(company), class: 'btn btn-warning btn-xs' %>
-                <%= link_to "Edit", edit_company_path(company), class: 'btn btn-warning btn-xs' if is_company_admin(company) %>
-                <%#= link_to "Subscriptions", subscription_path(company), class: 'btn btn-warning btn-xs' %>
-                <%= link_to "Destroy", company, :method => :delete, class: 'btn btn-warning btn-xs' if is_company_admin(company) %>
-              </div>
-            <% end %>
           </div>
         </section>
       </div>

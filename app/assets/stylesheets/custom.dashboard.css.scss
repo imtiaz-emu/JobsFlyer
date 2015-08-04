@@ -313,3 +313,16 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 padding-bottom: 20px;
   position: absolute;
   width: 100%;}
+.cus-location ul{width:216px;border: 1px solid #ccc;}
+.cus-location ul li:first-child{height: 32px;}
+.filtered-companies-widget{
+  .dropdown.pull-right.show-edit-options {
+    right: -7px;
+    top: -5px;
+    z-index: 100;
+    .fa-lg{
+      color: #ffffff;
+    }
+    .dropdown :hover, :focus, :active {background: none;}
+  }
+}

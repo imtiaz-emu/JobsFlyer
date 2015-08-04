@@ -63,7 +63,7 @@ class DashboardController < ApplicationController
   end
 
   def all_job_locations
-    @company_locations = CompanyLocation.where("city ilike ? OR full_location ilike ?","%#{params[:q]}%", "%#{params[:q]}%")
+    @company_locations = CompanyLocation.where("full_location ilike ?", "%#{params[:q]}%")
     respond_to do |format|
       format.html
       format.json { render :json => @company_locations.map(&:attributes).compact }
