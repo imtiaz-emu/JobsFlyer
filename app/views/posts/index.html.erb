@@ -18,7 +18,8 @@
             <th>Picture</th>
             <th class="hidden-xs">Title</th>
             <th>Description</th>
-            <th class="hidden-xs">Type</th>
+            <th class="hidden-xs">Date</th>
+            <th class="hidden-xs">Tags</th>
             <th class="hidden-xs" colspan="2">Actions</th>
             <!--<th></th>-->
           </tr>
@@ -39,6 +40,10 @@
               </td>
               <td class="hidden-xs text-semi-muted">
                 <%= post.updated_at.strftime('%v') %>
+              </td>
+
+              <td class="hidden-xs text-semi-muted">
+                <%= post.skills.collect { |skill| skill.name }.join(', ') %>
               </td>
 
               <!--<td class="hidden-xs text-semi-muted"><%#= link_to 'Show', post %></td>-->

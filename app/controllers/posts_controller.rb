@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @posts_tab = 'active'
     if params[:company].present?
       @company = Company.find(params[:company].to_i)
       @posts = @company.posts
@@ -24,6 +25,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @posts_tab = 'active'
     @post = Post.new
     @company_id = params[:company] if params[:company].present?
   end
@@ -44,6 +46,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        @post.update_post_skills_attributes(params[:post][:skills])
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -58,6 +61,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        @post.update_post_skills_attributes(params[:post][:skills])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -81,6 +85,7 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.friendly.find(params[:id])
+      @posts_tab = 'active'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

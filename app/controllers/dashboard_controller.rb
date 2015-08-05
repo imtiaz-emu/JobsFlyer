@@ -26,6 +26,9 @@ class DashboardController < ApplicationController
     rescue Exception => ex
       Rails.logger.error "Api load error: #{ex.message}"
     end
+
+    get_timeline_posts
+
   end
 
   def calculate_price
@@ -68,6 +71,10 @@ class DashboardController < ApplicationController
       format.html
       format.json { render :json => @company_locations.map(&:attributes).compact }
     end
+  end
+
+  def get_timeline_posts
+    @time_line_posts = Post.joins(:users, :companies).order('updated_at DESC')
   end
 
   def resolve_layout

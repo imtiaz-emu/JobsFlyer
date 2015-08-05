@@ -101,7 +101,7 @@
       </li>
     </ul>
     <!-- every .sidebar-nav may have a title -->
-    <h5 class="sidebar-nav-title">Template <a class="action-link" href="#"><i class="fa fa-refresh"></i></a></h5>
+    <h5 class="sidebar-nav-title">OTHERS <a class="action-link" href="#"><i class="fa fa-refresh"></i></a></h5>
     <ul class="sidebar-nav">
 
       <li class="<%= @subscription_tab %>">
@@ -112,21 +112,28 @@
           Subscriptions
         </a>
       </li>
-      <li>
-        <a class="collapsed" href="#sidebar-maps" data-toggle="collapse" data-parent="#sidebar">
+
+      <% unless guest_user? %>
+        <li class="<%= @posts_tab %>">
+          <a class="collapsed" href="#sidebar-maps" data-toggle="collapse" data-parent="#sidebar">
                     <span class="icon">
-                        <i class="fa fa-map-marker"></i>
+                        <i class="fa fa-pencil-square"></i>
                     </span>
-          Maps
-          <i class="toggle fa fa-angle-down"></i>
-        </a>
-        <ul id="sidebar-maps" class="collapse">
-          <!-- data-no-pjax turns off pjax loading for this link. Use in case of complicated js loading on the
-               target page -->
-          <li><a href="maps_google.html" data-no-pjax>Google Maps</a></li>
-          <li><a href="maps_vector.html">Vector Maps</a></li>
-        </ul>
-      </li>
+            Posts
+            <i class="toggle fa fa-angle-down"></i>
+          </a>
+          <ul id="sidebar-maps" class="collapse">
+            <!-- data-no-pjax turns off pjax loading for this link. Use in case of complicated js loading on the
+                 target page -->
+            <li><a href="<%= posts_path(:user => current_user.id) %>" data-no-pjax>My posts</a></li>
+            <li><a href="<%= new_post_path %>">Create new</a></li>
+            <% my_companies.each do |company| %>
+              <li><a href="<%= posts_path(:company => company.id) %>"><%= company.name %>'s posts</a></li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+
       <li>
         <!-- an example of nested submenu. basic bootstrap collapse component -->
         <a class="collapsed" href="#sidebar-tables" data-toggle="collapse" data-parent="#sidebar">

@@ -29,11 +29,13 @@
         <% if @post.feature_image.present? %>
           <div class="event-image">
             <a href="javascript:void(0)">
-              <%= image_tag @post.feature_image_url(:banner), class: 'img-responsive' %> </a>
+              <%= image_tag @post.feature_image_url(:banner), class: 'img-responsive img-thumbnail' %> </a>
           </div>
         <% end %>
         <footer>
           <div class="clearfix">
+            <p><%= @post.skills.collect { |skill| skill.name }.join(', ') %></p>
+
             <ul class="post-links mt-sm pull-left">
               <li><a href="#">1 hour</a></li>
               <li><a href="#"><span class="text-danger"><i class="fa fa-heart-o"></i> Like</span></a></li>
