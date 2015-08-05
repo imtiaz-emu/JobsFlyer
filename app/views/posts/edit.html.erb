@@ -1,0 +1,6 @@
+<h1>Editing Post</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @post %> |
+<%= link_to 'Back', @post.company_id.present? ? posts_path(:company => @post.company_id) : posts_path(:user => @post.user_id) %>

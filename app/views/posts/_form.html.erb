@@ -1,0 +1,117 @@
+<section class="widget post-form-layout">
+  <header>
+
+    <div class="widget-controls">
+      <!--<a href="#"><i class="fa fa-cog"></i></a>-->
+      <a href="#"><i class="fa fa-refresh"></i></a>
+      <!--<a data-widgster="close" href="#"><i class="fa fa-remove"></i></a>-->
+    </div>
+  </header>
+  <div class="widget-body">
+    <%= form_for(@post, :html => {:class => 'form-horizontal', multipart: true}) do |f| %>
+      <%= render :partial => 'shared/error_messages', :locals => {:obj => f.object} %>
+      <!--<form role="form" class="form-horizontal">-->
+      <fieldset>
+        <legend><strong><%= @post.new_record? ? "New" : "Edit" %></strong> Post</legend>
+
+        <div class="row">
+          <% Post::POST_TYPE.each_pair do |p_type, id| %>
+            <div class="col-sm-3">
+              <div class="radio radio-danger">
+                <%= f.radio_button :post_type, id, id: "radio#{id}"  %>
+                <!--<input type="radio" value="option1" id="radio" name="radio2">-->
+                <label for="radio<%= id %>">
+                  <%= p_type %>
+                </label>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <hr>
+
+        <!--Input for post title-->
+        <div class="form-group">
+          <label for="prepended-input" class="col-sm-4 pull-left">Post title</label>
+
+          <div class="col-sm-11">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+              <%= f.text_field :title, class: 'form-control', required: true, autocomplete: :off %>
+            </div>
+          </div>
+        </div>
+
+        <input type="hidden" name="post[company_id]" value="<%= @company_id.nil? ? nil : @company_id %>">
+
+        <!--Input for post description-->
+        <div class="form-group">
+          <label for="wysiwyg" class="col-sm-4 pull-left">
+            Post Content
+                                        <span class="help-block">
+                                            Write post content
+                                        </span>
+          </label>
+
+          <div class="col-sm-11">
+            <textarea rows="4" class="form-control" name="post[description]"><%= @post.description %></textarea>
+          </div>
+
+        </div>
+
+        <!--post feature image -->
+        <div class="form-group">
+          <label class="col-sm-4 pull-left" for="hint-field">
+            Feature image
+            <!--<span class="help-block">Required field</span>-->
+          </label>
+
+          <div class="col-sm-5">
+            <input id="post-image-upload" class="hidden" type="file" name="post[feature_image]">
+            <div id="post-image" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change feature image</div>
+          </div>
+          <div class="col-md-11 col-sm-11">
+            <%= image_tag @post.feature_image.present? ? @post.feature_image_url(:banner) : "http://placehold.it/573x230", :id => "uploaded-post-image", alt: 'post feature image' %>
+          </div>
+        </div>
+
+
+      </fieldset>
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-sm-offset-4 col-sm-7">
+            <%= f.submit nil, class: 'btn btn-jobsflyer-color' %>
+            <!--<button class="btn btn-jobsflyer-color" type="submit">Save Changes</button>-->
+            <button class="btn btn-inverse" type="button">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <!--</form>-->
+    <% end %>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function(){
+
+    $('#post-image').on('click', function() {
+      $('#post-image-upload').click();
+    });
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#uploaded-post-image').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#post-image-upload").change(function(){
+      readURL(this);
+    });
+
+  });
+</script>

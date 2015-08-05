@@ -7,8 +7,8 @@ class Company < ActiveRecord::Base
   has_many :subscriptions, :dependent => :destroy
 
   has_many :followed_users, :through => :followers, :class_name => 'User'
-  # has_many :users, :through => :followers
   has_many :followers, :dependent => :destroy
+  has_many :posts
 
   after_save :save_full_location
 

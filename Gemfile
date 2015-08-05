@@ -42,6 +42,7 @@ gem 'bootstrap-slider-rails'
 gem 'money'
 gem 'pg_search', '~> 1.0.3'
 gem 'httparty', '0.13.3'
+gem 'bootsy', '~> 2.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

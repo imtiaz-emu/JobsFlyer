@@ -1,0 +1,76 @@
+<ul class="timeline my-time-line">
+
+  <%# 3.times do |post| %>
+    <li class="on-left">
+
+      <section class="event">
+        <span class="thumb-sm avatar pull-left mr-sm">
+          <% if @post.company_id.present? %>
+            <%= image_tag @post.company.logo.present? ? @post.company.logo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
+          <% else %>
+            <%= image_tag @post.user.profile.photo.present? ? @post.user.profile.photo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
+          <% end %>
+        </span>
+        <h4 class="event-heading">
+          <a href="<%= @post.company_id.present? ? company_path(@post.company) : user_path(@post.user) %>">
+            <%= @post.company_id.present? ? @post.company.name : @post.user.profile.full_user_name %>
+          </a>
+          <!--<small>@jess</small>-->
+          <a data-widgster="close" class="pull-right " href="#">
+            <i class="glyphicon glyphicon-remove close-custom"></i>
+          </a>
+        </h4>
+        <p class="fs-sm text-muted"><%= @post.updated_at.strftime("%v") %></p>
+
+        <p class="fs-mini">
+          <%= @post.description.html_safe %>
+        </p>
+
+        <% if @post.feature_image.present? %>
+          <div class="event-image">
+            <a href="javascript:void(0)">
+              <%= image_tag @post.feature_image_url(:banner), class: 'img-responsive' %> </a>
+          </div>
+        <% end %>
+        <footer>
+          <div class="clearfix">
+            <ul class="post-links mt-sm pull-left">
+              <li><a href="#">1 hour</a></li>
+              <li><a href="#"><span class="text-danger"><i class="fa fa-heart-o"></i> Like</span></a></li>
+              <li><a href="#">Comment</a></li>
+            </ul>
+          </div>
+          <ul class="post-comments mt-sm">
+            <li>
+                                <span class="thumb-xs avatar pull-left mr-sm">
+                                    <%= image_tag 'avatar.png', class: 'img-circle' %>
+                                </span>
+
+              <div class="comment-body">
+                <h6 class="author fw-semi-bold"><a href="">Ignacio Abad </a>
+                  <small>6 mins ago</small>
+                </h6>
+                <p>Hey, have you heard anything about that?</p>
+              </div>
+            </li>
+            <li>
+                                <span class="thumb-xs avatar pull-left mr-sm">
+                                    <%= image_tag 'avatar.png', class: 'img-circle' %>
+                                </span>
+
+              <div class="comment-body">
+                <textarea class="form-control" type="text" rows="1" placeholder="Write your comment..."></textarea>
+              </div>
+            </li>
+          </ul>
+        </footer>
+      </section>
+    </li>
+  <%# end %>
+
+</ul>
+
+<% if @post.user == current_user %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Back', @post.company_id.present? ? posts_path(:company => @post.company_id) : posts_path(:user => @post.user_id) %>
+<% end %>

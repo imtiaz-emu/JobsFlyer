@@ -15,6 +15,8 @@ class Profile < ActiveRecord::Base
   # Constants
 
   # Instance methods
-
+  def full_user_name
+    self.first_name + ' ' + (self.last_name if self.last_name.present?)
+  end
 
 end

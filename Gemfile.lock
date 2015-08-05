@@ -60,6 +60,10 @@ GEM
     bcrypt (3.1.10)
     bootstrap-slider-rails (4.8.1)
       railties (>= 3.2, < 5.0)
+    bootsy (2.1.0)
+      carrierwave (~> 0.10)
+      mini_magick (~> 4.0)
+      remotipart (~> 1.2)
     bourbon (4.2.3)
       sass (~> 3.4)
       thor
@@ -232,6 +236,7 @@ GEM
       polyamorous (~> 1.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rvm1-capistrano3 (1.3.2.2)
@@ -275,6 +280,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   bootstrap-slider-rails
+  bootsy (~> 2.1.0)
   capistrano (~> 3.2.1)
   capistrano-ext (~> 1.2.1)
   capistrano-file-permissions (~> 0.1.0)

@@ -48,6 +48,8 @@ Rails.application.routes.draw do
     get '/my-job-applications', to: 'applied_jobs#index'
   end
 
+  resources :posts
+
   resources :companies, except: [:index, :destroy], path: ''
 
 end

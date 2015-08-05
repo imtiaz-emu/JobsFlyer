@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12">
+    <section class="widget">
+      <header>
+        <h4>
+          Posts of <span class="fw-semi-bold"><%= link_to @company.present? ? @company.name : @user.profile.full_user_name, @company.present? ? company_path(@company) : 'javascript:void(0)' %></span>
+        </h4>
+        <div class="widget-controls">
+          <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
+          <a data-widgster="close" href="#"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>
+      </header>
+      <div class="widget-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th class="hidden-xs">#</th>
+            <th>Picture</th>
+            <th class="hidden-xs">Title</th>
+            <th>Description</th>
+            <th class="hidden-xs">Type</th>
+            <th class="hidden-xs" colspan="2">Actions</th>
+            <!--<th></th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <% @posts.each_with_index do |post, indx| %>
+            <tr>
+              <td class="hidden-xs"><%= indx + 1 %></td>
+              <td>
+                <%= image_tag post.feature_image.present? ? post.feature_image_url(:logo) : 'www.placehold.it/70*50', class: 'img-rounded', height: '50', width: '100%' %>
+                <!--<img class="img-rounded" src="demo/img/pictures/1.jpg" alt="" height="50">-->
+              </td>
+              <td>
+                <%= link_to post.title, post %>
+              </td>
+              <td class="hidden-xs">
+                <%= post.description.truncate(30, omission: '... (continued)') %>
+              </td>
+              <td class="hidden-xs text-semi-muted">
+                <%= post.updated_at.strftime('%v') %>
+              </td>
+
+              <!--<td class="hidden-xs text-semi-muted"><%#= link_to 'Show', post %></td>-->
+              <td class="hidden-xs text-semi-muted"><%= link_to 'Edit', edit_post_path(post) if post_creator(post) %></td>
+              <td class="hidden-xs text-semi-muted"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } if post_creator(post) %></td>
+
+            </tr>
+          <% end %>
+          </tbody>
+
+        </table>
+
+      </div>
+    </section>
+  </div>
+</div>

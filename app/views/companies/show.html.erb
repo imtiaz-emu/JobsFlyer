@@ -21,6 +21,11 @@
                 <%= link_to 'Follow', new_user_session_path , class: 'btn btn-jobsflyer' %>
               <% end %>
             </div>
+            <div class="text-muted fs-larger text-align-right">
+              <% if is_company_admin(@company) %>
+                <%= link_to "Post something", new_post_path(:company => @company.id), class: 'btn btn-xs btn-success' %>
+              <% end %>
+            </div>
           </div>
         </div>
 
