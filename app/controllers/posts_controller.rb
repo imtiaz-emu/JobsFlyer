@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # before_action :check_user_before_edit
+  before_filter :check_user_post_ability, :only => [:new, :create, :edit, :destroy]
 
   layout 'dashboard'
 
@@ -30,7 +30,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @company_id = @post.company_id if @post.company_id.present?
+    if @post.user == current_user
+      @company_id = @post.company_id if @post.company_id.present?
+    else
+      redirect_to dashboard_path, :flash => {alert: "You are trying to edit other user's post!"   }
+    end
   end
 
   # POST /posts
@@ -82,5 +86,13 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:user_id, :company_id, :title, :description, :feature_image, :post_type)
+    end
+
+    def check_user_post_ability
+      if current_user.companies.count > 0 || current_user.profile.can_post
+        return true
+      else
+        redirect_to dashboard_path, flash: {notice: "You don't have the privilege to post."}
+      end
     end
 end
