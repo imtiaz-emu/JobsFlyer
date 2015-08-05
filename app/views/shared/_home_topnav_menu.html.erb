@@ -46,6 +46,7 @@
           <ul class="dropdown-menu" role="menu">
             <% if current_user.present? %>
               <li><a href="<%= destroy_user_session_path %>">Logout</a></li>
+              <li><a href="<%= dashboard_path %>">Dashboard</a></li>
             <% else %>
               <li><a href="<%= new_user_session_path %>">Sign In</a></li>
               <li class="divider"></li>
