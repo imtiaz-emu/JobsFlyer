@@ -2,80 +2,134 @@
 
   <ul class="timeline my-time-line">
 
-  <% 3.times do |post| %>
-      <li class="on-left">
+  <% @time_line_records.sort{|a,b| b.updated_at <=> a.updated_at}.each do |record| %>
+    <% if record.is_a?(Post) %>
+        <li class="on-left">
 
-        <section class="event">
-        <span class="thumb-sm avatar pull-left mr-sm">
-          <%= image_tag 'avatar.png', class: 'img-circle' %>
-        </span>
-          <h4 class="event-heading"><a href="#">Jessica Smith</a>
-            <small>@jess</small>
-            <a data-widgster="close" class="pull-right " href="#">
-              <i class="glyphicon glyphicon-remove close-custom"></i>
-            </a>
-          </h4>
-          <p class="fs-sm text-muted">February 22, 2014 at 01:59 PM</p>
+          <section class="event">
+            <span class="thumb-sm avatar pull-left mr-sm">
+              <%= image_tag record.user.profile.photo.present? ? record.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
+            </span>
+            <h4 class="event-heading"><a href="#"><%= full_user_name(record.user) %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[record.post_type - 1] %></small></a>
 
-          <p class="fs-mini">
-            Check out this awesome photo I made in Italy last summer. Seems it was lost somewhere deep inside
-            my brand new HDD 40TB. Thanks god I found it!
-          </p>
+            </h4>
+            <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
 
-          <div class="event-image">
-            <a href="demo/img/pictures/8.jpg">
-              <img src="http://placehold.it/573x230"> </a>
-          </div>
-          <footer>
-            <div class="clearfix">
-              <ul class="post-links mt-sm pull-left">
-                <li><a href="#">1 hour</a></li>
-                <li><a href="#"><span class="text-danger"><i class="fa fa-heart-o"></i> Like</span></a></li>
-                <li><a href="#">Comment</a></li>
+            <p class="fs-mini">
+              <%= record.description.truncate(200, omission:  (link_to " ....Read more", post_path(record))).html_safe %>
+            </p>
+
+            <% if record.feature_image.present? %>
+              <div class="event-image">
+                <a href="<%= post_path(record) %>">
+                  <%= image_tag record.feature_image_url(:banner), :class => 'img-responsive img-thumbnail'  %>
+                </a>
+              </div>
+            <% end %>
+
+            <footer>
+              <p class="fs-mini">
+                <i class="fa fa-tags"></i>  <%= record.skills.collect { |skill| skill.name }.join(', ') %>
+              </p>
+
+              <div class="clearfix">
+                <ul class="post-links mt-sm pull-left">
+                  <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
+                  <li><a href="javascript:void(0)"><span class="text-danger"><i class="fa fa-heart-o"></i> Like</span></a></li>
+                  <li><a href="javascript:void(0)">Comment</a></li>
+                </ul>
+
+                <% if record.company_id.present? %>
+                  <span class="thumb thumb-sm pull-right">
+                    <a href="<%= company_path(record.company) %>">
+                      <%= image_tag record.company.logo.present? ? record.company.logo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
+                    </a>
+                  </span>
+                <% end %>
+
+              </div>
+              <ul class="post-comments mt-sm">
+                <li>
+                                <span class="thumb-xs avatar pull-left mr-sm">
+                                    <%= image_tag 'avatar.png', class: 'img-circle' %>
+                                </span>
+
+                  <div class="comment-body">
+                    <h6 class="author fw-semi-bold"><a href="">Ignacio Abad </a>
+                      <small>6 mins ago</small>
+                    </h6>
+                    <p>Hey, have you heard anything about that?</p>
+                  </div>
+                </li>
+                <li>
+                                <span class="thumb-xs avatar pull-left mr-sm">
+                                    <%= image_tag 'avatar.png', class: 'img-circle' %>
+                                </span>
+
+                  <div class="comment-body">
+                    <textarea class="form-control" type="text" rows="1" placeholder="Write your comment..."></textarea>
+                  </div>
+                </li>
               </ul>
+            </footer>
+          </section>
+        </li>
+    <% elsif record.is_a?(JobsUser) %>
+        <li class="on-left">
 
-                            <span class="thumb thumb-sm pull-right">
-                                <a href="#">
-                                  <%= image_tag 'avatar.png', class: 'img-circle' %>
-                                </a>
-                            </span>
-                            <span class="thumb thumb-sm pull-right">
-                                <a href="#">
-                                  <%= image_tag 'avatar.png', class: 'img-circle' %>
-                                </a>
-                            </span>
-                            <span class="thumb thumb-sm pull-right">
-                                <a href="#">
-                                  <%= image_tag 'avatar.png', class: 'img-circle' %>
-                                </a>
-                            </span>
-            </div>
-            <ul class="post-comments mt-sm">
-              <li>
-                                <span class="thumb-xs avatar pull-left mr-sm">
-                                    <%= image_tag 'avatar.png', class: 'img-circle' %>
-                                </span>
+          <section class="event">
+            <span class="thumb-sm avatar pull-left mr-sm">
+              <%= image_tag record.user.profile.photo.present? ? record.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
+            </span>
+            <h4 class="event-heading">
+              <a href="#"><%= full_user_name(record.user) %></a>
+              <span class="thumb-sm avatar pull-left mr-sm">
+              <%= image_tag record.job.company.logo.present? ? record.job.company.logo_url(:logo) : 'avatar.png', class: 'img-circle' %>
+            </span>
+            </h4>
 
-                <div class="comment-body">
-                  <h6 class="author fw-semi-bold"><a href="">Ignacio Abad </a>
-                    <small>6 mins ago</small>
-                  </h6>
-                  <p>Hey, have you heard anything about that?</p>
-                </div>
-              </li>
-              <li>
-                                <span class="thumb-xs avatar pull-left mr-sm">
-                                    <%= image_tag 'avatar.png', class: 'img-circle' %>
-                                </span>
+            <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
+            <h4>Applied to <span class="fw-semi-bold"><%= link_to record.job.title, job_path(record.job) %></span> @ <span class="fw-semi-bold"><%= link_to record.job.company.name, company_path(record.job.company) %></span></h4>
 
-                <div class="comment-body">
-                  <textarea class="form-control" type="text" rows="1" placeholder="Write your comment..."></textarea>
-                </div>
-              </li>
-            </ul>
-          </footer>
-        </section>
-      </li>
+            <footer>
+              <div class="clearfix">
+                <ul class="post-links mt-sm pull-left">
+                  <li><a href="#">1 hour</a></li>
+                  <li><a href="#"><span class="text-danger"><i class="fa fa-heart-o"></i> Like</span></a></li>
+                  <li><a href="#">Comment</a></li>
+                </ul>
+              </div>
+
+            </footer>
+          </section>
+        </li>
+    <% elsif record.is_a?(Job) %>
+        <li class="on-left">
+
+          <section class="event">
+            <span class="thumb-sm avatar pull-left mr-sm">
+              <%= image_tag record.company.logo.present? ? record.company.logo_url(:logo) : 'avatar.png', class: 'img-circle' %>
+            </span>
+            <h4 class="event-heading">
+              <a href="<%= company_path(record.company) %>"><%= record.company.name %></a>
+            </h4>
+
+            <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
+            <h4><span class="fw-semi-bold"><%= link_to record.company.name, company_path(record.company) %></span> has posted a new job: <span class="fw-semi-bold"><%= link_to record.title, job_path(record) %></span></h4>
+
+            <footer>
+              <div class="clearfix">
+                <ul class="post-links mt-sm pull-left">
+                  <li><a href="#">1 hour</a></li>
+                  <li><a href="#"><span class="text-danger"><i class="fa fa-heart-o"></i> Like</span></a></li>
+                  <li><a href="#">Comment</a></li>
+                </ul>
+              </div>
+
+            </footer>
+          </section>
+        </li>
+    <% end %>
   <% end %>
 
   </ul>

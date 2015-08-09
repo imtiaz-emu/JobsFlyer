@@ -74,8 +74,8 @@ class DashboardController < ApplicationController
   end
 
   def get_timeline_posts
-    # all_posts = Post.order('updated_at DESC').map
-    # @time_line_records = Job.active_jobs.map.each_with_object(all_posts.dup) { |e, ary| ary.insert(rand(0..ary.size), e) }
+    # all_posts = Post.order('updated_at DESC')
+    @time_line_records = Post.all + JobsUser.all + Job.active_jobs
   end
 
   def resolve_layout
