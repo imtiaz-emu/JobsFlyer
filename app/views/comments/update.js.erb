@@ -1,0 +1,12 @@
+<% if @commentable.is_a?(Post) %>
+var post_id = <%= @commentable.id %>;
+$("#post__" + post_id.toString() +" .comments-index").html('<%=j render :partial => 'comments/post_comments', locals: {:comments => @comments} %>')
+$("#post__" + post_id.toString() +" .form-comment").html('<%=j render partial: 'comments/form', :locals => {:job_id => nil, :post_id => @commentable.id, :comment => Comment.new} %>')
+
+<% elsif @commentable.is_a?(Job) %>
+
+var job_id = <%= @commentable.id %>;
+$("#job__" + job_id.toString() +" .comments-index").html('<%=j render :partial => 'comments/post_comments', locals: {:comments => @comments} %>')
+$("#job__" + job_id.toString() +" .form-comment").html('<%=j render partial: 'comments/form', :locals => {:job_id => @commentable.id, :post_id => nil, :comment => Comment.new} %>')
+
+<% end %>

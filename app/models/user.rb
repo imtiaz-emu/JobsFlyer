@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :jobs_users
   has_many :saved_resumes
   has_many :posts
+  has_many :comments, :dependent => :destroy
 
   # validations
 

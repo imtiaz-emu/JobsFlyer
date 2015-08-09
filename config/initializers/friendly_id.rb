@@ -18,7 +18,7 @@ FriendlyId.defaults do |config|
 
   config.reserved_words = %w(new edit index session login logout users admin
     stylesheets assets javascripts images subscriptions jobs companies home dashboard profiles
-    applied_jobs advance-search my-resume-bank posts)
+    applied_jobs advance-search my-resume-bank posts comments)
 
   #  ## Friendly Finders
   #

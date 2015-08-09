@@ -27,7 +27,7 @@
               </div>
             <% end %>
 
-            <footer>
+            <footer id="<%= unique_id_generator(record) %>">
               <p class="fs-mini">
                 <i class="fa fa-tags"></i>  <%= record.skills.collect { |skill| skill.name }.join(', ') %>
               </p>
@@ -50,26 +50,11 @@
               </div>
               <ul class="post-comments mt-sm">
                 <li>
-                                <span class="thumb-xs avatar pull-left mr-sm">
-                                    <%= image_tag 'avatar.png', class: 'img-circle' %>
-                                </span>
-
-                  <div class="comment-body">
-                    <h6 class="author fw-semi-bold"><a href="">Ignacio Abad </a>
-                      <small>6 mins ago</small>
-                    </h6>
-                    <p>Hey, have you heard anything about that?</p>
-                  </div>
+                  <ul class="comments-index">
+                    <%= render partial: 'comments/post_comments', locals: {:comments => record.comments} %>
+                  </ul>
                 </li>
-                <li>
-                                <span class="thumb-xs avatar pull-left mr-sm">
-                                    <%= image_tag 'avatar.png', class: 'img-circle' %>
-                                </span>
-
-                  <div class="comment-body">
-                    <textarea class="form-control" type="text" rows="1" placeholder="Write your comment..."></textarea>
-                  </div>
-                </li>
+                <%= render partial: 'comments/form', locals: {:post_id => record.id, :job_id => nil, :comment => Comment.new} %>
               </ul>
             </footer>
           </section>
@@ -91,7 +76,7 @@
             <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
             <h4>Applied to <span class="fw-semi-bold"><%= link_to record.job.title, job_path(record.job) %></span> @ <span class="fw-semi-bold"><%= link_to record.job.company.name, company_path(record.job.company) %></span></h4>
 
-            <footer>
+            <footer id="<%= unique_id_generator(record) %>">
               <div class="clearfix">
                 <ul class="post-links mt-sm pull-left">
                   <li><a href="#">1 hour</a></li>
@@ -117,7 +102,7 @@
             <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
             <h4><span class="fw-semi-bold"><%= link_to record.company.name, company_path(record.company) %></span> has posted a new job: <span class="fw-semi-bold"><%= link_to record.title, job_path(record) %></span></h4>
 
-            <footer>
+            <footer id="<%= unique_id_generator(record) %>">
               <div class="clearfix">
                 <ul class="post-links mt-sm pull-left">
                   <li><a href="#">1 hour</a></li>
@@ -126,6 +111,14 @@
                 </ul>
               </div>
 
+              <ul class="post-comments mt-sm">
+                <li>
+                  <ul class="comments-index">
+                    <%= render partial: 'comments/post_comments', locals: {:comments => record.comments} %>
+                  </ul>
+                </li>
+                <%= render partial: 'comments/form', locals: {:post_id => nil, :job_id => record.id, :comment => Comment.new} %>
+              </ul>
             </footer>
           </section>
         </li>

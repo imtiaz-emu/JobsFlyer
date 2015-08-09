@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
   resources :profiles
+  resources :comments
   resources :subscriptions
   resources :jobs do
     resources :applied_jobs do

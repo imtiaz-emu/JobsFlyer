@@ -1,0 +1,21 @@
+<li class="form-comment">
+  <%= form_for(comment, remote: true) do |f| %>
+    <span class="thumb-xs avatar pull-left mr-sm">
+        <%= image_tag 'avatar.png', class: 'img-circle' %>
+    </span>
+
+    <div class="comment-body">
+      <%= f.text_field :content, class:'form-control', rows: '1', placeholder: 'Write your comment...', :required => true, :autocomplete => false %>
+    </div>
+
+    <% if post_id.present? %>
+      <input type="hidden" name="comment[post_id]" value="<%= post_id %>">
+    <% elsif job_id.present? %>
+      <input type="hidden" name="comment[job_id]" value="<%= job_id %>">
+    <% end %>
+
+    <input type="submit" style="position: absolute; left: -9999px"/>
+  <% end %>
+</li>
+
+

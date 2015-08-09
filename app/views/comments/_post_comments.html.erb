@@ -1,0 +1,24 @@
+<% comments.each do |comment| %>
+  <li>
+    <span class="thumb-xs avatar pull-left mr-sm">
+        <%= image_tag comment.user.profile.photo.present? ? comment.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
+    </span>
+
+    <div class="comment-body">
+      <h6 class="author fw-semi-bold"><a href=""><%= full_user_name(comment.user) %> </a>
+        <small><%= distance_of_time_in_words(Time.now - comment.created_at) %></small>
+        <p class="pull-right">
+          <span>
+            <%= link_to comment_path(comment), class: 'delete-comment', method: :delete, :title => 'Delete', remote: true do %>
+                  <i class="fa fa-trash-o"></i>
+            <% end %>
+            <%= link_to edit_comment_path(comment), class: 'editing-comment', remote: true do %>
+                  <i class="fa fa-pencil"></i>
+            <% end %>
+          </span>
+        </p>
+      </h6>
+      <p><%= comment.content %></p>
+    </div>
+  </li>
+<% end %>
