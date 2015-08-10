@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   belongs_to :company
   belongs_to :user
   has_many :comments, as: :commentable, :dependent => :destroy
+  has_many :likes, as: :likable, :dependent => :destroy
   has_and_belongs_to_many :skills
   accepts_nested_attributes_for :skills
 

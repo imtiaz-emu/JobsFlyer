@@ -1,0 +1,15 @@
+<% if @likable.is_a?(Post) %>
+var post_id = <%= @likable.id %>;
+$("#post__" + post_id.toString() +" li.like-dislike").html('<%=j render :partial => 'like/like_links', :locals => {likable: @likable} %>');
+
+<% elsif @likable.is_a?(Job) %>
+
+var job_id = <%= @likable.id %>;
+$("#job__" + job_id.toString() +" li.like-dislike").html('<%=j render :partial => 'like/like_links', :locals => {likable: @likable} %>');
+
+<% elsif @likable.is_a?(JobsUser) %>
+
+var jobs_user_id = <%= @likable.id %>;
+$("#jobsuser__" + jobs_user_id.toString() +" li.like-dislike").html('<%=j render :partial => 'like/like_links', :locals => {likable: @likable} %>');
+
+<% end %>

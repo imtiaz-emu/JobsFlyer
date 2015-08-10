@@ -1,0 +1,23 @@
+<% if likable.is_a?(Post) %>
+  <a href="<%= liked(likable) ? like_destroy_path(:post_id => likable.id) : like_create_path(:post_id => likable.id) %>" data-remote="true">
+    <span class="text-danger">
+      <i class="fa <%= liked(likable) ? 'fa-heart' : 'fa-heart-o' %>"></i>
+      <%= liked(likable) ? 'Unlike' : 'Like' %>
+    </span>
+  </a>
+<% elsif likable.is_a?(JobsUser) %>
+  <a href="<%= liked(likable) ? like_destroy_path(:jobs_user_id => likable.id) : like_create_path(:jobs_user_id => likable.id) %>" data-remote="true">
+    <span class="text-danger">
+      <i class="fa <%= liked(likable) ? 'fa-heart' : 'fa-heart-o' %>"></i>
+      <%= liked(likable) ? 'Unlike' : 'Like' %>
+    </span>
+  </a>
+<% elsif likable.is_a?(Job) %>
+  <a href="<%= liked(likable) ? like_destroy_path(:job_id => likable.id) : like_create_path(:job_id => likable.id) %>" data-remote="true">
+    <span class="text-danger">
+      <i class="fa <%= liked(likable) ? 'fa-heart' : 'fa-heart-o' %>"></i>
+      <%= liked(likable) ? 'Unlike' : 'Like' %>
+    </span>
+  </a>
+<% end %>
+<span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= likable.likes.count %></span>

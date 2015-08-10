@@ -74,8 +74,7 @@ class DashboardController < ApplicationController
   end
 
   def get_timeline_posts
-    # all_posts = Post.order('updated_at DESC')
-    @time_line_records = Post.all + JobsUser.all + Job.active_jobs
+    @time_line_records = Post.all.includes(:comments, :likes) + JobsUser.all.includes(:likes) + Job.active_jobs.includes(:comments, :likes)
   end
 
   def resolve_layout

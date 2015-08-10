@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   post '/my-resume-bank/job-invitations', :to => 'resume_search#job_invitation'
   get '/companies/filter-companies', :to => 'companies#filter_companies'
   get '/home/find_cities'
+  get 'like/create'
+  get 'like/destroy'
 
   resources :search
   resources :users do
