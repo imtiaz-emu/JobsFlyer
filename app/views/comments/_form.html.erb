@@ -5,7 +5,7 @@
     </span>
 
     <div class="comment-body">
-      <%= f.text_field :content, class:'form-control', rows: '1', placeholder: 'Write your comment...', :required => true, :autocomplete => false %>
+      <%= f.text_field :content, class:'form-control', rows: '1', placeholder: 'Write your comment...', :required => true, :autocomplete => 'off' %>
     </div>
 
     <% if post_id.present? %>

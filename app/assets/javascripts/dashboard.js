@@ -34,3 +34,4 @@
 //= require bootstrap-slider
 //= require jquery.tokeninput
 //= require select2.min
+//= require custom_developer
