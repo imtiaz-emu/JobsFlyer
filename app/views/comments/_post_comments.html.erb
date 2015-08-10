@@ -9,11 +9,15 @@
         <small><%= distance_of_time_in_words(Time.now - comment.created_at) %></small>
         <p class="pull-right">
           <span>
-            <%= link_to comment_path(comment), class: 'delete-comment', method: :delete, :title => 'Delete', rel: 'tooltip', remote: true do %>
+            <% if commenter(comment) || poster(comment.commentable) %>
+              <%= link_to comment_path(comment), class: 'delete-comment', method: :delete, :title => 'Delete', rel: 'tooltip', remote: true do %>
                   <i class="fa fa-trash-o"></i>
+              <% end %>
             <% end %>
-            <%= link_to edit_comment_path(comment), class: 'editing-comment', :title => 'Edit', rel: 'tooltip', remote: true do %>
-                  <i class="fa fa-pencil" onclick="focus_text_field_on_edit(this)"></i>
+            <% if commenter(comment) %>
+              <%= link_to edit_comment_path(comment), class: 'editing-comment', :title => 'Edit', rel: 'tooltip', remote: true do %>
+                    <i class="fa fa-pencil" onclick="focus_text_field_on_edit(this)"></i>
+              <% end %>
             <% end %>
           </span>
         </p>
