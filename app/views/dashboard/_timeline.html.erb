@@ -38,7 +38,7 @@
                   <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
                   <li class="like-dislike"><a href="<%= liked(record) ? like_destroy_path(:post_id => record.id) : like_create_path(:post_id => record.id) %>" data-remote="true"><span class="text-danger"><i class="fa <%= liked(record) ? 'fa-heart' : 'fa-heart-o' %>"></i> <%= liked(record) ? 'Unlike' : 'Like' %></span> </a>
                     <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= record.likes.count %></span></li>
-                  <li class="comments-counter"><a href="javascript:void(0)">Comment</a> <span class="counts"><i class="fa fa-comments"></i> <%= record.comments.count %></span></li>
+                  <li class="comments-counter"><a href="javascript:void(0)">Comments</a> <span class="counts"><i class="fa fa-comments"> <%= record.comments.count %></i></span></li>
                 </ul>
 
                 <% if record.company_id.present? %>
@@ -111,7 +111,7 @@
                   <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
                   <li class="like-dislike"><a href="<%= liked(record) ? like_destroy_path(:job_id => record.id) : like_create_path(:job_id => record.id) %>" data-remote="true"><span class="text-danger"><i class="fa <%= liked(record) ? 'fa-heart' : 'fa-heart-o' %>"></i> <%= liked(record) ? 'Unlike' : 'Like' %></span> </a>
                     <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= record.likes.count %></span></li>
-                  <li class="comments-counter"><a href="javascript:void(0)">Comment</a> <span class="counts"><i class="fa fa-comments"></i> <%= record.comments.count %></span></li>
+                  <li class="comments-counter"><a href="javascript:void(0)">Comments</a> <span class="counts"><i class="fa fa-comments"> <%= record.comments.count %></i></span></li>
                 </ul>
               </div>
 
