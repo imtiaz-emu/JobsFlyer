@@ -7,12 +7,22 @@
         <li class="on-left">
 
           <section class="event">
-            <span class="thumb-sm avatar pull-left mr-sm">
-              <%= image_tag record.user.profile.photo.present? ? record.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
-            </span>
-            <h4 class="event-heading"><a href="#"><%= full_user_name(record.user) %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[record.post_type - 1] %></small></a>
 
-            </h4>
+            <span class="thumb-sm avatar pull-left mr-sm">
+              <% if record.company_id.present? %>
+                <a href="<%= company_path(record.company) %>">
+                  <%= image_tag record.company.logo.present? ? record.company.logo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
+                </a>
+              <% else %>
+                <%= image_tag record.user.profile.photo.present? ? record.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
+              <% end %>
+            </span>
+            <% if record.company_id.present? %>
+              <h4 class="event-heading"><a href="<%= company_path(record.company) %>"><%= record.company.name %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[record.post_type - 1] %></small></a></h4>
+            <% else %>
+              <h4 class="event-heading"><a href="#"><%= full_user_name(record.user) %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[record.post_type - 1] %></small></a></h4>
+            <% end %>
+
             <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
 
             <p class="fs-mini">
@@ -40,14 +50,6 @@
                     <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= record.likes.count %></span></li>
                   <li class="comments-counter"><a href="javascript:void(0)">Comments</a> <span class="counts"><i class="fa fa-comments"> <%= record.comments.count %></i></span></li>
                 </ul>
-
-                <% if record.company_id.present? %>
-                  <span class="thumb thumb-sm pull-right">
-                    <a href="<%= company_path(record.company) %>">
-                      <%= image_tag record.company.logo.present? ? record.company.logo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
-                    </a>
-                  </span>
-                <% end %>
 
               </div>
 
