@@ -36,9 +36,10 @@
               <div class="clearfix">
                 <ul class="post-links mt-sm pull-left">
                   <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
-                  <li><a href="javascript:void(0)"><span class="text-danger"><i class="fa fa-heart-o"></i> Like</span> </a> <span class="counts"><i class="fa fa-thumbs-o-up"></i>
+                  <li><a href="javascript:void(0)"><span class="text-danger"><i class="fa fa-heart-o"></i> Like</span> </a>
+                    <span class="counts"><i class="fa fa-thumbs-o-up"></i> 555</span></li>
+                  <li><a href="javascript:void(0)">Comment</a> <span class="counts"><i class="fa fa-comments"></i>
  555</span></li>
-                  <li><a href="javascript:void(0)">Comment</a></li>
                 </ul>
 
                 <% if record.company_id.present? %>
