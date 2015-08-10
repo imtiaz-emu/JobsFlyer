@@ -34,7 +34,7 @@
         <% end %>
         <footer>
           <div class="clearfix">
-            <p><%= @post.skills.collect { |skill| skill.name }.join(', ') %></p>
+            <p><i class="fa fa-tags"></i>  <%= @post.skills.collect { |skill| skill.name }.join(', ') %></p>
 
             <ul class="post-links mt-sm pull-left">
               <li><a href="#">1 hour</a></li>
