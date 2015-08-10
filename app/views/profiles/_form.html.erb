@@ -131,7 +131,7 @@
           </label>
 
           <div class="col-sm-8">
-            <textarea rows="4" class="form-control" name="profile[description]"></textarea>
+            <textarea rows="4" class="form-control" name="profile[description]"><%= @profile.description if @profile.description.present? %></textarea>
           </div>
 
         </div>

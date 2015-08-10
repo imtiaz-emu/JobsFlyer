@@ -12,8 +12,8 @@
             <%= link_to comment_path(comment), class: 'delete-comment', method: :delete, :title => 'Delete', rel: 'tooltip', remote: true do %>
                   <i class="fa fa-trash-o"></i>
             <% end %>
-            <%= link_to edit_comment_path(comment), class: 'editing-comment', :title => 'Edit comment', rel: 'tooltip', remote: true do %>
-                  <i class="fa fa-pencil"></i>
+            <%= link_to edit_comment_path(comment), class: 'editing-comment', :title => 'Edit', rel: 'tooltip', remote: true do %>
+                  <i class="fa fa-pencil" onclick="focus_text_field_on_edit(this)"></i>
             <% end %>
           </span>
         </p>
