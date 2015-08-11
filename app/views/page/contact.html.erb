@@ -64,9 +64,33 @@
       </div>
       <div class="col-lg-6">
         <h4>Location</h4>
-
+        <div id="map_canvas" class="our-location-page-map"></div>
       </div>
 
     </div>
   </div>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+  $(document).ready(function () {
+    var lat = 23.834177;
+    var long = 90.367650;
+    var myLatlng = new google.maps.LatLng(lat, long);
+    var mapOptions = {
+      zoom: 15,
+      center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    var image = 'http://s24.postimg.org/d8sjbl1q9/jobsflyer_logo.png';
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      icon: image,
+      draggable:  true,
+      animation:  google.maps.Animation.DROP
+    });
+
+  });
+
+</script>
