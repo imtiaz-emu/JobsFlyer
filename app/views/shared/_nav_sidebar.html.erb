@@ -18,8 +18,8 @@
                     13
                 </span>
         &nbsp;
-        Philip <strong>Smith</strong>
-        <b class="caret"></b>
+        <%= guest_user? ? "User" : current_profile.first_name %> <strong><%= guest_user? ? "Guest" : current_profile.last_name %></strong>
+        <!--<b class="caret"></b>-->
       </a>
       <!-- #notifications-dropdown-menu goes here when screen collapsed to xs or sm -->
     </div>
