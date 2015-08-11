@@ -1,4 +1,8 @@
-<% comments.each do |comment| %>
+<% if comments.count > 5 %>
+  <li><%= link_to "view previous comments", comments.last.commentable.is_a?(Post) ? post_path(comments.last.commentable) : job_path(comments.last.commentable) %></li>
+<% end %>
+
+<% comments.last(5).each do |comment| %>
   <li>
     <span class="thumb-xs avatar pull-left mr-sm">
         <%= image_tag comment.user.profile.photo.present? ? comment.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
