@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JobsFlyer</title>
+  <%= stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'dashboard', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= params[:controller] %> <%= params[:action] %>">
+
+
+<%= render :partial => 'shared/home_topnav_menu' %>
+
+<div class="">
+  <!-- main page content. the place to put widgets in. usually consists of .row > .col-md-* > .widget.  -->
+  <main id="content" class="content" role="main">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <%= flash_messages %>
+        <%= yield %>
+      </div>
+    </div>
+  </main>
+  <%= render :partial => 'shared/footer_home' %>
+</div>
+
+
+
+</body>
+</html>
+
+
+<script>
+  $(document).pjax('a', '#sidebar-dashboard', {push: false})
+</script>
