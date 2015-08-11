@@ -31,9 +31,9 @@
 
         <!--Input for post title-->
         <div class="form-group">
-          <label for="prepended-input" class="col-sm-4 pull-left">Post title</label>
+          <label for="prepended-input" class="col-sm-12 pull-left">Post title</label>
 
-          <div class="col-sm-11">
+          <div class="col-sm-12">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
               <%= f.text_field :title, class: 'form-control', required: true, autocomplete: :off %>
@@ -45,14 +45,14 @@
 
         <!--Input for post description-->
         <div class="form-group">
-          <label for="wysiwyg" class="col-sm-4 pull-left">
+          <label for="wysiwyg" class="col-sm-12 pull-left">
             Post Content
                                         <span class="help-block">
                                             Write post content
                                         </span>
           </label>
 
-          <div class="col-sm-11">
+          <div class="col-sm-12">
             <textarea rows="4" class="form-control" name="post[description]"><%= @post.description %></textarea>
           </div>
 
@@ -60,25 +60,25 @@
 
         <!--post feature image -->
         <div class="form-group">
-          <label class="col-sm-4 pull-left" for="hint-field">
+          <label class="col-sm-12 pull-left" for="hint-field">
             Feature image
             <!--<span class="help-block">Required field</span>-->
           </label>
 
-          <div class="col-sm-5">
-            <input id="post-image-upload" class="hidden" type="file" name="post[feature_image]">
+          <div class="col-sm-12 feature-img">
+           <input id="post-image-upload" class="hidden" type="file" name="post[feature_image]">
             <div id="post-image" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change feature image</div>
           </div>
-          <div class="col-md-11 col-sm-11">
-            <%= image_tag @post.feature_image.present? ? @post.feature_image_url(:banner) : "http://placehold.it/573x230", :id => "uploaded-post-image", alt: 'post feature image' %>
+          <div class="col-md-12 ">
+            <%= image_tag @post.feature_image.present? ? @post.feature_image_url(:banner) : "http://placehold.it/625x230", :id => "uploaded-post-image", alt: 'post feature image' %>
           </div>
         </div>
 
         <!--Input for post skills-->
         <div class="form-group">
-          <label for="prepended-input" class="col-sm-4 pull-left">Add skill tags</label>
+          <label for="prepended-input" class="col-sm-12 pull-left">Add skill tags</label>
 
-          <div class="col-sm-11">
+          <div class="col-sm-12">
             <div class="input-group post-skills">
               <%= f.text_field :skills, "data-pre" => @post.skills.map(&:attributes).to_json %>
             </div>
