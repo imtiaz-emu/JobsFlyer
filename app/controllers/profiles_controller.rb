@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    redirect_to edit_profile_path(@profile)
+    # redirect_to edit_profile_path(@profile)
   end
 
   # GET /profiles/new
