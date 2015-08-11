@@ -384,15 +384,16 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .comments-index li :hover .pull-right span{display: block;}
 .comments-index li :hover .pull-right span a:hover{ text-decoration: none;}
 .footer-list{list-style: none;}
+.footer-list li{color: #666;}
 .footer-list li a{ color: #f2be35;}
 .footer-list li{display: inline;}
-.free-margin{margin-top: 15px;}
-.profiles #content .row div.col-lg-8{background: #fff;border-radius: 0px  0}
+.free-margin{margin-top: 15px;background: #fff;padding: 15px;}
+.profiles #content .row div.col-lg-8{border-radius: 0px  0}
 .my-status{
   border-radius: 6px;
   color: inherit;
   font-size: 13px;
   padding: 2px 6px 6px;
-  background:  #241e20
-;
+  background:  #241e20;
   }
+.filtered-companies-widget .widget{padding: 5px;}

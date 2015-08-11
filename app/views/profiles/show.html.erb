@@ -11,7 +11,8 @@
                                  <%= image_tag @profile.photo.present? ? @profile.photo_url(:profile) : 'avatar.png', :class => "img-circle", alt: 'your image' %>
 
                             </span>
-    <h5 class="mt-sm fw-normal text-white"><%= @profile.phone %></h5>
+    <h5 class="mt-sm fw-normal text-white"><i class="fa fa-mobile"></i>
+       <%= @profile.phone %></h5>
     <p class="fs-mini text-muted"><i class="fa fa-map-marker"></i> &nbsp; <%= @profile.address %>, <%= @profile.country %>, <%= @profile.state %>, <%= @profile.city %></p>
 
   </div>
