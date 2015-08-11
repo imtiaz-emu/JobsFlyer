@@ -1,6 +1,8 @@
 
 <div class="widget-body free-margin">
+
   <div class="widget-top-overflow windget-padding-md clearfix bg-warning text-white">
+    <a href="<%= edit_profile_path(@profile) %>" class="btn  btn-xs pull-right profile-edit-show"><i class="fa  fa-edit "></i></a>
     <h3 class="mt-lg mb-lg" ><%= @profile.first_name %> <%= @profile.last_name %></h3>
     <ul class="tags text-white pull-right my-status">
       <li>Looking For Job</li>
