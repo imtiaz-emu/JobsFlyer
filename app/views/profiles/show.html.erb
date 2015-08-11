@@ -4,9 +4,11 @@
   <div class="widget-top-overflow windget-padding-md clearfix bg-warning text-white">
     <a href="<%= edit_profile_path(@profile) %>" class="btn  btn-xs pull-right profile-edit-show"><i class="fa  fa-edit "></i></a>
     <h3 class="mt-lg mb-lg" ><%= @profile.first_name %> <%= @profile.last_name %></h3>
-    <ul class="tags text-white pull-right my-status">
-      <li>Looking For Job</li>
-    </ul>
+    <% if @profile.looking_for_job %>
+      <ul class="tags text-white pull-right my-status">
+        <li>Looking For Job</li>
+      </ul>
+    <% end %>
   </div>
   <div class="post-user mt-n-lg">
                             <span class="thumb-lg pull-left mr">
@@ -15,7 +17,7 @@
                             </span>
     <h5 class="mt-sm fw-normal text-white"><i class="fa fa-mobile"></i>
        <%= @profile.phone %></h5>
-    <p class="fs-mini text-muted"><i class="fa fa-map-marker"></i> &nbsp; <%= @profile.address %>, <%= @profile.country %>, <%= @profile.state %>, <%= @profile.city %></p>
+    <p class="fs-mini text-muted"><i class="fa fa-map-marker"></i> &nbsp; <%= full_address(@profile) %></p>
 
   </div>
   <p class="text-light fs-mini   text-justify"><%= @profile.description %></p>
