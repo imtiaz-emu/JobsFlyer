@@ -50,7 +50,7 @@
         <ul class="post-comments mt-sm new-li">
           <li>
             <ul class="comments-index">
-              <%= render partial: 'comments/post_comments', locals: {:comments => @post.comments} %>
+              <%= render partial: 'comments/post_comments', locals: {:comments => @post.comments, :commentable => nil} %>
             </ul>
           </li>
           <%= render partial: 'comments/form', locals: {:post_id => @post.id, :job_id => nil, :comment => Comment.new} %>

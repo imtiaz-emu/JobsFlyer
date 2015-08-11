@@ -73,6 +73,15 @@ class DashboardController < ApplicationController
     end
   end
 
+  def show_more_comments
+    @commentable = params[:commentable_class]
+    if @commentable == 'post'
+      @comments = Post.find(params[:commentable_id].to_i).comments
+    elsif @commentable == 'job'
+      @comments = Job.find(params[:commentable_id].to_i).comments
+    end
+  end
+
   def get_timeline_posts
     @time_line_records = Post.all.includes(:comments, :likes) + JobsUser.all.includes(:likes) + Job.active_jobs.includes(:comments, :likes)
   end

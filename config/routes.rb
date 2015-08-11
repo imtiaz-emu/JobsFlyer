@@ -44,6 +44,14 @@ Rails.application.routes.draw do
   get '/home/find_cities'
   get 'like/create'
   get 'like/destroy'
+  get '/dashboard/show_more_comments'
+
+  #static pages
+  get '/about-us', to: 'page#about_us'
+  get '/faqs', to: 'page#frequently_asked_questions'
+  get '/privacy', to: 'page#privacy'
+  get '/terms-conditions', to: 'page#terms_and_conditions'
+  get '/contact', to: 'page#contact'
 
   resources :search
   resources :users do

@@ -1,0 +1,96 @@
+<div class="container  top-margin-space">
+  <ol class="breadcrumb">
+    <li class="active">CONTACT US</li>
+
+  </ol>
+</div>
+<div class="container white-space  ">
+  <header>
+
+  </header>
+  <div class="widget-body ">
+    <div class="row">
+
+      <div class="col-lg-6">
+        <h4>Write Us</h4>
+        <form novalidate="" data-parsley-priority-enabled="false" method="post" class="form-horizontal form-label-left" id="validation-form">
+
+          <fieldset>
+            <legend>
+
+            </legend>
+            <div class="form-group">
+              <label for="email" class="control-label col-sm-3">
+                E-mail
+              </label>
+              <div class="col-sm-9">
+                <input type="email" required="required" data-parsley-validation-threshold="1" data-parsley-trigger="change" class="form-control" name="email" id="email" data-parsley-id="6298"><ul class="parsley-errors-list" id="parsley-id-6298"></ul>
+                                    <span class="help-block">
+                                        This one is triggered even when 1 character has been input
+                                    </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="number" class="control-label col-sm-3">
+                Number
+              </label>
+              <div class="col-sm-9">
+                <input type="text" required="required" data-parsley-type="number" class="form-control" name="number" id="number" data-parsley-id="0670"><ul class="parsley-errors-list" id="parsley-id-0670"></ul>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="number" class="control-label col-sm-3">
+                Number
+              </label>
+              <div class="col-sm-9">
+                   <textarea class="form-control" placeholder="Message" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+
+              <div class="col-sm-12 send-msg">
+
+                <button class="btn btn-jobsflyer btn-rounded pull-right" type="submit"> <i class="fa fa-paper-plane-o"></i>
+                   Send </button>
+
+              </div>
+            </div>
+
+          </fieldset>
+
+
+        </form>
+
+      </div>
+      <div class="col-lg-6">
+        <h4>Location</h4>
+        <div id="map_canvas" class="our-location-page-map"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+  $(document).ready(function () {
+    var lat = 23.834177;
+    var long = 90.367650;
+    var myLatlng = new google.maps.LatLng(lat, long);
+    var mapOptions = {
+      zoom: 15,
+      center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    var image = 'http://s24.postimg.org/d8sjbl1q9/jobsflyer_logo.png';
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      icon: image,
+      draggable:  true,
+      animation:  google.maps.Animation.DROP
+    });
+
+  });
+
+</script>

@@ -330,8 +330,8 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 }
 .page-footer{
   bottom: 0;
-padding-bottom: 20px;
-  position: absolute;
+  padding-bottom: 20px;
+  position:  fixed;
   padding-top: 20px;
   background:#241e20;
   color: #fff;
@@ -384,15 +384,30 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .comments-index li :hover .pull-right span{display: block;}
 .comments-index li :hover .pull-right span a:hover{ text-decoration: none;}
 .footer-list{list-style: none;}
+.footer-list li{color: #666;}
 .footer-list li a{ color: #f2be35;}
 .footer-list li{display: inline;}
-.free-margin{margin-top: 15px;}
-.profiles #content .row div.col-lg-8{background: #fff;border-radius: 0px  0}
+.free-margin{margin-top: 0px;background: #fff;padding: 15px;}
+.profiles #content .row div.col-lg-8{border-radius: 0px  0}
+
 .my-status{
   border-radius: 6px;
   color: inherit;
   font-size: 13px;
   padding: 2px 6px 6px;
-  background:  #241e20
-;
+  background:  #241e20;
   }
+.profile-edit-show{
+  background: #E5AD17 none repeat scroll 0 0;
+  color: #fff;
+  font-size: 14px;
+  padding: 0 3px 0 4px;}
+.filtered-companies-widget .widget{padding: 5px;}
+.white-space{background: #fff;}
+.my-bar{margin-right: -15px !important;}
+.top-margin-space{margin-top: -45px;}
+.send-msg{margin: 10px 0;}
+.our-location-page-map{
+  height: 350px;
+  width: auto;
+}
