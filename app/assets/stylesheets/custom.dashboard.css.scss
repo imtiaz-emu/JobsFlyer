@@ -339,12 +339,16 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 .cus-location ul{width:216px;border: 1px solid #ccc;}
 .cus-location ul li:first-child{height: 32px;}
 .filtered-companies-widget{
+  .dropdown.pull-right{position: relative;  background-color: rgba(255, 255, 255, .9);}
   .dropdown.pull-right.show-edit-options {
-    right: -7px;
-    top: -5px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
     z-index: 100;
-    .fa-lg{
-      color: #ffffff;
+
+
+    .fa-cog{
+      color: #666;
     }
     .dropdown :hover, :focus, :active {background: none;}
   }
@@ -411,3 +415,14 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
   height: 350px;
   width: auto;
 }
+.text-ember{margin-bottom: -3px;}
+.text-ember span{color: #f2be35}
+.company-widget{height: 216px;}
+.name-of-company{color: #2D0C00; font-weight: 400;}
+.filtered-companies-widget .setting-company{  line-height: 24px;
+  margin-right: 2px;
+  padding: 2px 7px 0 6px;}
+.filtered-companies-widget .setting-company:hover,.filtered-companies-widget .setting-company:focus{background: none;color: #000;}
+.setting-com-list{   padding-bottom: 1px;
+  padding-top: 1px;}
+.setting-com-list li a{background: rgba(255, 255, 255, .6);}
