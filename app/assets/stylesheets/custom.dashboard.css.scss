@@ -418,7 +418,7 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .text-ember{margin-bottom: -3px;}
 .text-ember span{color: #f2be35}
 .company-widget{height: 216px;}
-.name-of-company{color: #2D0C00; font-weight: 400;}
+.name-of-company a{color: #2D0C00; font-weight: 400;}
 .filtered-companies-widget .setting-company{  line-height: 24px;
   margin-right: 2px;
   padding: 2px 7px 0 6px;}
@@ -426,3 +426,6 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .setting-com-list{   padding-bottom: 1px;
   padding-top: 1px;}
 .setting-com-list li a{background: rgba(255, 255, 255, .6);}
+.company-widget .widget-body .mb-xs{height: 117px;
+  overflow: hidden;}
+.company-widget .widget-body .mb-xs .img-centered{margin: auto;}
