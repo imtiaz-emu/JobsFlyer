@@ -331,7 +331,7 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 .page-footer{
   bottom: 0;
 padding-bottom: 20px;
-  position: absolute;
+  position:  fixed;
   padding-top: 20px;
   background:#241e20;
   color: #fff;
@@ -402,3 +402,7 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
   font-size: 14px;
   padding: 0 3px 0 4px;}
 .filtered-companies-widget .widget{padding: 5px;}
+.white-space{background: #fff;}
+.my-bar{margin-right: -15px !important;}
+.top-margin-space{margin-top: -45px;}
+.send-msg{margin: 10px 0;}
