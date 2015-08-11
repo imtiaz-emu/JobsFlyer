@@ -3,12 +3,20 @@
   <li class="on-left">
 
     <section class="event">
-            <span class="thumb-sm avatar pull-left mr-sm">
-              <%= image_tag @post.user.profile.photo.present? ? @post.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
-            </span>
-      <h4 class="event-heading"><a href="#"><%= full_user_name(@post.user) %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[@post.post_type - 1] %></small></a>
-
-      </h4>
+      <span class="thumb-sm avatar pull-left mr-sm">
+        <% if @post.company_id.present? %>
+          <a href="<%= company_path(@post.company) %>">
+            <%= image_tag @post.company.logo.present? ? @post.company.logo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
+          </a>
+        <% else %>
+          <%= image_tag @post.user.profile.photo.present? ? @post.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
+        <% end %>
+      </span>
+      <% if @post.company_id.present? %>
+        <h4 class="event-heading"><a href="<%= company_path(@post.company) %>"><%= @post.company.name %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[@post.post_type - 1] %></small></a></h4>
+      <% else %>
+        <h4 class="event-heading"><a href="#"><%= full_user_name(@post.user) %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[@post.post_type - 1] %></small></a></h4>
+      <% end %>
       <p class="fs-sm text-muted"><%= @post.created_at.strftime('%c') %></p>
 
       <p class="fs-mini">
@@ -36,14 +44,6 @@
               <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= @post.likes.count %></span></li>
             <li class="comments-counter"><a href="javascript:void(0)">Comments</a> <span class="counts"><i class="fa fa-comments"> <%= @post.comments.count %></i></span></li>
           </ul>
-
-          <% if @post.company_id.present? %>
-                  <span class="thumb thumb-sm pull-right">
-                    <a href="<%= company_path(@post.company) %>">
-                      <%= image_tag @post.company.logo.present? ? @post.company.logo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
-                    </a>
-                  </span>
-          <% end %>
 
         </div>
 
