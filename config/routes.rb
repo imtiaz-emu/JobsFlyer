@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get '/home/find_cities'
   get 'like/create'
   get 'like/destroy'
+  get '/dashboard/show_more_comments'
 
   #static pages
   get '/about-us', to: 'page#about_us'

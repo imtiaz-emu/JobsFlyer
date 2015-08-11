@@ -1,0 +1,10 @@
+<% if @commentable == 'post' %>
+var post_id = <%= @comments.last.commentable.id %>;
+$("#post__" + post_id.toString() +" .comments-index").html('<%=j render :partial => 'comments/post_comments', locals: {:comments => @comments, :commentable => @commentable} %>')
+
+<% elsif @commentable == 'job' %>
+
+var job_id = <%= @comments.last.commentable.id %>;
+$("#job__" + job_id.toString() +" .comments-index").html('<%=j render :partial => 'comments/post_comments', locals: {:comments => @comments, :commentable => @commentable} %>')
+
+<% end %>

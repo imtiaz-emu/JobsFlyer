@@ -1,15 +1,15 @@
-<% if comments.count > 5 %>
-  <li><%= link_to "view previous comments", comments.last.commentable.is_a?(Post) ? post_path(comments.last.commentable) : job_path(comments.last.commentable) %></li>
+<% if comments.count > 3 && commentable.nil? %>
+  <li><%= link_to "view previous comments", 'javascript:void(0)', onclick: "show_all_comments('#{comments.last.commentable.id}', '#{comments.last.commentable.class.name.downcase}')" %></li>
 <% end %>
-
-<% comments.last(5).each do |comment| %>
+<% all_or_partial_comments = commentable.nil? ? comments.last(3) : comments %>
+<% all_or_partial_comments.each do |comment| %>
   <li>
     <span class="thumb-xs avatar pull-left mr-sm">
         <%= image_tag comment.user.profile.photo.present? ? comment.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
     </span>
 
     <div class="comment-body">
-      <h6 class="author fw-semi-bold"><a href=""><%= full_user_name(comment.user) %> </a>
+      <h6 class="author fw-semi-bold"><a href="<%= profile_path(comment.user.profile) %>"><%= full_user_name(comment.user) %> </a>
         <small><%= distance_of_time_in_words(Time.now - comment.created_at) %></small>
         <p class="pull-right">
           <span>
@@ -30,3 +30,13 @@
     </div>
   </li>
 <% end %>
+
+<script>
+  function show_all_comments(commentableId, commentableClass){
+    $.ajax({
+      url: '<%= dashboard_show_more_comments_path() %>',
+      type: 'GET',
+      data: {commentable_id: commentableId, commentable_class: commentableClass }
+    })
+  }
+</script>

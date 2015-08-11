@@ -58,7 +58,7 @@
               <ul class="post-comments mt-sm new-li">
                 <li>
                   <ul class="comments-index">
-                    <%= render partial: 'comments/post_comments', locals: {:comments => record.comments} %>
+                    <%= render partial: 'comments/post_comments', locals: {:comments => record.comments, :commentable => nil} %>
                   </ul>
                 </li>
                 <%= render partial: 'comments/form', locals: {:post_id => record.id, :job_id => nil, :comment => Comment.new} %>
@@ -122,7 +122,7 @@
               <ul class="post-comments mt-sm">
                 <li>
                   <ul class="comments-index">
-                    <%= render partial: 'comments/post_comments', locals: {:comments => record.comments} %>
+                    <%= render partial: 'comments/post_comments', locals: {:comments => record.comments, :commentable => nil} %>
                   </ul>
                 </li>
                 <%= render partial: 'comments/form', locals: {:post_id => nil, :job_id => record.id, :comment => Comment.new} %>
