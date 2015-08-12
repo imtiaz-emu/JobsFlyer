@@ -4,7 +4,7 @@ $(document).ready(function(){
     $('#profile_city').tokenInput('/home/load_cities.json', {
         crossDomain: false,
         tokenLimit: 1,
-        searchText: 'search city'
+        hintText: 'search city'
     });
 })
 
