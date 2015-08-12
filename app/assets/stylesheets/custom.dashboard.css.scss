@@ -63,7 +63,9 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 }
 
 .companies.show{
-  .company-banner{width: 100% }
+  .company-banner{border: 1px solid #eee;
+    max-height: 250px;
+    width: 100%; }
   .company-description{
     text-align: justify;
   }
@@ -119,6 +121,11 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
   padding-bottom: 7px;
   padding-top: 7px;
   margin-top: -22px;
+}
+.btn-jobsflyer-color {
+  background-color: #f2be35;
+  border-color: #f2be35;
+  color: #242424;
 }
 .btn-jobsflyer:hover,.btn-jobsflyer:focus,.btn-jobsflyer:focus{ background-color: #F2BE35;}
 
@@ -333,7 +340,7 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
   padding-bottom: 20px;
   position:  fixed;
   padding-top: 20px;
-  background:#241e20;
+  background:#2d0c00;
   color: #fff;
   width: 100%;}
 .cus-location ul{width:216px;border: 1px solid #ccc;}
@@ -410,6 +417,7 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .white-space{background: #fff;}
 .my-bar{margin-right: -15px !important;}
 .top-margin-space{margin-top: -45px;}
+.top-margin-space .white-space{padding-bottom: 505px;overflow: hidden;}
 .send-msg{margin: 10px 0;}
 .our-location-page-map{
   height: 350px;
@@ -429,3 +437,94 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .company-widget .widget-body .mb-xs{height: 117px;
   overflow: hidden;}
 .company-widget .widget-body .mb-xs .img-centered{margin: auto;}
+.profile-logo{    -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #2d0c00 #2d0c00;
+  border-image: none;
+  border-radius: 4px 4px 0px 0px;
+  border-style: solid solid none;
+  border-width: 4px 4px medium;
+  bottom: 0;
+  left: 10%;
+  max-width: 152px;
+  position: absolute;}
+.follow-unfollw{ position: absolute;right: 5%;top: 10%;}
+.top-sp-btn{margin-top: 5px;}
+.widget-invoice > header + .wid-top{margin-top: 20px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

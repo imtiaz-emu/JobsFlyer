@@ -5,37 +5,36 @@
     <section class="widget widget-invoice">
       <header>
         <div class="row">
-          <div class="col-sm-6 col-print-6">
-            <!--<img src="demo/img/logo/invoice-logo.png" alt="Logo" class="invoice-logo"/>-->
-            <%= image_tag @company.logo_url(:logo), class: 'imvoice-logo img-thumbnail img-responsive', alt: 'logo' %>
-          </div>
-          <div class="col-sm-6 col-print-6">
-            <div class="text-muted fs-larger text-align-right" id="follow-unfollow-link">
-              <% if current_user.present? %>
-                <% if is_a_company_follower(@company) %>
-                  <%= link_to 'Unfollow', 'javascript:void(0)' , class: 'btn btn-default', id: 'unfollow-link', :onclick => 'unfollow();'  %>
+          <div  class="col-lg-12">
+            <%= image_tag @company.bg_image_url(:banner), class: 'company-banner', alt: 'company banner' %>
+            <%= image_tag @company.logo_url(:logo), class: 'profile-logo img-thumbnail img-responsive', alt: 'logo' %>
+
+            <div class="follow-unfollw">
+              <div class="text-muted fs-larger text-align-right" id="follow-unfollow-link">
+                <% if current_user.present? %>
+                    <% if is_a_company_follower(@company) %>
+                        <%= link_to 'Unfollow', 'javascript:void(0)' , class: 'btn btn-default btn-sm', id: 'unfollow-link', :onclick => 'unfollow();'  %>
+                    <% else %>
+                        <%= link_to 'Follow', 'javascript:void(0)' , class: 'btn btn-jobsflyer-color btn-sm', id: 'follow-link', :onclick => 'follow();' %>
+                    <% end %>
                 <% else %>
-                  <%= link_to 'Follow', 'javascript:void(0)' , class: 'btn btn-jobsflyer', id: 'follow-link', :onclick => 'follow();' %>
+                    <%= link_to 'Follow', new_user_session_path , class: 'btn btn-jobsflyer-color btn-sm' %>
                 <% end %>
-              <% else %>
-                <%= link_to 'Follow', new_user_session_path , class: 'btn btn-jobsflyer' %>
-              <% end %>
-            </div>
-            <div class="text-muted fs-larger text-align-right">
-              <% if is_company_admin(@company) %>
-                <%= link_to "Post something", new_post_path(:company => @company.id), class: 'btn btn-xs btn-success' %>
-              <% end %>
+              </div>
+              <div class="text-muted fs-larger text-align-right top-sp-btn">
+                <% if is_company_admin(@company) %>
+                    <%= link_to "Post something", new_post_path(:company => @company.id), class: 'btn btn-sm btn-success' %>
+                <% end %>
+              </div>
+
             </div>
           </div>
+
         </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <%= image_tag @company.bg_image_url(:banner), class: 'company-banner', alt: 'company banner' %>
-          </div>
-        </div>
+
       </header>
-      <div class="widget-body">
+      <div class="widget-body wid-top">
         <div class="row mb-lg">
           <div class="col-md-12">
             <h4 class="text-muted">About <strong><%= @company.name.upcase %></strong></h4>
