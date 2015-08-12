@@ -58,11 +58,11 @@
         <div class="form-group">
           <label class="col-sm-4 control-label" for="hint-field">
             Phone
-            <span class="help-block">Required field</span>
+            <!--<span class="help-block">Required field</span>-->
           </label>
 
           <div class="col-sm-7">
-            <%= f.text_field :phone, :class => 'form-control', :id => 'hint-field', :placeholder => 'your phone number', :required => true %>
+            <%= f.text_field :phone, :class => 'form-control', :id => 'hint-field', :placeholder => 'your phone number' %>
           </div>
         </div>
 
@@ -74,13 +74,15 @@
           </label>
 
           <div class="col-sm-7">
-            <%= f.text_field :address, :class => 'form-control', :id => 'address-field', :placeholder => 'your address', :required => true %>
+            <%= f.text_field :address, :class => 'form-control', :id => 'address-field', :placeholder => 'your address' %>
           </div>
         </div>
 
         <!--Input for country-->
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="default-select">Select your country</label>
+          <label class="col-sm-4 control-label" for="default-select">Select your country
+            <span class="help-block">Required field</span>
+          </label>
           <div class="col-sm-7">
             <%= f.country_select :country, { include_blank: 'Select Country'}, id: "default-select", class: 'form-control', title: 'Country', rel: 'tooltip' %>
           </div>
@@ -106,17 +108,27 @@
           </label>
 
           <div class="col-sm-7">
-            <%= f.text_field :city, :class => 'form-control', :id => 'city-field', :placeholder => 'your city' %>
+            <%= f.text_field :city, :class => 'form-control', :class => 'city-field', :placeholder => 'your city', "data-pre" => City.where(:name => @profile.city).map(&:attributes).to_json %>
           </div>
         </div>
 
         <div class="form-group">
-          <div class="col-sm-offset-4 col-sm-7">
+          <div class="col-sm-offset-4 col-sm-4">
             <div class="checkbox checkbox-danger">
               <%= f.check_box :looking_for_job, :id => 'checkbox6' %>
               <!--<input id="checkbox6" type="checkbox" checked>-->
               <label for="checkbox6">
                 I am looking for a job
+              </label>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="checkbox checkbox-danger">
+              <%= f.check_box :is_employer, :id => 'checkbox7' %>
+              <!--<input id="checkbox6" type="checkbox" checked>-->
+              <label for="checkbox7">
+                I am an employer
               </label>
             </div>
           </div>

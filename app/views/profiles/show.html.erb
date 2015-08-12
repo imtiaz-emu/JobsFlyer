@@ -3,7 +3,7 @@
 
   <div class="widget-top-overflow windget-padding-md clearfix bg-warning text-white">
     <a href="<%= edit_profile_path(@profile) %>" class="btn  btn-xs pull-right profile-edit-show"><i class="fa  fa-edit "></i></a>
-    <h3 class="mt-lg mb-lg" ><%= @profile.first_name %> <%= @profile.last_name %></h3>
+    <h3 class="mt-lg mb-lg" ><%= @profile.first_name if @profile.first_name.present? %> <%= @profile.last_name if @profile.last_name.present? %></h3>
     <% if @profile.looking_for_job %>
       <ul class="tags text-white pull-right my-status">
         <li>Looking For Job</li>
@@ -17,11 +17,11 @@
                             </span>
 
     <h5 class="mt-sm fw-normal text-white"><i class="fa fa-mobile"></i>
-       <%= @profile.phone %></h5>
-    <p class="fs-mini text-muted"><i class="fa fa-map-marker"></i> &nbsp; <%= full_address(@profile) %></p>
+       <%= @profile.phone if @profile.phone.present? %></h5>
+    <p class="fs-mini text-muted"><i class="fa fa-map-marker"></i> &nbsp; <%= full_address(@profile) if @profile.city.present? && @profile.country.present? %></p>
 
   </div>
-  <p class="text-light fs-mini   text-justify"><%= @profile.description %></p>
+  <p class="text-light fs-mini   text-justify"><%= @profile.description if @profile.description.present? %></p>
 
 </div>
 
