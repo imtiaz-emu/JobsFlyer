@@ -254,10 +254,11 @@ Dark matter detected.</p>
 
 <script>
   $(document).ready(function(){
-    $('#job_locations_attributes').tokenInput('/dashboard/all_job_locations.json', {
+    $('#job_locations_attributes').tokenInput('/home/load_cities.json', {
       crossDomain: false,
-      propertyToSearch: 'full_location',
-      tokenLimit: 1
+      propertyToSearch: 'name',
+      tokenLimit: 1,
+      hintText: 'Type location'
 
     });
   });
