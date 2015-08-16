@@ -3,7 +3,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Mobile Menu</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -13,56 +13,22 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <!--<li><a href="#">About <span class="sr-only">(current)</span></a></li>-->
-        <!--<li><a href="#">FAQ</a></li>-->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Jobs <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="<%= guest_user? ? new_user_session_path : jobs_path  %>">My jobs</a></li>
-            <li><a href="<%= jobs_path(:all => 'active') %>">All jobs</a></li>
-            <li class="divider"></li>
-            <li><a href="<%= new_job_path %>">Post a new job</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Companies <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="<%= guest_user? ? new_user_session_path : user_companies_path(current_user) %>">My companies</a></li>
-            <li><a href="<%= companies_path %>">All companies</a></li>
-            <li class="divider"></li>
-            <li><a href="<%= companies_new_path %>">Create new company</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Best company</a></li>
-          </ul>
-        </li>
-      </ul>
+
 
       <ul class="nav navbar-nav navbar-right  my-bar">
-        <li><a href="<%= resume_search_path %>">Resume Search</a></li>
-        <li><a href="<%= advance_search_path %>">Advance Search</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <% if current_user.present? %>
-              <li><a href="<%= destroy_user_session_path %>">Logout</a></li>
-              <li><a href="<%= dashboard_path %>">Dashboard</a></li>
-            <% else %>
-              <li><a href="<%= new_user_session_path %>">Sign In</a></li>
-              <li class="divider"></li>
-              <li><a href="<%= new_user_registration_path %>">Sign Up</a></li>
-            <% end %>
+        <li><a href="<%= resume_search_path %>">Search Resumes</a></li>
+        <li class="right-separtor"><a href="<%= new_job_path %>">Post job</a></li>
+        <li><a href="<%= new_job_path %>">Search Jobs</a></li>
+        <li><a href="<%= new_job_path %>">Post Resume</a></li>
 
-            <li><a href="#">Invite a friend</a></li>
-            <li class="divider"></li>
-            <li><a href="http://dropresume.com">Upload Resume</a></li>
-          </ul>
-        </li>
+
+        <li class="login-button"><a href="<%= new_user_session_path %>">Log In</a></li>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<div class="container text-right new-user-add no-padding" >You Have no account? <a href="<%= new_user_registration_path %>" class="brnd-color">Sign Up</a></div>
 <script>
   $(document).pjax('a', '#bs-example-navbar-collapse-1', {push: false})
 </script>

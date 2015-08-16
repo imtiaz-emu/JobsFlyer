@@ -22,7 +22,7 @@ module UsersHelper
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
 
     html = <<-HTML
-    <div class="col-lg-12">
+    <div class="col-lg-12 flash-message-div">
       <div class="alert alert-danger alert-dismissible" role="alert">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <ul style="list-style: none">#{messages}</ul>
