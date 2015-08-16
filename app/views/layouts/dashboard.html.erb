@@ -7,7 +7,7 @@
   <%= javascript_include_tag 'jobs_custom' if params[:controller] == 'jobs' && ['edit', 'new'].include?(params[:action]) %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= params[:controller] %> <%= params[:action] %>">
+<body class="<%= params[:controller] %> <%= params[:action] %> nav-static">
 
 <!--<div class="container">-->
   <%= render :partial => 'shared/nav_sidebar' %>
@@ -44,4 +44,10 @@
 
 <script>
   $(document).pjax('a', '#sidebar-dashboard', {push: false})
+  $(document).ready(function(){
+    if ($(document).width() < 992){
+      $('body').removeClass('nav-static');
+      $('body').addClass('nav-collapsed');
+    }
+  })
 </script>

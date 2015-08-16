@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'dashboard', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= params[:controller] %> <%= params[:action] %>">
+<body class="<%= params[:controller] %> <%= params[:action] %> nav-static">
 
 <!--<div class="container">-->
 <% if params[:controller] == 'home' %>
@@ -39,3 +39,12 @@
   $(document).pjax('a', '#sidebar-dashboard', {push: false})
 </script>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    if ($(document).width() < 992){
+      $('body').removeClass('nav-static');
+      $('body').addClass('nav-collapsed');
+    }
+  })
+</script>

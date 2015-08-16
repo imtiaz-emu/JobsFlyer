@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get '/dashboard/all_job_locations', to: 'dashboard#all_job_locations'
   get '/companies', to: 'dashboard#all_companies'
   get '/dashboard/follow_unfollow', to: 'dashboard#follow_unfollow'
-  get '/advance-search', to: 'search#advance_search'
+  get '/advanced-search', to: 'search#advance_search'
   get '/advance-search/results', to: 'search#advance_search_results'
   get 'resume-search', to: 'resume_search#index'
   get '/resume-search/results', to: 'resume_search#search_results'

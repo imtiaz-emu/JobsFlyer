@@ -90,7 +90,7 @@ $(function(){
             $(document).on('pjax:end', $.proxy(this.pageLoaded, this));
         }
 
-        //this.$navigationStateToggle.on('click', $.proxy(this.toggleNavigationState, this));
+        this.$navigationStateToggle.on('click', $.proxy(this.toggleNavigationState, this));
         this.$navigationCollapseToggle.on('click', $.proxy(this.toggleNavigationCollapseState, this));
 
         /* reimplementing bs.collapse data-parent here as we don't want to use BS .panel*/
