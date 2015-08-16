@@ -22,13 +22,15 @@
         <li><a href="<%= new_job_path %>">Post Resume</a></li>
 
 
-        <li class="login-button"><a href="<%= new_user_session_path %>">Log In</a></li>
+        <li class="login-button"><a href="<%= user_signed_in? ? destroy_user_session_path : new_user_session_path %>"><%= user_signed_in? ? 'Sign Out' : 'Log In' %></a></li>
 
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="container text-right new-user-add no-padding" >You Have no account? <a href="<%= new_user_registration_path %>" class="brnd-color">Sign Up</a></div>
+<% unless user_signed_in? %>
+    <div class="container text-right new-user-add no-padding" >You Have no account? <a href="<%= new_user_registration_path %>" class="brnd-color">Sign Up.</a></div>
+<% end %>
 <script>
   $(document).pjax('a', '#bs-example-navbar-collapse-1', {push: false})
 </script>

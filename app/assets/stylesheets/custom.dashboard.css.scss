@@ -478,9 +478,9 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
   line-height: 7px;
   color: #f2be35;
 }
-.brnd-color,.brnd-color:hover{color: #f2be35;}
+.brnd-color,.brnd-color:hover,.brnd-color,.brnd-color:focus{color: #f2be35;}
 .new-user-add{margin-top: 10px;}
-.home-page-nav-bar .login-button a{border: 1px solid  #f2be35;background: #f2be35;color: #2d0c00 !important;border-radius: 3px;}
+.home-page-nav-bar .login-button a{border: 1px solid  #f2be35;text-transform:uppercase; background: #f2be35;color: #2d0c00 !important;border-radius: 3px;}
 #bs-example-navbar-collapse-1 .my-bar li a:hover{color: #E5B432 ;}
 .login-button a:hover{background: #f2be35 !important;}
  .right-separtor a{border-right: 1px solid #f2be35;}
