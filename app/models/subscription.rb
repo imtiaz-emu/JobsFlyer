@@ -1,6 +1,8 @@
 class Subscription < ActiveRecord::Base
   belongs_to :company
 
+  after_save :update_subscription_status
+
   scope :active_subscriptions, -> { where(status: 'active') }
   scope :pending_subscriptions, -> { where(status: 'pending') }
   scope :declined_subscriptions, -> { where(status: 'declined') }
@@ -23,5 +25,9 @@ class Subscription < ActiveRecord::Base
     calculation = self.feature_job.to_f * FEATURE_JOB_PRICE.to_f + self.normal_job.to_f * NORMAL_JOB_PRICE.to_f + self.total_month.to_f * PER_MONTH.to_f
     self.total_amount = calculation
     self.save(:validate => false)
+  end
+
+  def update_subscription_status
+    self.update_column(:status, 'active') if Subscription::FREE_COUPON
   end
 end

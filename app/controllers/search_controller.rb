@@ -12,7 +12,7 @@ class SearchController < ApplicationController
   def advance_search
     @search_tab = 'active'
     @jobs_tab = 'active'
-    @jobs = Job.active_jobs
+    @jobs = Job.active_jobs.order(featured_job: :desc, created_at: :desc)
   end
 
   def advance_search_results
