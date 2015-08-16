@@ -8,6 +8,10 @@
     <section class="widget widget-login animated fadeInUp">
       <header>
         <h3>Change your password</h3>
+        <div class="row">
+          <%= devise_error_messages %>
+          <%= flash_messages %>
+        </div>
       </header>
       <div class="widget-body">
         <p class="widget-login-info">
@@ -18,7 +22,6 @@
         </p>
 
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'login-form mt-lg', method: :put}) do |f| %>
-          <%= devise_error_messages! %>
 
           <%= f.hidden_field :reset_password_token %>
           <div class="form-group">
