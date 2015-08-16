@@ -9,11 +9,14 @@
     <section class="widget widget-login animated fadeInUp">
       <header>
         <h3>Forgot your password?</h3>
+        <div class="row">
+          <%= devise_error_messages %>
+          <%= flash_messages %>
+        </div>
       </header>
       <div class="widget-body">
 
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'login-form mt-lg', method: :post}) do |f| %>
-          <%= devise_error_messages! %>
           <div class="form-group">
             <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
           </div>
