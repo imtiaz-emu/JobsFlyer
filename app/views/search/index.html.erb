@@ -1,5 +1,5 @@
 <div class="custom-margin-wrapper-bottom">
-  <h3>Search results of <strong><%= params[:query] ||= CompanyLocation.find(params[:area]).full_location %></strong>: <%= @results.count %></h3>
+  <h3>Search results of <strong><%= params[:query] %> | <%= @company_location.full_location %></strong>: <%= @results.count %></h3>
 </div>
 
 <% if @results.count > 0  %>
