@@ -19,17 +19,35 @@
         <li><a href="<%= resume_search_path %>">Search Resumes</a></li>
         <li class="right-separtor"><a href="<%= new_job_path %>">Post job</a></li>
         <li><a href="<%= new_job_path %>">Search Jobs</a></li>
-        <li><a href="<%= new_job_path %>">Post Resume</a></li>
+        <li ><a href="<%= new_job_path %>">Post Resume</a></li>
+        <li class="login-button">
+          <a href="<%= user_signed_in? ? destroy_user_session_path : new_user_session_path %>"><%= user_signed_in? ? 'Sign Out' : 'Log In' %></a>
+        </li>
+
+        <!--
+          <li class="login-button dropdown">
+          <a data-toggle="dropdown" ></a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <form>
+                <input type="email" placeholder="Email Here" required="">
+                <input type="password" placeholder="Password Here" required="">
+                <input type="submit" value="Log In">
+              </form>
 
 
-        <li class="login-button"><a href="<%= user_signed_in? ? destroy_user_session_path : new_user_session_path %>"><%= user_signed_in? ? 'Sign Out' : 'Log In' %></a></li>
+            </li>
 
+          </ul>
+        </li>
+        -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <% unless user_signed_in? %>
-    <div class="container text-right new-user-add no-padding" >You Have no account? <a href="<%= new_user_registration_path %>" class="brnd-color">Sign Up.</a></div>
+    <div class="container text-right new-user-add no-padding" >Have you no account? <a href="<%= new_user_registration_path %>" class="brnd-color">Sign Up.</a></div>
 <% end %>
 <script>
   $(document).pjax('a', '#bs-example-navbar-collapse-1', {push: false})

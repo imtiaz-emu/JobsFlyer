@@ -344,7 +344,7 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 .page-footer{
   bottom: 0;
   padding-bottom: 15px;
-  position:  fixed;
+
   padding-top: 15px;
   background:#f2be35;
 color: #fff;
@@ -460,6 +460,7 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .follow-unfollw{ position: absolute;right: 5%;top: 10%;}
 .top-sp-btn{margin-top: 5px;}
 .widget-invoice > header + .wid-top{margin-top: 20px;}
+.content{padding-top: 140px;}
 .home .content,.home .jumbotron{background: #fff;}
 .home .search-jobs-flyer .form-control,.home .search-jobs-flyer ul.token-input-list{background: #eee;}
 .home  #token-input-job_locations_attributes{background: #eee;}
@@ -471,7 +472,12 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 
 }
 #edit_profile_5 li.token-input-token{background: #fff;font-weight: normal;color: #555;}
-.home-page-nav-bar{background: #2d0c00  ;padding-top: 4px;padding-bottom: 4px;}
+.home-page-nav-bar{
+  background: #2d0c00;padding-top: 4px;padding-bottom: 4px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
 .home-page-nav-bar .navbar-nav > li > a {
   margin-top: 8px;
   padding-bottom: 13px;
@@ -488,8 +494,22 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
  .right-separtor a{border-right: 1px solid #f2be35;}
 .flash-message-div .alert {margin-bottom: 0; margin-top: 10px;}
 .flash-message-div ul{padding-left: 0;}
+.job-category{overflow: hidden;margin-top:130px;}
+.job-category h4{color: #f2be35;}
+.cat-names{border: 1px dashed #f1f1f1;}
+.cat-names li a{color:#2d0c00; }
+.main-cat-top{text-transform: uppercase;margin-bottom: 20px;}
+.tops-company-section h3{margin-top: 20px;margin-bottom: 40px;text-transform: uppercase;}
+.list-unstyled{margin-top: 20px;margin-bottom: 20px;}
+.tops-company-section img{width: 12.2%;margin-bottom: 4px;}
+.top-emp-logo{padding-top: 0;}
+.top-emp-logo .jumbotron{background: none;}
+.tab-two .com{color: #2d0c00;}
+.tab-two .emp{color: #f2be35;}
+
+
 @media screen and (max-width: 780px) {
  .home .navbar-form .input-group{width: 100%;}
   .new-user-add{margin-right: 20px;}
-
+  .jumbotron{padding-top: 0;margin-top: -65px;}
 }
