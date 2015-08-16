@@ -317,11 +317,12 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 
  .home .btn-jobsflyer{    background-color: #f2be35;
    border-color: #f2be35;
-   color: #242424;
+   color: #2d0c00;
    font-size: 16px;
    margin-top: -1px;
    padding-bottom: 8px;
    padding-top: 7px;
+   font-weight: 300;
  }
 .search-jobs-flyer  ul.token-input-list li input{width:auto !important;  height: 32px ;}
 .search-jobs-flyer  input[name=query]:focus[name=query]:focus {border: 1px solid #f2be35 ;}
@@ -478,6 +479,7 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
   line-height: 7px;
   color: #f2be35;
 }
+.small-top{margin-top: -2px;}
 .brnd-color,.brnd-color:hover,.brnd-color,.brnd-color:focus{color: #f2be35;}
 .new-user-add{margin-top: 10px;}
 .home-page-nav-bar .login-button a{border: 1px solid  #f2be35;text-transform:uppercase; background: #f2be35;color: #2d0c00 !important;border-radius: 3px;}
