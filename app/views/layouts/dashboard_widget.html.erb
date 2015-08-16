@@ -39,3 +39,12 @@
   $(document).pjax('a', '#sidebar-dashboard', {push: false})
 </script>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    if ($(document).width() < 992){
+      $('body').removeClass('nav-static');
+      $('body').addClass('nav-collapsed');
+    }
+  })
+</script>
