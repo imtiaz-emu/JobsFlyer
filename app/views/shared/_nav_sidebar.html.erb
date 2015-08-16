@@ -26,33 +26,36 @@
     <!-- main notification links are placed inside of .sidebar-nav -->
     <ul class="sidebar-nav">
       <li class="<%= @dash_tab %>">
-        <!-- an example of nested submenu. basic bootstrap collapse component -->
-        <a href="#sidebar-dashboard" data-toggle="collapse" data-parent="#sidebar">
+        <!--<a href="#sidebar-dashboard" data-toggle="collapse" data-parent="#sidebar">-->
+        <a href="<%= dashboard_path %>">
                     <span class="icon">
                         <i class="fa fa-desktop"></i>
                     </span>
           Dashboard
           <i class="toggle fa fa-angle-down"></i>
         </a>
-        <ul id="sidebar-dashboard" class="collapse in">
+        <!--<ul id="sidebar-dashboard" class="collapse in">-->
+        <ul id="sidebar-dashboard">
           <li class="<%= @dash_tab %>"><a href="<%= guest_user? ? new_user_session_path : dashboard_path %>">Dashboard</a></li>
           <li class="<%= @profile_tab %>"><%= link_to 'My profile', guest_user? ? new_user_session_path :  profile_path(current_user.profile)%></li>
         </ul>
       </li>
       <li class="<%= @jobs_tab %>">
-        <a class="collapsed" href="#sidebar-ui" data-toggle="collapse" data-parent="#sidebar">
+        <!--<a class="collapsed" href="#sidebar-ui" data-toggle="collapse" data-parent="#sidebar">-->
+        <a href="<%= guest_user? ? new_user_session_path : jobs_path %>">
                     <span class="icon">
                         <i class="fa fa-briefcase"></i>
                     </span>
           Jobs
           <i class="toggle fa fa-angle-down"></i>
         </a>
-        <ul id="sidebar-ui" class="collapse">
+        <!--<ul id="sidebar-ui" class="collapse">-->
+        <ul id="sidebar-ui">
           <li><a href="<%= guest_user? ? new_user_session_path : jobs_path %>">My Jobs</a></li>
           <li><a href="<%= jobs_path(:all => 'active') %>">All active Jobs</a></li>
           <li class="divider"></li>
           <li><a href="<%= guest_user? ? new_user_session_path : user_my_job_applications_path(current_user) %>">My job applications</a></li>
-          <li class="<%= @search_tab %>"><%= link_to 'Advance search', advance_search_path %></li>
+          <li class="<%= @search_tab %>"><%= link_to 'Advance search', advanced_search_path %></li>
           <!--<li><a href="ui_tabs_accordion.html">Tabs & Accordion</a></li>-->
           <!--<li><a href="ui_list_groups.html">List Groups</a></li>-->
         </ul>
@@ -66,14 +69,16 @@
             Companies
           </a>
         <% else %>
-          <a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
+          <!--<a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">-->
+          <a href="<%= companies_path %>">
                     <span class="icon">
                         <i class="fa fa-building"></i>
                     </span>
             Companies
             <i class="toggle fa fa-angle-down"></i>
           </a>
-          <ul id="sidebar-forms" class="collapse">
+          <!--<ul id="sidebar-forms" class="collapse">-->
+          <ul id="sidebar-forms">
             <li><a href="<%= companies_path %>">All Companies</a></li>
             <li><a href="<%= guest_user? ? new_user_session_path : user_companies_path(current_user) %>">My Companies</a></li>
             <li class="divider"></li>
@@ -87,16 +92,18 @@
       </li>
 
       <li class="<%= @res_search_tab %>">
-        <a class="collapsed" href="#sidebar-resume" data-toggle="collapse" data-parent="#sidebar">
+        <!--<a class="collapsed" href="#sidebar-resume" data-toggle="collapse" data-parent="#sidebar">-->
+        <a href="<%= resume_search_path %>">
                     <span class="icon">
                         <i class="fa fa-database"></i>
                     </span>
           Resume
           <i class="toggle fa fa-angle-down"></i>
         </a>
-        <ul id="sidebar-resume" class="collapse">
+        <ul id="sidebar-resume">
           <li><%= link_to 'Resume search', resume_search_path %></li>
           <li><%= link_to 'My resume bank', my_resume_bank_path %></li>
+          <li><%= link_to 'Publish my resume', 'http://dropresume.com' %></li>
         </ul>
       </li>
     </ul>
@@ -115,14 +122,15 @@
 
       <% unless guest_user? %>
         <li class="<%= @posts_tab %>">
-          <a class="collapsed" href="#sidebar-maps" data-toggle="collapse" data-parent="#sidebar">
+          <!--<a class="collapsed" href="#sidebar-maps" data-toggle="collapse" data-parent="#sidebar">-->
+          <a href="<%= posts_path(:user => current_user.id) %>" data-no-pjax>
                     <span class="icon">
                         <i class="fa fa-pencil-square"></i>
                     </span>
             Posts
             <i class="toggle fa fa-angle-down"></i>
           </a>
-          <ul id="sidebar-maps" class="collapse">
+          <ul id="sidebar-maps">
             <!-- data-no-pjax turns off pjax loading for this link. Use in case of complicated js loading on the
                  target page -->
             <li><a href="<%= posts_path(:user => current_user.id) %>" data-no-pjax>My posts</a></li>
