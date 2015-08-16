@@ -21,9 +21,10 @@
             </div>
           </div>
           <div class="form-group">
-            <!--<label for="prepended-input" class="col-sm-4 control-label">Skills-->
-            <!--<span class="help-block">Type to search for skills you looking for</span>-->
-            <!--</label>-->
+            <div class="col-sm-12">
+              <label for="prepended-input" class="control-label">Search with Skills
+              </label>
+            </div>
 
             <div class="col-sm-7">
               <div class="input-group">
@@ -42,14 +43,27 @@
               </div>
             </div>
           </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <div class="checkbox checkbox-danger">
+                <%= check_box_tag 'featured_job', nil, :id => 'checkbox13' %>
+                <!--<input id="checkbox6" type="checkbox" checked>-->
+                <label for="checkbox13">
+                  Only Featured Jobs
+                </label>
+              </div>
+            </div>
+          </div>
         </fieldset>
         <fieldset>
           <legend>Search with location & experience</legend>
 
           <div class="form-group">
-            <!--<label for="prepended-input" class="col-sm-4 control-label">Job location-->
-            <!--<span class="help-block">Type your desired location</span>-->
-            <!--</label>-->
+            <div class="col-sm-12">
+              <label for="prepended-input" class="control-label">Job location
+              </label>
+            </div>
 
             <div class="col-sm-7">
               <div class="input-group">

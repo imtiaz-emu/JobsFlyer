@@ -21,7 +21,7 @@ class SearchController < ApplicationController
     @searched_jobs = @searched_jobs.where('deadline > (?)', params[:deadline].to_date) if params[:deadline].present?
     @searched_jobs = @searched_jobs.where(:job_location => params[:job_location].to_i) if params[:job_location].present?
     @searched_jobs = @searched_jobs.joins(:skills).where('skill_id IN (?)', params[:job_skills].collect { |skill_id| skill_id.to_i }) if params[:job_skills] != ['']
-    # @searched_jobs = @searched_jobs.where(:job_location => params[:job_location].to_i) if params[:job_location].present?
+    @searched_jobs = @searched_jobs.where(:featured_job => true) if params[:featured_job] == '1'
     return @searched_jobs
   end
 end
