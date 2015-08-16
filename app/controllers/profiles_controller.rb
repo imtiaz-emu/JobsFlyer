@@ -44,6 +44,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1.json
   def update
     params[:profile][:user_id] = current_user.id
+    params[:profile][:city] = City.find(params[:profile][:city]).name if params[:profile][:city].present?
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, flash: {:success => 'Profile was successfully updated.'}  }
@@ -74,6 +75,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :phone, :description, :address, :city, :state, :country, :status, :photo, :looking_for_job, :user_id)
+      params.require(:profile).permit(:first_name, :last_name, :phone, :description, :address, :city, :state, :country, :status, :photo, :looking_for_job, :user_id, :is_employer)
     end
 end

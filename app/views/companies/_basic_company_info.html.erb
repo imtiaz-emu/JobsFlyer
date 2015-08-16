@@ -56,7 +56,7 @@
           <div id="company-logo" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change company logo</div>
           <div class="row">
             <div class="col-md-offset-4 col-md-8 col-sm-12">
-              <%= image_tag @company.logo.present? ? @company.logo_url(:logo) : 'jf_logo.jpg', :id => "uploaded-company-logo", alt: 'Company Logo' %>
+              <%= image_tag @company.logo.present? ? @company.logo_url(:logo) : 'http://placehold.it/200x200', :id => "uploaded-company-logo", alt: 'Company Logo' %>
             </div>
           </div>
 
@@ -102,7 +102,7 @@
           <div id="company-banner" class="form-control"> <i class="fa fa-file-image-o fa-fw"></i> change company banner</div>
           <div class="row">
             <div class="col-sm-12">
-              <%= image_tag @company.bg_image.present? ? @company.bg_image_url(:banner) : 'jf_banner.jpg', :id => "uploaded-company-banner",:class=> "img-thumbnail", alt: 'Company Banner' %>
+              <%= image_tag @company.bg_image.present? ? @company.bg_image_url(:banner) : 'http://placehold.it/500x200', :id => "uploaded-company-banner",:class=> "img-thumbnail", alt: 'Company Banner' %>
             </div>
           </div>
         </div>

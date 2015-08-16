@@ -13,7 +13,7 @@ class Company < ActiveRecord::Base
   after_save :save_full_location
 
 
-  accepts_nested_attributes_for :company_locations, :reject_if => proc {|attributes| attributes[:branch_type].blank? || attributes[:phone].blank? || attributes[:country].blank? || attributes[:city].blank?}, :allow_destroy => true
+  accepts_nested_attributes_for :company_locations, :reject_if => proc {|attributes| attributes[:branch_type].blank? || attributes[:country].blank? || attributes[:city].blank?}, :allow_destroy => true
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :company_admins, :allow_destroy => true
   accepts_nested_attributes_for :followers, :allow_destroy => true

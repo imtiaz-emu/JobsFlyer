@@ -18,4 +18,12 @@ class HomeController < ApplicationController
       format.json {render json: @cities }
     end
   end
+
+  def load_cities
+    @cities = City.where("name ilike ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.html
+      format.json { render :json => @cities.map(&:attributes) }
+    end
+  end
 end

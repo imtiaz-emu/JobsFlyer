@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'home/load_states'
+  get 'home/load_cities'
   get '/companies/availability', to: 'companies#availability'
   get '/companies/new', to: 'companies#new'
   post '/companies', to: 'companies#create'

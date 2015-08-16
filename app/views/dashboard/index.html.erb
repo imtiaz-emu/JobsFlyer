@@ -25,7 +25,13 @@
       <% if current_user.profile.looking_for_job %>
         <%= render :partial => 'recommended_jobs' %>
       <% else %>
-        <%= render :partial => 'top_companies' %>
+        <div class="col-sm-12">
+          <section class="widget text-white">
+            <div class="widget-body clearfix">
+              <%= image_tag 'http://placehold.it/360x225', class: 'img-responsive' %>
+            </div>
+          </section>
+        </div>
       <% end %>
     </div>
   </div>

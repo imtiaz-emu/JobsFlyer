@@ -298,7 +298,12 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
 
 
 .search-jobs-flyer ul.token-input-list{width:auto !important;border: 1px solid #ccc;}
-.home .search-jobs-flyer ul.token-input-list{width:auto !important;border: 1px solid #ccc;height: 42px!important;}
+.home .search-jobs-flyer ul.token-input-list{
+  border: 1px solid #ccc;
+  height: 40px !important;
+  margin-top: -3px;
+  width: auto !important;
+}
 .home .jumbotron p{font-size: 16px;}
 .home li.token-input-token span{line-height: 26px;}
 .home .search-jobs-flyer ul.token-input-list li input {
@@ -310,14 +315,14 @@ a:focus,a:hover,a:active,a:after,a:link,.btn:hover,.btn:focus,.btn:link { outlin
   height: 40px;
 }
 
- .home .btn-jobsflyer{ background-color: #f2be35;
-  border-color: #f2be35;
-  color: #242424;
-  font-size: 16px;
-  margin-top: -22px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-}
+ .home .btn-jobsflyer{    background-color: #f2be35;
+   border-color: #f2be35;
+   color: #242424;
+   font-size: 16px;
+   margin-top: -19px;
+   padding-bottom: 8px;
+   padding-top: 7px;
+ }
 .search-jobs-flyer  ul.token-input-list li input{width:auto !important;  height: 32px ;}
 .search-jobs-flyer  input[name=query]:focus[name=query]:focus {border: 1px solid #f2be35 ;}
 .search-jobs-flyer  .li.token-input-token{padding: 4px 5px ;}
@@ -434,6 +439,7 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .setting-com-list{   padding-bottom: 1px;
   padding-top: 1px;}
 .setting-com-list li a{background: rgba(255, 255, 255, .6);}
+<<<<<<< HEAD
 .company-widget .widget-body .mb-xs{height: 117px;
   overflow: hidden;}
 .company-widget .widget-body .mb-xs .img-centered{margin: auto;}
@@ -527,3 +533,12 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 
 
 
+=======
+#edit_profile_5 ul.token-input-list {
+   border: 1px solid #ccc;
+   height:31px !important;
+   width: 348px;
+
+}
+#edit_profile_5 li.token-input-token{background: #fff;font-weight: normal;color: #555;}
+>>>>>>> development

@@ -9,7 +9,7 @@ class Profile < ActiveRecord::Base
   mount_uploader :photo, ProfileUploader
 
   # validations
-  validates_presence_of :first_name, :last_name, :phone
+  validates_presence_of :first_name, :last_name, :country
   # scopes
 
   # Constants
