@@ -1,56 +1,38 @@
-<div class="custom-margin-wrapper-bottom">
-  <h3>Search results of <strong><%= params[:query] %> | <%= @company_location.name %></strong>: <%= @results.count %></h3>
+<div class="row">
+  <div class="advance-job-search-results">
+    <%= render partial: 'search/searched_jobs', locals: {jobs: @results} %>
+  </div>
+  <div class="advance-job-search-filter">
+    <%= render partial: 'search/advance_search_form' %>
+  </div>
 </div>
 
-<% if @results.count > 0  %>
+<script>
+  $(document).ready(function () {
+    $('#job_skills').tokenInput('/dashboard/skills.json', {crossDomain: false, hintText: 'Job skill search'});
+    $('#job_location').tokenInput('/dashboard/all_job_locations.json', {
+      crossDomain: false,
+      propertyToSearch: 'full_location',
+      tokenLimit: 1,
+      hintText: 'Job location search'
+    });
+    $("#deadline").datepicker({
+      dateFormat: "yy-mm-dd"
+    });
 
-  <% @results.each do |job| %>
-    <section class="search-result-item">
-      <a class="image-link" href="#">
-        <%= image_tag job.company.logo.present? ? job.company.logo_url(:logo) : 'jf_logo.jpg', class: 'image' %>
-      </a>
-      <div class="search-result-item-body">
-        <div class="row">
-          <div class="col-sm-9">
-            <h4 class="search-result-item-heading">
-              <a href="<%= job_path(job) %>"><%= job.title %></a>
-            </h4>
-            <p class="info">
-              <% if job.anywhere_in %>
-                Anywhere in <%= job.anywhere_place.present? ? job.anywhere_place : job_location(job.company) %>
-              <% else %>
-                <%= job_location(CompanyLocation.find(job.job_location)) %>
-              <% end %>
-            </p>
-            <p class="info">
-              <span class="label label-primary"><%= Job::JOB_TYPES[0].keys[job.job_type.to_i-1] %></span>
-            </p>
-            <p class="description">
-              <!--Not just usual Metro. But something bigger. Not just usual widgets, but real-->
-              <!--widgets. Not just yet another admin template, but next generation admin template.-->
-              <% job.skills.each do |skill| %>
-                <span class="badge"><%= skill.name %></span>
-              <% end %>
-            </p>
-          </div>
-          <div class="col-sm-3 text-align-center">
-            <p class="value3 mt-sm">
-              <% if job.is_negotiable %>
-                Salary Negotiable
-              <% else %>
-                <%= job.payment_currency %> <%= job.salary_range %>
-              <% end %>
-            </p>
-            <p class="fs-mini text-muted">
-              <%= Job::JOB_PAYMENT_TYPE[0].keys[job.payment_type.to_i-1] %>
-            </p>
-            <a class="btn btn-primary btn-info btn-sm" href="<%= job_path(job) %>">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  <% end %>
-<% else %>
-  <h3>No job posts found with <strong><%= params[:query] %></strong> term.</h3>
-<% end %>
-
+    $('#search-for-job-form-btn').click(function(){
+      $.ajax({
+        type: 'GET',
+        url: '<%= advance_search_results_path %>',
+        data: {job_category_id: $('#job_category_id').val(),
+          job_skills: $('#job_skills').val().split(','),
+          deadline: $('#deadline').val(),
+          job_location: $('#job_location').val(),
+          exp_min: $('#experience-min').val(),
+          exp_max: $('#experience-max').val(),
+          featured_job: $("#featured_job").is(':checked') ? 1 : 0
+        }
+      });
+    });
+  });
+</script>

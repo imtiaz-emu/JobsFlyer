@@ -146,3 +146,11 @@
 <div id="applied-jobs-for-admin">
   <%= render :partial => 'jobs/applied_jobs', locals: {:job_applications => @job.users.includes(:jobs_users), :job_id => @job.slug}  if !guest_user? && is_company_admin(@job.company)%>
 </div>
+
+<% content_for :head do %>
+  <meta property="fb:app_id" content="1424576684441063" />
+  <meta property="og:type"   content="sdff:post" />
+  <meta property="og:url"    content="<%= job_url(@job) %>" />
+  <meta property="og:title"  content="<%= @job.title.titleize %>" />
+  <meta property="og:image"  content="<%= @job.company.logo.url(:logo) %>" />
+<% end %>

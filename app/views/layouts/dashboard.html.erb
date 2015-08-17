@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'dashboard' %>
   <%= javascript_include_tag 'jobs_custom' if params[:controller] == 'jobs' && ['edit', 'new'].include?(params[:action]) %>
   <%= csrf_meta_tags %>
+  <%= content_for?(:head) ? yield(:head) : '' %>
 </head>
 <body class="<%= params[:controller] %> <%= params[:action] %> nav-static">
 

@@ -3,11 +3,14 @@ class SearchController < ApplicationController
   layout 'dashboard_widget'
 
   def index
-    city_name = City.find(params[:area]).name
-    @company_location = CompanyLocation.where('city ilike ?', "%#{city_name}%").first
+    if params[:area].present?
+      city_name = City.find(params[:area]).name
+      @company_location = CompanyLocation.where('city ilike ?', "%#{city_name}%").first
+    end
     @results = Job.quick_search(params[:query])
     if @company_location.present?
       @results = @results.count == 0 ? Job.where(:job_location => @company_location.id) : @results.where(:job_location => @company_location.id)
+      @results = @results.active_jobs
     end
   end
 
