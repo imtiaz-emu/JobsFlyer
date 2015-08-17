@@ -36,6 +36,9 @@
                   </p>
                 </div>
                 <div class="col-sm-3 text-align-center">
+                  <% if job.featured_job %>
+                    <i class="fa  fa-thumb-tack pull-right thumb-tack" data-placement="right" data-toggle="tooltip" data-original-title="Featured Job"></i>
+                  <% end %>
                   <p class="value3 mt-sm">
                     <% if job.is_negotiable %>
                         Salary Negotiable
@@ -57,3 +60,7 @@
       <h3>No job posts have been made.</h3>
   <% end %>
 </div>
+
+<script>
+  $('i').tooltip();
+</script>
