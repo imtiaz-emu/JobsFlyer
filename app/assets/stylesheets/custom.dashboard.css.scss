@@ -460,7 +460,7 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .follow-unfollw{ position: absolute;right: 5%;top: 10%;}
 .top-sp-btn{margin-top: 5px;}
 .widget-invoice > header + .wid-top{margin-top: 20px;}
-.content{padding-top: 140px;}
+.home .content{padding-top: 100px;}
 .home .content,.home .jumbotron{background: #fff;}
 .home .search-jobs-flyer .form-control,.home .search-jobs-flyer ul.token-input-list{background: #eee;}
 .home  #token-input-job_locations_attributes{background: #eee;}
@@ -490,19 +490,19 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .new-user-add{margin-top: 10px;}
 .home-page-nav-bar .login-button a{border: 1px solid  #f2be35;text-transform:uppercase; background: #f2be35;color: #2d0c00 !important;border-radius: 3px;}
 #bs-example-navbar-collapse-1 .my-bar li a:hover{color: #E5B432 ;}
-.login-button a:hover{background: #f2be35 !important;}
+.login-button a:hover,.login-button a:focus{background: #f2be35 !important;}
  .right-separtor a{border-right: 1px solid #f2be35;}
 .flash-message-div .alert {margin-bottom: 0; margin-top: 10px;}
 .flash-message-div ul{padding-left: 0;}
-.job-category{overflow: hidden;margin-top:130px;}
-.job-category h4{color: #f2be35;}
+.job-category{overflow: hidden;margin-top:103px;}
+.job-category h4{color: #f2be35;font-weight: 400;}
 .cat-names{border: 1px dashed #f1f1f1;}
 .cat-names li a{color:#2d0c00; }
 .main-cat-top{text-transform: uppercase;margin-bottom: 20px;}
 .tops-company-section h3{margin-top: 20px;margin-bottom: 40px;text-transform: uppercase;}
 .list-unstyled{margin-top: 20px;margin-bottom: 20px;}
 .tops-company-section img{width: 12.2%;margin-bottom: 4px;}
-.top-emp-logo{padding-top: 0;}
+.home .top-emp-logo{padding-top: 0;}
 .top-emp-logo .jumbotron{background: none;}
 .tab-two .com{color: #2d0c00;}
 .tab-two .emp{color: #f2be35;}
@@ -513,7 +513,7 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
     margin: 5px 0;
   font-weight: normal;
     padding: 3px 5px;}
-
+#search-for-job-form #deadline{width: 238px;}
 @media screen and (max-width: 780px) {
  .home .navbar-form .input-group{width: 100%;}
   .new-user-add{margin-right: 20px;}
