@@ -506,7 +506,13 @@ ul.token-input-list-facebook{border-radius: 2px;height: 35px; border: 1px solid 
 .top-emp-logo .jumbotron{background: none;}
 .tab-two .com{color: #2d0c00;}
 .tab-two .emp{color: #f2be35;}
-
+.pace-done .advance-job-search-filter .token-input-list{width: 275px;height: 35px !important;border-color: #CCCCCC;}
+.pace-done .advance-job-search-filter .token-input-list li.token-input-token {
+  background-color: #fff;
+  color: #666;
+    margin: 5px 0;
+  font-weight: normal;
+    padding: 3px 5px;}
 
 @media screen and (max-width: 780px) {
  .home .navbar-form .input-group{width: 100%;}
