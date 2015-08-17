@@ -3,6 +3,10 @@ module CommentsHelper
     record.class.name.downcase + '__' + record.id.to_s
   end
 
+  def unique_class_generator(record)
+    record.class.name.downcase + '___' + record.id.to_s
+  end
+
   def commenter(comment)
     comment.user == current_user
   end

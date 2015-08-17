@@ -1,0 +1,9 @@
+<% if @saveable.is_a?(Post) %>
+var post_id = <%= @saveable.id %>;
+$(".post___" + post_id.toString()).html('<%=j render :partial => 'shared/timeline_single_post', locals: {:record => @saveable} %>')
+
+<% elsif @saveable.is_a?(Job) %>
+
+var job_id = <%= @saveable.id %>;
+$(".job___" + job_id.toString()).html('<%=j render :partial => 'shared/timeline_single_job', locals: {:record => @saveable} %>')
+<% end %>

@@ -135,6 +135,7 @@
                  target page -->
             <li><a href="<%= posts_path(:user => current_user.id) %>" data-no-pjax>My posts</a></li>
             <li><a href="<%= new_post_path %>">Create new</a></li>
+            <% if user_signed_in? %><li><a href="<%= saved_links_path %>">My saved posts</a></li><% end %>
             <% my_companies.each do |company| %>
               <li><a href="<%= posts_path(:company => company.id) %>"><%= company.name %>'s posts</a></li>
             <% end %>

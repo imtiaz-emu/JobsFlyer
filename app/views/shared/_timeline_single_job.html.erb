@@ -1,0 +1,36 @@
+
+
+  <section class="event">
+            <span class="thumb-sm avatar pull-left mr-sm">
+              <%= image_tag record.company.logo.present? ? record.company.logo_url(:logo) : 'avatar.png', class: 'img-circle' %>
+            </span>
+    <h4 class="event-heading">
+      <a href="<%= company_path(record.company) %>"><%= record.company.name %></a>
+      <small class="pull-right">
+        <a href="<%= saved_link?(record) ? saved_links_destroy_path(id: saved_link_id(record)) : saved_links_create_path(:job_id => record.id) %>" data-remote="true"><i class="fa <%= saved_link?(record) ? 'fa-bookmark' : 'fa-bookmark-o' %>"></i></a>
+      </small>
+    </h4>
+
+    <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
+    <h4><span class="fw-semi-bold"><%= link_to record.company.name, company_path(record.company) %></span> has posted a new job: <span class="fw-semi-bold"><%= link_to record.title, job_path(record) %></span></h4>
+
+    <footer id="<%= unique_id_generator(record) %>">
+      <div class="clearfix">
+        <ul class="post-links mt-sm pull-left">
+          <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
+          <li class="like-dislike"><a href="<%= liked(record) ? like_destroy_path(:job_id => record.id) : like_create_path(:job_id => record.id) %>" data-remote="true"><span class="text-danger"><i class="fa <%= liked(record) ? 'fa-heart' : 'fa-heart-o' %>"></i> <%= liked(record) ? 'Unlike' : 'Like' %></span> </a>
+            <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= record.likes.count %></span></li>
+          <li class="comments-counter"><a href="javascript:void(0)">Comments</a> <span class="counts"><i class="fa fa-comments"> <%= record.comments.count %></i></span></li>
+        </ul>
+      </div>
+
+      <ul class="post-comments mt-sm">
+        <li>
+          <ul class="comments-index">
+            <%= render partial: 'comments/post_comments', locals: {:comments => record.comments, :commentable => nil} %>
+          </ul>
+        </li>
+        <%= render partial: 'comments/form', locals: {:post_id => nil, :job_id => record.id, :comment => Comment.new} %>
+      </ul>
+    </footer>
+  </section>

@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-lg-7 col-md-12">
+    <div class="row">
+      <div class="col-sm-12">
+        <% if @saved_links.count > 0 %>
+          <ul class="timeline my-time-line">
+
+            <% @saved_links.sort{|a,b| b.updated_at <=> a.updated_at}.each do |record| %>
+              <% if record.saveable.is_a?(Post) %>
+                <li class="on-left <%= unique_class_generator(record.saveable) %>">
+                  <%= render :partial => 'shared/timeline_single_post', :locals => {:record => record.saveable} %>
+                </li>
+              <% elsif record.saveable.is_a?(Job) %>
+                <li class="on-left <%= unique_class_generator(record.saveable) %>">
+                  <%= render :partial => 'shared/timeline_single_job', :locals => {:record => record.saveable} %>
+                </li>
+              <% end %>
+            <% end %>
+
+          </ul>
+        <% else %>
+          <h4>No saved links found!</h4>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-5 col-sm-12">
+    <div class="row">
+      <div class="col-sm-12">
+        <section class="widget text-white">
+          <div class="widget-body clearfix">
+            <%= image_tag 'http://placehold.it/360x225', class: 'img-responsive' %>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <section class="widget text-white">
+          <div class="widget-body clearfix">
+            <%= image_tag 'http://placehold.it/360x225', class: 'img-responsive' %>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

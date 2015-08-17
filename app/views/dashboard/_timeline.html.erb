@@ -4,131 +4,14 @@
 
   <% @time_line_records.sort{|a,b| b.updated_at <=> a.updated_at}.each do |record| %>
     <% if record.is_a?(Post) %>
-        <li class="on-left">
-
-          <section class="event">
-
-            <span class="thumb-sm avatar pull-left mr-sm">
-              <% if record.company_id.present? %>
-                <a href="<%= company_path(record.company) %>">
-                  <%= image_tag record.company.logo.present? ? record.company.logo_url(:thumb) : 'avatar.png', class: 'img-circle' %>
-                </a>
-              <% else %>
-                <a href="<%= profile_path(record.user.profile) %>">
-                  <%= image_tag record.user.profile.photo.present? ? record.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
-                </a>
-              <% end %>
-            </span>
-            <% if record.company_id.present? %>
-              <h4 class="event-heading"><a href="<%= company_path(record.company) %>"><%= record.company.name %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[record.post_type - 1] %></small></a></h4>
-            <% else %>
-              <h4 class="event-heading"><a href="<%= profile_path(record.user.profile) %>"><%= full_user_name(record.user) %> <small class="pull-right"><i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[record.post_type - 1] %></small></a></h4>
-            <% end %>
-
-            <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
-
-            <p class="fs-mini">
-              <%= record.description.truncate(200, omission:  (link_to " ....Read more", post_path(record))).html_safe %>
-            </p>
-
-            <% if record.feature_image.present? %>
-              <div class="event-image">
-                <a href="<%= post_path(record) %>">
-                  <%= image_tag record.feature_image_url(:banner), :class => 'img-responsive img-thumbnail'  %>
-                </a>
-              </div>
-            <% end %>
-
-            <footer id="<%= unique_id_generator(record) %>">
-              <span class="clearfix"></span>
-              <p class="fs-mini">
-                <i class="fa fa-tags"></i>  <%= record.skills.collect { |skill| skill.name }.join(', ') %>
-              </p>
-
-              <div class="clearfix">
-                <ul class="post-links mt-sm pull-left">
-                  <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
-                  <li class="like-dislike"><a href="<%= liked(record) ? like_destroy_path(:post_id => record.id) : like_create_path(:post_id => record.id) %>" data-remote="true"><span class="text-danger"><i class="fa <%= liked(record) ? 'fa-heart' : 'fa-heart-o' %>"></i> <%= liked(record) ? 'Unlike' : 'Like' %></span> </a>
-                    <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= record.likes.count %></span></li>
-                  <li class="comments-counter"><a href="javascript:void(0)">Comments</a> <span class="counts"><i class="fa fa-comments"> <%= record.comments.count %></i></span></li>
-                </ul>
-
-              </div>
-
-              <ul class="post-comments mt-sm new-li">
-                <li>
-                  <ul class="comments-index">
-                    <%= render partial: 'comments/post_comments', locals: {:comments => record.comments, :commentable => nil} %>
-                  </ul>
-                </li>
-                <%= render partial: 'comments/form', locals: {:post_id => record.id, :job_id => nil, :comment => Comment.new} %>
-              </ul>
-            </footer>
-          </section>
+        <li class="on-left <%= unique_class_generator(record) %>">
+          <%= render :partial => 'shared/timeline_single_post', :locals => {:record => record} %>
         </li>
     <% elsif record.is_a?(JobsUser) %>
-        <li class="on-left">
-
-          <section class="event">
-            <span class="thumb-sm avatar pull-left mr-sm">
-              <%= image_tag record.user.profile.photo.present? ? record.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
-            </span>
-            <h4 class="event-heading">
-              <a href="<%= profile_path(record.user.profile) %>"><%= full_user_name(record.user) %></a>
-              <span class="thumb-sm avatar pull-right mr-sm">
-              <%= image_tag record.job.company.logo.present? ? record.job.company.logo_url(:logo) : 'avatar.png', class: 'img-circle' %>
-            </span>
-            </h4>
-
-            <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
-            <h4>Applied to <span class="fw-semi-bold"><%= link_to record.job.title, job_path(record.job) %></span> @ <span class="fw-semi-bold"><%= link_to record.job.company.name, company_path(record.job.company) %></span></h4>
-
-            <footer id="<%= unique_id_generator(record) %>">
-              <div class="clearfix">
-                <ul class="post-links mt-sm pull-left">
-                  <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
-                  <li class="like-dislike"><a href="<%= liked(record) ? like_destroy_path(:jobs_user_id => record.id) : like_create_path(:jobs_user_id => record.id) %>" data-remote="true"><span class="text-danger"><i class="fa <%= liked(record) ? 'fa-heart' : 'fa-heart-o' %>"></i> <%= liked(record) ? 'Unlike' : 'Like' %></span> </a>
-                    <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= record.likes.count %></span></li>
-                </ul>
-              </div>
-
-            </footer>
-          </section>
-        </li>
+        <%= render :partial => 'shared/timeline_single_job_user', :locals => {:record => record} %>
     <% elsif record.is_a?(Job) %>
-        <li class="on-left">
-
-          <section class="event">
-            <span class="thumb-sm avatar pull-left mr-sm">
-              <%= image_tag record.company.logo.present? ? record.company.logo_url(:logo) : 'avatar.png', class: 'img-circle' %>
-            </span>
-            <h4 class="event-heading">
-              <a href="<%= company_path(record.company) %>"><%= record.company.name %></a>
-            </h4>
-
-            <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
-            <h4><span class="fw-semi-bold"><%= link_to record.company.name, company_path(record.company) %></span> has posted a new job: <span class="fw-semi-bold"><%= link_to record.title, job_path(record) %></span></h4>
-
-            <footer id="<%= unique_id_generator(record) %>">
-              <div class="clearfix">
-                <ul class="post-links mt-sm pull-left">
-                  <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
-                  <li class="like-dislike"><a href="<%= liked(record) ? like_destroy_path(:job_id => record.id) : like_create_path(:job_id => record.id) %>" data-remote="true"><span class="text-danger"><i class="fa <%= liked(record) ? 'fa-heart' : 'fa-heart-o' %>"></i> <%= liked(record) ? 'Unlike' : 'Like' %></span> </a>
-                    <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= record.likes.count %></span></li>
-                  <li class="comments-counter"><a href="javascript:void(0)">Comments</a> <span class="counts"><i class="fa fa-comments"> <%= record.comments.count %></i></span></li>
-                </ul>
-              </div>
-
-              <ul class="post-comments mt-sm">
-                <li>
-                  <ul class="comments-index">
-                    <%= render partial: 'comments/post_comments', locals: {:comments => record.comments, :commentable => nil} %>
-                  </ul>
-                </li>
-                <%= render partial: 'comments/form', locals: {:post_id => nil, :job_id => record.id, :comment => Comment.new} %>
-              </ul>
-            </footer>
-          </section>
+        <li class="on-left <%= unique_class_generator(record) %>">
+          <%= render :partial => 'shared/timeline_single_job', :locals => {:record => record} %>
         </li>
     <% end %>
   <% end %>

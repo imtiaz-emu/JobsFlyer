@@ -56,6 +56,11 @@ Rails.application.routes.draw do
   get '/terms-conditions', to: 'page#terms_and_conditions'
   get '/contact', to: 'page#contact'
 
+  # save post or job
+  get 'saved-links', :to => 'saved_links#index'
+  get 'saved_links/create'
+  get 'saved_links/destroy'
+
   resources :search
   resources :users do
     get '/companies', to: 'companies#index'

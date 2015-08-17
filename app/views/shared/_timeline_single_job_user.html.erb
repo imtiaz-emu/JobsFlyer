@@ -1,0 +1,28 @@
+<li class="on-left">
+
+  <section class="event">
+            <span class="thumb-sm avatar pull-left mr-sm">
+              <%= image_tag record.user.profile.photo.present? ? record.user.profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
+            </span>
+    <h4 class="event-heading">
+      <a href="<%= profile_path(record.user.profile) %>"><%= full_user_name(record.user) %></a>
+              <span class="thumb-sm avatar pull-right mr-sm">
+              <%= image_tag record.job.company.logo.present? ? record.job.company.logo_url(:logo) : 'avatar.png', class: 'img-circle' %>
+            </span>
+    </h4>
+
+    <p class="fs-sm text-muted"><%= record.created_at.strftime('%c') %></p>
+    <h4>Applied to <span class="fw-semi-bold"><%= link_to record.job.title, job_path(record.job) %></span> @ <span class="fw-semi-bold"><%= link_to record.job.company.name, company_path(record.job.company) %></span></h4>
+
+    <footer id="<%= unique_id_generator(record) %>">
+      <div class="clearfix">
+        <ul class="post-links mt-sm pull-left">
+          <li><a href="javascript:void(0)"><%= distance_of_time_in_words(Time.now, record.created_at) %></a></li>
+          <li class="like-dislike"><a href="<%= liked(record) ? like_destroy_path(:jobs_user_id => record.id) : like_create_path(:jobs_user_id => record.id) %>" data-remote="true"><span class="text-danger"><i class="fa <%= liked(record) ? 'fa-heart' : 'fa-heart-o' %>"></i> <%= liked(record) ? 'Unlike' : 'Like' %></span> </a>
+            <span class="counts"><i class="fa fa-thumbs-o-up"></i> <%= record.likes.count %></span></li>
+        </ul>
+      </div>
+
+    </footer>
+  </section>
+</li>
