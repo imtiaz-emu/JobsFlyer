@@ -8,18 +8,15 @@
 
           <div class="tops-company-section">
             <h3 class="text-center tab-two"><a href="" class="com">Top Companies</a>&nbsp; / &nbsp;<a class="emp" href="">Top Employers</a></h3>
-            <% if @top_companies.count > 0 %>
-              <% @top_companies.each do |company| %>
-                <% if company.logo.present? %>
-                  <%= image_tag company.logo_url(:logo), :class => "img-responsive img-thumbnail" %>
-                <% else %>
-                  <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-                <% end %>
-              <% end %>
-            <% else %>
-              <% (1..32).each do |company| %>
+            <% @top_companies.each do |company| %>
+              <% if company.logo.present? %>
+                <%= image_tag company.logo_url(:logo), :class => "img-responsive img-thumbnail", :title => "#{company.name}" %>
+              <% else %>
                 <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
               <% end %>
+            <% end %>
+            <% (1..32 - @top_companies.count).each do |company| %>
+              <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
             <% end %>
           </div>
 
