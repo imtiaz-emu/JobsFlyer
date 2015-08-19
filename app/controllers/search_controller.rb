@@ -17,7 +17,12 @@ class SearchController < ApplicationController
   def advance_search
     @search_tab = 'active'
     @jobs_tab = 'active'
-    @jobs = Job.active_jobs.order(featured_job: :desc, created_at: :desc)
+    if params[:job_category].present?
+      @job_category = JobCategory.find(params[:job_category].to_i)
+      @jobs = @job_category.jobs.active_jobs.order(featured_job: :desc, created_at: :desc)
+    else
+      @jobs = Job.active_jobs.order(featured_job: :desc, created_at: :desc)
+    end
   end
 
   def advance_search_results

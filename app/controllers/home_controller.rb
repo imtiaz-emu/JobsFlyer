@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   layout 'dashboard_widget'
+
   def index
+    @job_categories = JobCategory.all
+    @industries = OrganizationCategory.all
+    @top_companies = Company.all.sort{|a,b| b.jobs.count <=> a.jobs.count}.first(24)
   end
 
   def load_states
