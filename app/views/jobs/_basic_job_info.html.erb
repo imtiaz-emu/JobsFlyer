@@ -24,6 +24,19 @@
   </div>
 </div>
 
+<!--Input for jobCategory -->
+<div class="form-group">
+  <label for="prepended-input" class="col-sm-4 control-label">Select Job category
+    <span class="help-block">Select a category under which you want to post this job</span>
+  </label>
+
+  <div class="col-sm-7">
+    <div class="input-group">
+      <%= f.select :job_category_id, options_for_select(JobCategory.all.collect{|c| [c.name, c.id]}, @job.job_category_id), :class => 'form-control selectpicker' %>
+    </div>
+  </div>
+</div>
+
 <!--Input for job title  -->
 <div class="form-group">
   <label for="prepended-input" class="col-sm-4 control-label">Job Vacancies

@@ -29,7 +29,8 @@ class Job < ActiveRecord::Base
                   against: [:title, :additional_requirement],
                   associated_against: {
                       skills: [:name],
-                      company: [:name]
+                      company: [:name],
+                      job_category: [:name]
                   }
 
   after_create :manage_subscription

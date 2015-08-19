@@ -17,7 +17,7 @@
           <div class="form-group">
             <!--<label class="col-sm-4 control-label" for="default-select">Select Job category</label>-->
             <div class="col-sm-8">
-              <%= select_tag 'job_category_id', options_for_select(options_for_select(OrganizationCategory.all.collect { |oc| [oc.name, oc.id] })), prompt: "Select category" %>
+              <%= select_tag 'job_category_id', options_for_select(options_for_select(JobCategory.all.collect { |oc| [oc.name, oc.id] })), prompt: "Select category" %>
             </div>
           </div>
           <div class="form-group">
