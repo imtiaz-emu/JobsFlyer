@@ -20,7 +20,6 @@
             <%= record.company.name %>
             <small class="pull-right">
               <a href="<%= saved_link?(record) ? saved_links_destroy_path(id: saved_link_id(record)) : saved_links_create_path(:post_id => record.id) %>" data-remote="true"><i class="fa <%= saved_link?(record) ? 'fa-bookmark' : 'fa-bookmark-o' %>"></i></a>
-              <i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[record.post_type - 1] %>
             </small>
           </a>
         </h4>
@@ -30,7 +29,6 @@
             <%= full_user_name(record.user) %>
             <small class="pull-right">
               <a href="<%= saved_link?(record) ? saved_links_destroy_path(id: saved_link_id(record)) : saved_links_create_path(:post_id => record.id) %>" data-remote="true"><i class="fa <%= saved_link?(record) ? 'fa-bookmark' : 'fa-bookmark-o' %>"></i></a>
-              <i class="fa fa-tag"></i>  <%= Post::POST_TYPE.keys[record.post_type - 1] %>
             </small>
           </a>
         </h4>
@@ -55,6 +53,7 @@
 
         <p class="fs-mini">
           <i class="fa fa-tags"></i>  <%= record.skills.collect { |skill| skill.name }.join(', ') %>
+          <i class="fa fa-tag pull-right">  <%= Post::POST_TYPE.keys[record.post_type - 1] %></i>
         </p>
 
         <div class="clearfix">

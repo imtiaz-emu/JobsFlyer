@@ -8,6 +8,7 @@ class Job < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :saved_links, :as => :saveable, :dependent => :destroy
   has_many :likes, :as => :likable, :dependent => :destroy
+  belongs_to :job_category
 
   attr_accessor :job_skills_attributes
 
