@@ -8,49 +8,13 @@
 
           <div class="tops-company-section">
             <h3 class="text-center tab-two"><a href="" class="com">Top Companies</a>&nbsp; / &nbsp;<a class="emp" href="">Top Employers</a></h3>
-
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-            <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
-
+            <% @top_companies.each do |company| %>
+              <% if company.logo.present? %>
+                <%= image_tag company.logo_url(:logo), :class => "img-responsive img-thumbnail" %>
+              <% else %>
+                <img src="http://placehold.it/134x85" class="img-responsive img-thumbnail">
+              <% end %>
+            <% end %>
           </div>
 
 

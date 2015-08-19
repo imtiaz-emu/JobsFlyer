@@ -3,90 +3,48 @@
     <form action="<%= search_index_path %>" class="search-jobs-flyer navbar-form text-center" role="search" method="get">
       <div class="form-group">
         <div class="input-group">
-
-          <input class="form-control small-top" type="text"   name="query">
+          <input class="form-control small-top" type="text" name="query">
           <small>What</small>
-
-
         </div>
       </div>
+
       <div class="form-group">
         <div class="input-group">
-          <!--<span class="input-group-addon">-->
-          <!--<i class="fa fa-question"></i>-->
-          <!--</span>-->
-          <input class="form-control" type="text" id="job_locations_attributes"  name="area">
-          <small  >Where</small>
-
+          <input class="form-control" type="text" id="job_locations_attributes" name="area">
+          <small>Where</small>
         </div>
       </div>
+
       <div class="form-group">
-        <button type="submit" class="btn btn-jobsflyer btn-sm"> <i class="fa fa-search"></i> Search Jobs</button>
+        <button type="submit" class="btn btn-jobsflyer btn-sm"><i class="fa fa-search"></i> Search Jobs</button>
         <small class="clearfix"><a href="<%= advanced_search_path %>">Advance Search</a></small>
       </div>
- <br>
+      <br>
 
     </form>
+
     <span class="clearfix"></span>
- <div class="job-category">
-   <h4 class="text-center main-cat-top">Search by Job Category</h4>
-   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6  cat-names text-center">
-     <ul class="list-unstyled">
-       <li><a href="">Kingston Hospital (50)</a></li>
-       <li><a href="">Apartment Properties (48)</a></li>
-       <li><a href="">Queens School and College (33)</a></li>
-       <li><a href="">Islami Bank Hospital (32)</a></li>
-       <li><a href="">Kiam International (32)</a></li>
-       <li><a href="">Chittagong University of Engineering & Technology (26)</a></li>
-       <li><a href="">Newschamber24.com (24)</a></li>
 
-     </ul>
+    <div class="job-category">
+      <h4 class="text-center main-cat-top">Search by Job Category</h4>
 
-   </div>
-   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6  cat-names text-center">
-     <ul class="list-unstyled">
-       <li><a href="">Kingston Hospital (50)</a></li>
-       <li><a href="">Apartment Properties (48)</a></li>
-       <li><a href="">Queens School and College (33)</a></li>
-       <li><a href="">Islami Bank Hospital (32)</a></li>
-       <li><a href="">Kiam International (32)</a></li>
-       <li><a href="">Chittagong University of Engineering & Technology (26)</a></li>
-       <li><a href="">Newschamber24.com (24)</a></li>
-
-     </ul>
-
-   </div>
-   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6  cat-names text-center">
-     <ul class="list-unstyled">
-       <li><a href="">Kingston Hospital (50)</a></li>
-       <li><a href="">Apartment Properties (48)</a></li>
-       <li><a href="">Queens School and College (33)</a></li>
-       <li><a href="">Islami Bank Hospital (32)</a></li>
-       <li><a href="">Kiam International (32)</a></li>
-       <li><a href="">Chittagong University of Engineering & Technology (26)</a></li>
-       <li><a href="">Newschamber24.com (24)</a></li>
-
-     </ul>
-
-   </div>
-   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6  cat-names text-center">
-     <ul class="list-unstyled">
-       <li><a href="">Kingston Hospital (50)</a></li>
-       <li><a href="">Apartment Properties (48)</a></li>
-       <li><a href="">Queens School and College (33)</a></li>
-       <li><a href="">Islami Bank Hospital (32)</a></li>
-       <li><a href="">Kiam International (32)</a></li>
-       <li><a href="">Chittagong University of Engineering & Technology (26)</a></li>
-       <li><a href="">Newschamber24.com (24)</a></li>
-
-     </ul>
-
-   </div>
-
-
- </div>
-
-
+      <% each_column_category = @job_categories.count%4 == 0 ? @job_categories.count/4 : (@job_categories.count/4)+1  %>
+      <% starting = 1
+         ending = each_column_category
+      %>
+      <% (1..4).each do |line| %>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6  cat-names text-center">
+          <ul class="list-unstyled">
+            <% @job_categories.where(:id => starting..ending).each do |jobCat| %>
+              <li><a href="<%= advanced_search_path(:job_category => jobCat.id) %>"><%= jobCat.name %> (<%= jobCat.jobs.count %>)</a></li>
+            <% end %>
+          </ul>
+        </div>
+        <% starting += each_column_category
+           ending += each_column_category
+        %>
+      <% end %>
+    </div>
 
 
   </div>
@@ -95,7 +53,7 @@
 
 
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
     $('#job_locations_attributes').tokenInput('/home/load_cities.json', {
       crossDomain: false,
       propertyToSearch: 'name',

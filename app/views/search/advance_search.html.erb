@@ -3,7 +3,7 @@
     <%= render partial: 'search/searched_jobs', locals: {jobs: @jobs} %>
   </div>
   <div class="advance-job-search-filter">
-    <%= render partial: 'search/advance_search_form' %>
+    <%= render partial: 'search/advance_search_form', :locals => {:job_category => @job_category.nil? ? nil : @job_category} %>
   </div>
 </div>
 
