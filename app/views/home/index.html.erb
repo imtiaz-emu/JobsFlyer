@@ -29,13 +29,13 @@
       <h4 class="text-center main-cat-top">Search by Job Category</h4>
 
       <% each_column_category = @job_categories.count%4 == 0 ? @job_categories.count/4 : (@job_categories.count/4)+1  %>
-      <% starting = 1
+      <% starting = 0
          ending = each_column_category
       %>
       <% (1..4).each do |line| %>
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6  cat-names text-center">
           <ul class="list-unstyled">
-            <% @job_categories.where(:id => starting..ending).each do |jobCat| %>
+            <% @job_categories[starting...ending].each do |jobCat| %>
               <li><a href="<%= advanced_search_path(:job_category => jobCat.id) %>"><%= jobCat.name %> (<%= jobCat.jobs.count %>)</a></li>
             <% end %>
           </ul>
