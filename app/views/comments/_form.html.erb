@@ -1,5 +1,5 @@
 <li class="form-comment">
-  <%= form_for(comment, remote: true) do |f| %>
+  <%= form_for(comment, remote: true, authenticity_token: true) do |f| %>
     <span class="thumb-xs avatar pull-left mr-sm">
         <%= image_tag current_profile.photo.present? ? current_profile.photo_url(:profile) : 'avatar.png', class: 'img-circle' %>
     </span>
