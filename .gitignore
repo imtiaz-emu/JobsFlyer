@@ -16,10 +16,7 @@
 /test
 
 # Ignore database config file
-/config/database.yml
 /db/schema.rb
-/config/secrets.yml
-/config/application.yml
 /config/config_difference.yml
 /config/api_information.yml
 
