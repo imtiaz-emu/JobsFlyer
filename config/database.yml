@@ -23,4 +23,4 @@ staging:
 
 production:
   <<: *default
-database: jobsflyer
+  database: jobsflyer
